@@ -50,7 +50,7 @@
 								-%}
 								<div class="collapsible-content-group" {{ block.shopify_attributes }}>
 									{%- if block.settings.heading != blank -%}
-										<h3 class="collapsible-content-group__heading">{{ block.settings.heading }}</h3>
+										<h3 class="collapsible-content-group__heading" style="--heading-bg: {{ block.settings.heading_bg }}; --heading-text: {{ block.settings.heading_text }};">{{ block.settings.heading }}</h3>
 									{%- endif -%}
 									{%- if block.settings.text != blank -%}
 										<div class="collapsible-content-group__text rte">{{ block.settings.text }}</div>
@@ -265,6 +265,22 @@
 					"id": "text",
 					"label": "Text",
 					"default": "<p>Add descriptive text for this group of collapsible rows.</p>"
+				},
+				{
+					"type": "header",
+					"content": "Heading colors"
+				},
+				{
+					"type": "color",
+					"id": "heading_bg",
+					"label": "Heading background",
+					"default": "transparent"
+				},
+				{
+					"type": "color",
+					"id": "heading_text",
+					"label": "Heading text",
+					"default": "#1a1c1d"
 				}
 			]
 		},

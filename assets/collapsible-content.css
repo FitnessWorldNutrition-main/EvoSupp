@@ -80,8 +80,11 @@
   .collapsible-content-group__heading {
     font-size: 1.5rem;
     font-weight: var(--font-body-bold-weight, 700);
-    color: var(--color-heading);
-    margin-bottom: 15px; }
+    color: var(--heading-text, var(--color-heading));
+    background-color: var(--heading-bg, transparent);
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 8px; }
   .collapsible-content-group__text {
     margin-bottom: 25px;
     font-size: 0.9375rem;
