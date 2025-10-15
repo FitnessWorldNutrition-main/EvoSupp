@@ -368,8 +368,8 @@
         "content_group_FyNi9M": {
           "type": "content_group",
           "settings": {
-            "heading": "Content group heading",
-            "text": "<p>Add descriptive text for this group of collapsible rows.</p>"
+            "heading": "SHIPPING",
+            "text": ""
           }
         },
         "collapsible_tab_gPrzzq": {
@@ -395,8 +395,8 @@
         "content_group_E9E7hm": {
           "type": "content_group",
           "settings": {
-            "heading": "Content group heading",
-            "text": "<p>Add descriptive text for this group of collapsible rows.</p>"
+            "heading": "SHIPPING",
+            "text": ""
           }
         },
         "collapsible_tab_z8dHgA": {
