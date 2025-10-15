@@ -6,7 +6,7 @@
 
 .collapsible-content--has-bg {
   isolation: isolate;
-  border-radius: var(--block-border-radius, 16px); }
+  border-radius: 0}
 
 .collapsible-content--has-bg {
   box-shadow: var(--block-shadows); }
@@ -44,10 +44,9 @@
       display: inline-flex;
       align-items: center;
       transform-origin: center;
-      margin-left: 15px;
       position: absolute;
       top: 50%;
-      right: 0;
+      right: 1%;
       height: 20px;
       width: 14px;
       z-index: 5;
@@ -92,9 +91,12 @@
     .collapsible-content-group__text > *:last-child {
       margin-bottom: 0; }
   .collapsible-content-group__accordions {
-    margin-top: 20px; }
+    padding: 15px 20px;
+    margin-top: 20px; 
+    }
 
 .collapsible-content {
+  padding: 0;
   color: var(--color-text); }
   .collapsible-content a {
     color: var(--color-links, var(--color-text)); }
