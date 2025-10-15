@@ -5,11 +5,7 @@
   transition: all 0.25s cubic-bezier(0.104, 0.204, 0.492, 1); }
 
 .collapsible-content--has-bg {
-  isolation: isolate;
-  border-radius: 0; }
-
-.collapsible-content--has-bg {
-  box-shadow: var(--block-shadows); }
+  isolation: isolate; }
 
 
 
@@ -82,8 +78,7 @@
     color: var(--heading-text, var(--color-heading));
     background-color: var(--heading-bg, transparent);
     margin-bottom: 15px;
-    padding: 15px 20px;
-    border-radius: 8px; }
+    padding: 15px 20px; }
   .collapsible-content-group__text {
     margin-bottom: 25px;
     font-size: 0.9375rem;
