@@ -65,7 +65,7 @@
 													<details id="Details-{{ accordion_block.id }}-{{ section.id }}" {% if accordion_block.settings.open %}open{% endif %}>
 														<summary>
 															{{ accordion_block.settings.heading | default: accordion_block.settings.page.title }}
-															<span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
+															<span class="accordion-icon" style="color: {{ accordion_block.settings.icon_color | default: color_heading }};"></span>
 														</summary>
 														<div class="collapsible__content accordion__content rte" id="Accordion-{{ accordion_block.id }}-{{ section.id }}">
 															{{ accordion_block.settings.content }}
@@ -92,7 +92,7 @@
 										<details id="Details-{{ block.id }}-{{ section.id }}" {% if block.settings.open %}open{% endif %}>
 											<summary>
 												{{ block.settings.heading | default: block.settings.page.title }}
-												<span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
+												<span class="accordion-icon" style="color: {{ block.settings.icon_color | default: color_heading }};"></span>
 											</summary>
 											<div class="collapsible__content accordion__content rte" id="Accordion-{{ block.id }}-{{ section.id }}">
 												{{ block.settings.content }}
@@ -316,6 +316,16 @@
 					"id": "custom_liquid",
 					"label": "Custom liquid",
 					"info": "Add app snippets or other Liquid code to create advanced customizations. For product description, you can use {{ product.description }}"
+				},
+				{
+					"type": "header",
+					"content": "Icon"
+				},
+				{
+					"type": "color",
+					"id": "icon_color",
+					"label": "Icon color",
+					"default": "#1a1c1d"
 				}
 			]
 		}
