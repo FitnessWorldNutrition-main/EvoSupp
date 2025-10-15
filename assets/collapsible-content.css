@@ -70,6 +70,9 @@
     .accordion .accordion__content > *:last-child {
       margin-bottom: 0; }
 
+.section-header-wrapper .section-header {
+  justify-content: var(--header-justify, left); }
+
 .collapsible-content {
   color: var(--color-text); }
   .collapsible-content a {
