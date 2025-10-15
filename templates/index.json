@@ -381,7 +381,8 @@
             "open": false,
             "content": "",
             "page": "",
-            "custom_liquid": ""
+            "custom_liquid": "",
+            "icon_color": "#f67200"
           }
         },
         "collapsible_tab_xJGbDY": {
@@ -391,7 +392,8 @@
             "open": false,
             "content": "",
             "page": "",
-            "custom_liquid": ""
+            "custom_liquid": "",
+            "icon_color": "#f67200"
           }
         },
         "content_group_E9E7hm": {
@@ -410,7 +412,8 @@
             "open": false,
             "content": "",
             "page": "",
-            "custom_liquid": ""
+            "custom_liquid": "",
+            "icon_color": "#f67200"
           }
         },
         "collapsible_tab_dMxQFn": {
@@ -420,7 +423,8 @@
             "open": false,
             "content": "",
             "page": "",
-            "custom_liquid": ""
+            "custom_liquid": "",
+            "icon_color": "#f67200"
           }
         }
       },
