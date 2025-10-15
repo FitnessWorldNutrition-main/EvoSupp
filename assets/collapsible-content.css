@@ -73,6 +73,24 @@
 .section-header-wrapper .section-header {
   justify-content: var(--header-justify, left); }
 
+.collapsible-content-group {
+  margin-bottom: 50px; }
+  .collapsible-content-group:last-child {
+    margin-bottom: 0; }
+  .collapsible-content-group__heading {
+    font-size: 1.5rem;
+    font-weight: var(--font-body-bold-weight, 700);
+    color: var(--color-heading);
+    margin-bottom: 15px; }
+  .collapsible-content-group__text {
+    margin-bottom: 25px;
+    font-size: 0.9375rem;
+    line-height: 1.6; }
+    .collapsible-content-group__text > *:last-child {
+      margin-bottom: 0; }
+  .collapsible-content-group__accordions {
+    margin-top: 20px; }
+
 .collapsible-content {
   color: var(--color-text); }
   .collapsible-content a {
