@@ -369,7 +369,9 @@
           "type": "content_group",
           "settings": {
             "heading": "SHIPPING",
-            "text": ""
+            "text": "",
+            "heading_bg": "#ffefdd",
+            "heading_text": "#f67201"
           }
         },
         "collapsible_tab_gPrzzq": {
@@ -396,7 +398,9 @@
           "type": "content_group",
           "settings": {
             "heading": "SHIPPING",
-            "text": ""
+            "text": "",
+            "heading_bg": "rgba(0,0,0,0)",
+            "heading_text": "#1a1c1d"
           }
         },
         "collapsible_tab_z8dHgA": {
@@ -435,7 +439,7 @@
         "description": "",
         "header_text_align": "center",
         "content_text_align": "left",
-        "color_bg": "#f67200",
+        "color_bg": "#fffaf7",
         "color_heading": "#000000",
         "marker_color": "#f67200",
         "color_text": "#000000",
