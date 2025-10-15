@@ -27,7 +27,7 @@
 		<div class="section-header-wrapper" style="text-align: {{ header_text_align }}; --header-justify: {{ header_text_align }};">
 			{% render 'section-header', section_heading: section_heading, section_description: section_description, marker_color: marker_color, marker_style: marker_style %}
 		</div>
-		<div class="collapsible-content {% if has_bg -%}collapsible-content--has-bg{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --color-heading: {{ color_heading }}; --color-text: {{ color_text }}; --color-links: {{ color_links }}; --color-border: {{ color_border }}; text-align: {{ content_text_align }};">
+		<div class="collapsible-content {% if has_bg -%}collapsible-content--has-bg{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --color-heading: {{ color_heading }}; --color-text: {{ color_text }}; --color-links: {{ color_links }}; --color-border: {{ color_border }}; text-align: {{ content_text_align }};" style="padding: 0px;">
 			<div class="collapsible-content__inner">
 				{%- liquid
 					assign group_blocks = section.blocks | where: 'type', 'content_group'
