@@ -365,6 +365,23 @@
     "collapsible_content_gRhEhi": {
       "type": "collapsible-content",
       "blocks": {
+        "content_group_FyNi9M": {
+          "type": "content_group",
+          "settings": {
+            "heading": "Content group heading",
+            "text": "<p>Add descriptive text for this group of collapsible rows.</p>"
+          }
+        },
+        "collapsible_tab_gPrzzq": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Collapsible row",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
         "collapsible_tab_xJGbDY": {
           "type": "collapsible_tab",
           "settings": {
@@ -375,24 +392,11 @@
             "custom_liquid": ""
           }
         },
-        "collapsible_tab_QUxwd7": {
-          "type": "collapsible_tab",
+        "content_group_E9E7hm": {
+          "type": "content_group",
           "settings": {
-            "heading": "Collapsible row",
-            "open": false,
-            "content": "",
-            "page": "",
-            "custom_liquid": ""
-          }
-        },
-        "collapsible_tab_eWeXpG": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Collapsible row",
-            "open": false,
-            "content": "",
-            "page": "",
-            "custom_liquid": ""
+            "heading": "Content group heading",
+            "text": "<p>Add descriptive text for this group of collapsible rows.</p>"
           }
         },
         "collapsible_tab_z8dHgA": {
@@ -417,9 +421,10 @@
         }
       },
       "block_order": [
+        "content_group_FyNi9M",
+        "collapsible_tab_gPrzzq",
         "collapsible_tab_xJGbDY",
-        "collapsible_tab_QUxwd7",
-        "collapsible_tab_eWeXpG",
+        "content_group_E9E7hm",
         "collapsible_tab_z8dHgA",
         "collapsible_tab_dMxQFn"
       ],
