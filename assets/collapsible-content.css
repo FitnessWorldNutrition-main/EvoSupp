@@ -80,7 +80,7 @@
   @media only screen and (min-width: 1068px) {
     .collapsible-content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 50px; }
       .collapsible-content .section-header {
         align-items: start;
