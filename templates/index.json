@@ -399,8 +399,8 @@
           "settings": {
             "heading": "SHIPPING",
             "text": "",
-            "heading_bg": "rgba(0,0,0,0)",
-            "heading_text": "#1a1c1d"
+            "heading_bg": "#ffefdd",
+            "heading_text": "#f67201"
           }
         },
         "collapsible_tab_z8dHgA": {
