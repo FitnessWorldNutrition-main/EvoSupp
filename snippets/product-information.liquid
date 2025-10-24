@@ -289,7 +289,34 @@
   {%- when 'share' -%}
     {% render 'social-share', share_label: true, share_title: product.title, share_permalink: product.url, share_image: product.featured_image, block: block %}
   {%- when 'collapsible_tab' -%}
-    {%- if block.settings.heading != blank -%}
+    {%- liquid
+      assign tab_content = ''
+      assign variant_metafield_content = ''
+      
+      # Check for variant metafield content
+      if block.settings.use_variant_metafield and block.settings.variant_metafield_namespace != blank and block.settings.variant_metafield_key != blank
+        assign selected_variant = product.selected_or_first_available_variant
+        assign variant_metafield_content = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
+      endif
+      
+      # Combine all content sources
+      if variant_metafield_content != blank
+        assign tab_content = variant_metafield_content
+      elsif block.settings.content != blank
+        assign tab_content = block.settings.content
+      elsif block.settings.page.content != blank
+        assign tab_content = block.settings.page.content
+      elsif block.settings.custom_liquid != blank
+        assign tab_content = block.settings.custom_liquid
+      endif
+      
+      # Check if we have both heading and content
+      assign has_content = false
+      if tab_content != blank or variant_metafield_content != blank
+        assign has_content = true
+      endif
+    -%}
+    {%- if block.settings.heading != blank and has_content -%}
     <collapsible-row class="product__accordion accordion" {{ block.shopify_attributes }}>
       <details id="Details-{{ block.id }}-{{ section.id }}" {% if block.settings.open %}open{% endif %}>
         <summary>
@@ -297,9 +324,13 @@
           <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
         </summary>
         <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-          {{ block.settings.content }}
-          {{ block.settings.page.content }}
-          {{ block.settings.custom_liquid }}
+          {%- if variant_metafield_content != blank -%}
+            {{ variant_metafield_content }}
+          {%- else -%}
+            {{ block.settings.content }}
+            {{ block.settings.page.content }}
+            {{ block.settings.custom_liquid }}
+          {%- endif -%}
         </div>
       </details>
     </collapsible-row>

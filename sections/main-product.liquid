@@ -1509,6 +1509,29 @@
           "id": "custom_liquid",
           "label": "Custom liquid",
           "info": "Add app snippets or other Liquid code to create advanced customizations. For product description, you can use {{ product.description }}"
+        },
+        {
+          "type": "header",
+          "content": "Variant Metafield Content"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_variant_metafield",
+          "label": "Use variant metafield",
+          "default": false,
+          "info": "Enable to use content from the selected variant's metafield. This will override other content sources."
+        },
+        {
+          "type": "text",
+          "id": "variant_metafield_namespace",
+          "label": "Variant metafield namespace",
+          "info": "Enter the namespace (e.g., 'custom')"
+        },
+        {
+          "type": "text",
+          "id": "variant_metafield_key",
+          "label": "Variant metafield key",
+          "info": "Enter the metafield key (e.g., 'ingredients')"
         }
       ]
     },
