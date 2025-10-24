@@ -210,7 +210,7 @@
             "summary_list_font_size": 14,
             "tab_label": "Description",
             "icon": "none",
-            "text_columns": "2",
+            "text_columns": "1",
             "page": ""
           }
         }
