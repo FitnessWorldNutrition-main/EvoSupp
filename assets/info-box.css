@@ -1,8 +1,8 @@
 /* Info box desktop/mobile positioning */
-.product-grid-container > .product--infobox-container {
+.product--infobox-container-desktop {
   display: none; }
   @media only screen and (min-width: 1068px) {
-    .product-grid-container > .product--infobox-container {
+    .product--infobox-container-desktop {
       display: grid;
       margin-top: 20px;
       margin-bottom: 0;
