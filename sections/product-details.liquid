@@ -160,6 +160,7 @@
 											const summaryList = document.getElementById('summary-list-{{ block.id }}');
 											const descriptionContent = document.getElementById('description-content-{{ block.id }}');
 											const summaryContainer = document.getElementById('description-summary-{{ block.id }}');
+											const summaryWrapper = summaryContainer ? summaryContainer.closest('.description-with-summary') : null;
 											
 											if (summaryList && descriptionContent) {
 												function generateSummary() {
@@ -218,6 +219,10 @@
 														// Hide the entire summary container if no headings found
 														if (summaryContainer) {
 															summaryContainer.style.display = 'none';
+														}
+														// Make description full width
+														if (summaryWrapper) {
+															summaryWrapper.style.display = 'block';
 														}
 													}
 												}
