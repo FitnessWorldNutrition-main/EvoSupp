@@ -80,6 +80,12 @@
 							</scroll-shadow>
 						</div>
 			    </div>
+				</div>
+		    <div class="product-information">
+					<div id="ProductInfo-{{ section.id }}" class="product-information--inner">
+						{%- render 'product-information', product: product, section: section, update_url: true, pickup: true, first_image: first_image, hide_variants: hide_variants -%}
+					</div>
+		    </div>
 				{%- assign info_boxes = section.blocks | where: "type", "info_box" -%}
 				{%- assign has_visible_info_boxes = false -%}
 				{%- for info_box in info_boxes -%}
@@ -112,12 +118,6 @@
 					{%- endfor -%}
 				</div>
 				{%- endif -%}
-				</div>
-		    <div class="product-information">
-					<div id="ProductInfo-{{ section.id }}" class="product-information--inner">
-						{%- render 'product-information', product: product, section: section, update_url: true, pickup: true, first_image: first_image, hide_variants: hide_variants -%}
-					</div>
-		    </div>
 			</div>
 		</div>
   </div>

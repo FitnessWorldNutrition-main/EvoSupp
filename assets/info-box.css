@@ -1,12 +1,20 @@
-/* Mobile reordering: info boxes after add to cart */
-@media only screen and (max-width: 1067px) {
-  .product-grid-container {
-    display: flex;
-    flex-direction: column; }
-  .product-gallery-sticky {
-    order: 1; }
-  .product-information {
-    order: 2; } }
+/* Info box desktop/mobile positioning */
+.product-grid-container > .product--infobox-container {
+  display: none; }
+  @media only screen and (min-width: 1068px) {
+    .product-grid-container > .product--infobox-container {
+      display: grid;
+      margin-top: 20px;
+      margin-bottom: 0;
+      padding: 0 25px 0 0; } }
+
+.product--infobox-container-mobile {
+  display: grid;
+  margin-bottom: 40px;
+  margin-top: 20px; }
+  @media only screen and (min-width: 1068px) {
+    .product--infobox-container-mobile {
+      display: none; } }
 
 .product--infobox {
   isolation: isolate;
@@ -23,16 +31,8 @@
   font-size: 0.8125rem;
   position: relative; }
   .product--infobox-container {
-    margin-bottom: 40px;
     display: grid;
-    gap: 5px;
-    order: 3; }
-    @media only screen and (min-width: 1068px) {
-      .product--infobox-container {
-        margin-top: 20px;
-        margin-bottom: 0;
-        padding: 0 25px 0 0;
-        order: 0; } }
+    gap: 5px; }
   .product--infobox-image {
     margin-right: 15px;
     width: 24px;
