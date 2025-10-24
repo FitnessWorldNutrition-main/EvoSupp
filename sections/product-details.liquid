@@ -159,6 +159,7 @@
 										(function() {
 											const summaryList = document.getElementById('summary-list-{{ block.id }}');
 											const descriptionContent = document.getElementById('description-content-{{ block.id }}');
+											const summaryContainer = document.getElementById('description-summary-{{ block.id }}');
 											
 											if (summaryList && descriptionContent) {
 												function generateSummary() {
@@ -214,7 +215,10 @@
 															summaryList.appendChild(listItem);
 														});
 													} else {
-														summaryList.innerHTML = '<li class="summary-item"><span style="color: #999; font-style: italic;">No headings found</span></li>';
+														// Hide the entire summary container if no headings found
+														if (summaryContainer) {
+															summaryContainer.style.display = 'none';
+														}
 													}
 												}
 												
