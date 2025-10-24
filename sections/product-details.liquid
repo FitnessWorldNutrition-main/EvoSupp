@@ -48,10 +48,10 @@
 										<div class="description-summary" id="description-summary-{{ block.id }}">
 											<style>
 												.description-summary-{{ block.id }} {
-													background-color: {{ block.settings.summary_background_color | default: '#f8f9fa' }};
-													border: {{ block.settings.summary_border_width | default: 1 }}px solid {{ block.settings.summary_border_color | default: '#e0e0e0' }};
-													border-radius: {{ block.settings.summary_border_radius | default: 8 }}px;
-													padding: {{ block.settings.summary_padding | default: 20 }}px;
+													background-color: {{ block.settings.summary_background_color | default: 'transparent' }};
+													border: {{ block.settings.summary_border_width | default: 0 }}px solid {{ block.settings.summary_border_color | default: '#e0e0e0' }};
+													border-radius: {{ block.settings.summary_border_radius | default: 0 }}px;
+													padding: {{ block.settings.summary_padding | default: 0 }}px;
 													position: sticky;
 													top: 20px;
 													max-height: calc(100vh - 100px);
@@ -59,10 +59,12 @@
 												}
 												
 												.description-summary-{{ block.id }} .summary-title {
-													color: {{ block.settings.summary_title_color | default: '#333' }};
-													font-size: {{ block.settings.summary_title_font_size | default: 18 }}px;
-													font-weight: bold;
-													margin-bottom: 15px;
+													color: {{ block.settings.summary_title_color | default: '#000' }};
+													font-size: {{ block.settings.summary_title_font_size | default: 24 }}px;
+													font-weight: 900;
+													margin-bottom: 20px;
+													text-transform: uppercase;
+													letter-spacing: 0.5px;
 												}
 												
 												.description-summary-{{ block.id }} .summary-list {
@@ -72,31 +74,46 @@
 												}
 												
 												.description-summary-{{ block.id }} .summary-item {
-													margin-bottom: 8px;
+													margin-bottom: 0;
 												}
 												
 												.description-summary-{{ block.id }} .summary-link {
-													color: {{ block.settings.summary_text_color | default: '#0066cc' }};
+													color: {{ block.settings.summary_text_color | default: '#FF6B35' }};
 													text-decoration: none;
 													display: block;
-													padding: 8px 12px;
-													border-radius: 4px;
-													transition: background-color 0.2s ease;
-													font-size: {{ block.settings.summary_list_font_size | default: 14 }}px;
+													padding: 12px 0;
+													border-bottom: 1px solid {{ block.settings.summary_border_color | default: '#e0e0e0' }};
+													transition: all 0.3s ease;
+													font-size: {{ block.settings.summary_list_font_size | default: 15 }}px;
+													font-weight: 400;
+													line-height: 1.4;
 												}
 												
 												.description-summary-{{ block.id }} .summary-link:hover {
-													background-color: {{ block.settings.summary_hover_color | default: '#f0f0f0' }};
+													color: {{ block.settings.summary_hover_color | default: '#e4f966' }};
+													padding-left: 5px;
 												}
 												
 												.description-summary-{{ block.id }} .summary-link.level-3 {
-													padding-left: 28px;
-													font-size: {{ block.settings.summary_list_font_size | default: 14 | minus: 1 }}px;
+													padding-left: 20px;
+													font-size: {{ block.settings.summary_list_font_size | default: 15 | minus: 1 }}px;
+												}
+												
+												.description-summary-{{ block.id }} .summary-link.level-3:hover {
+													padding-left: 25px;
 												}
 												
 												.description-summary-{{ block.id }} .summary-link.level-4 {
-													padding-left: 44px;
-													font-size: {{ block.settings.summary_list_font_size | default: 14 | minus: 2 }}px;
+													padding-left: 40px;
+													font-size: {{ block.settings.summary_list_font_size | default: 15 | minus: 2 }}px;
+												}
+												
+												.description-summary-{{ block.id }} .summary-link.level-4:hover {
+													padding-left: 45px;
+												}
+												
+												.description-summary-{{ block.id }} .summary-item:last-child .summary-link {
+													border-bottom: none;
 												}
 												
 												.description-with-summary {
@@ -380,7 +397,7 @@
 						"type": "text",
 						"id": "summary_title",
 						"label": "Summary title",
-						"default": "Table of Contents"
+						"default": "Sommaire"
 					},
 					{
 						"type": "header",
@@ -390,81 +407,81 @@
 						"type": "color",
 						"id": "summary_background_color",
 						"label": "Summary background",
-						"default": "#f8f9fa"
+						"default": "transparent"
 					},
 					{
 						"type": "color",
 						"id": "summary_text_color",
 						"label": "Summary link color",
-						"default": "#0066cc"
+						"default": "#FF6B35"
 					},
 					{
 						"type": "color",
 						"id": "summary_title_color",
 						"label": "Summary title color",
-						"default": "#333333"
+						"default": "#000000"
 					},
 					{
 						"type": "color",
 						"id": "summary_border_color",
-						"label": "Summary border color",
+						"label": "Summary separator color",
 						"default": "#e0e0e0"
 					},
 					{
 						"type": "color",
 						"id": "summary_hover_color",
-						"label": "Summary hover background",
-						"default": "#f0f0f0"
+						"label": "Summary hover color",
+						"default": "#e4f966"
 					},
 					{
 						"type": "range",
 						"id": "summary_border_width",
-						"label": "Summary border width",
+						"label": "Summary container border width",
 						"min": 0,
 						"max": 5,
 						"step": 1,
 						"unit": "px",
-						"default": 1
+						"default": 0
 					},
 					{
 						"type": "range",
 						"id": "summary_border_radius",
-						"label": "Summary border radius",
+						"label": "Summary container border radius",
 						"min": 0,
 						"max": 20,
 						"step": 1,
 						"unit": "px",
-						"default": 8
+						"default": 0
 					},
 					{
 						"type": "range",
 						"id": "summary_padding",
-						"label": "Summary padding",
-						"min": 10,
+						"label": "Summary container padding",
+						"min": 0,
 						"max": 40,
 						"step": 5,
 						"unit": "px",
-						"default": 20
+						"default": 0
 					},
 					{
 						"type": "range",
 						"id": "summary_title_font_size",
 						"label": "Summary title font size",
-						"min": 14,
-						"max": 24,
+						"min": 16,
+						"max": 32,
 						"step": 1,
 						"unit": "px",
-						"default": 18
+						"default": 24
 					},
 					{
 						"type": "range",
 						"id": "summary_list_font_size",
 						"label": "Summary list font size",
 						"min": 12,
-						"max": 18,
+						"max": 20,
 						"step": 1,
 						"unit": "px",
-						"default": 14
+						"default": 15
 					},
 					{
 						"type": "header",
