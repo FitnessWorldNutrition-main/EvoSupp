@@ -117,7 +117,9 @@
             "open": false,
             "content": "",
             "page": "",
-            "custom_liquid": ""
+            "custom_liquid": "",
+            "variant_metafield_namespace": "custom",
+            "variant_metafield_key": "valeurs_nutritionnelles"
           }
         },
         "d56924f2-0137-4e3b-8c33-49b1f28391c6": {
@@ -127,7 +129,9 @@
             "open": false,
             "content": "",
             "page": "",
-            "custom_liquid": ""
+            "custom_liquid": "",
+            "variant_metafield_namespace": "",
+            "variant_metafield_key": ""
           }
         },
         "collapsible_tab_VD9Y6t": {
@@ -137,7 +141,9 @@
             "open": false,
             "content": "{{ product.metafields.custom.avertissement | metafield_tag }}",
             "page": "",
-            "custom_liquid": ""
+            "custom_liquid": "",
+            "variant_metafield_namespace": "",
+            "variant_metafield_key": ""
           }
         },
         "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7": {
