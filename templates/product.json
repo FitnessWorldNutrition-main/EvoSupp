@@ -144,7 +144,7 @@
           "type": "info_box",
           "settings": {
             "icon": "none",
-            "text": "{{ product.metafields.custom.description_courte.value }}",
+            "text": "{{ product.metafields.custom.description_courte.value }} test",
             "link": "",
             "info_box_bg": "#ffefdd",
             "info_box_color": "#000000"
