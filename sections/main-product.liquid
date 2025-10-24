@@ -80,12 +80,20 @@
 							</scroll-shadow>
 						</div>
 			    </div>
-					{%- assign info_boxes = section.blocks | where: "type", "info_box" -%}
-					{%- if info_boxes.size > 0 -%}
-					{{- 'info-box.css' | asset_url | stylesheet_tag -}}
-					<div class="product--infobox-container">
-						{%- for info_box in info_boxes %}
-							<div class="product--infobox" style="--info-box-bg: {{ info_box.settings.info_box_bg }};--info-box-color: {{ info_box.settings.info_box_color }};">
+				{%- assign info_boxes = section.blocks | where: "type", "info_box" -%}
+				{%- assign has_visible_info_boxes = false -%}
+				{%- for info_box in info_boxes -%}
+					{%- if info_box.settings.text != blank -%}
+						{%- assign has_visible_info_boxes = true -%}
+						{%- break -%}
+					{%- endif -%}
+				{%- endfor -%}
+				{%- if has_visible_info_boxes -%}
+				{{- 'info-box.css' | asset_url | stylesheet_tag -}}
+				<div class="product--infobox-container">
+					{%- for info_box in info_boxes %}
+						{%- if info_box.settings.text != blank -%}
+							<div class="product--infobox" style="--info-box-bg: {{ info_box.settings.info_box_bg }};--info-box-color: {{ info_box.settings.info_box_color }};" {{ info_box.shopify_attributes }}>
 								{% if info_box.settings.image %}
 								<span class="product--infobox-image">
 									{%- render 'responsive-image', image: info_box.settings.image, sizes: '24x24,48x48' -%}
@@ -100,9 +108,10 @@
 								<a href="{{ info_box.settings.link }}" class="product--infobox-link"></a>
 								{%- endif -%}
 							</div>
-						{%- endfor -%}
-					</div>
-					{%- endif -%}
+						{%- endif -%}
+					{%- endfor -%}
+				</div>
+				{%- endif -%}
 				</div>
 		    <div class="product-information">
 					<div id="ProductInfo-{{ section.id }}" class="product-information--inner">
