@@ -197,7 +197,7 @@
           "type": "description",
           "settings": {
             "show_summary": true,
-            "summary_title": "Table of Contents",
+            "summary_title": "SOMMAIRE",
             "summary_background_color": "rgba(0,0,0,0)",
             "summary_text_color": "#f67201",
             "summary_title_color": "#333333",
