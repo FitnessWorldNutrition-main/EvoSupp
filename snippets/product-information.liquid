@@ -291,18 +291,9 @@
   {%- when 'collapsible_tab' -%}
     {%- liquid
       assign tab_content = ''
-      assign variant_metafield_content = ''
-      
-      # Check for variant metafield content
-      if block.settings.use_variant_metafield and block.settings.variant_metafield_namespace != blank and block.settings.variant_metafield_key != blank
-        assign selected_variant = product.selected_or_first_available_variant
-        assign variant_metafield_content = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
-      endif
       
       # Combine all content sources
-      if variant_metafield_content != blank
-        assign tab_content = variant_metafield_content
-      elsif block.settings.content != blank
+      if block.settings.content != blank
         assign tab_content = block.settings.content
       elsif block.settings.page.content != blank
         assign tab_content = block.settings.page.content
@@ -312,7 +303,7 @@
       
       # Check if we have both heading and content
       assign has_content = false
-      if tab_content != blank or variant_metafield_content != blank
+      if tab_content != blank
         assign has_content = true
       endif
     -%}
@@ -324,13 +315,9 @@
           <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
         </summary>
         <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-          {%- if variant_metafield_content != blank -%}
-            {{ variant_metafield_content }}
-          {%- else -%}
-            {{ block.settings.content }}
-            {{ block.settings.page.content }}
-            {{ block.settings.custom_liquid }}
-          {%- endif -%}
+          {{ block.settings.content }}
+          {{ block.settings.page.content }}
+          {{ block.settings.custom_liquid }}
         </div>
       </details>
     </collapsible-row>
