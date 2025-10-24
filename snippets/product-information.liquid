@@ -292,8 +292,10 @@
     {%- liquid
       assign tab_content = ''
       
-      # Combine all content sources
-      if block.settings.content != blank
+      # Combine all content sources - variant content has priority
+      if block.settings.variant_content != blank
+        assign tab_content = block.settings.variant_content
+      elsif block.settings.content != blank
         assign tab_content = block.settings.content
       elsif block.settings.page.content != blank
         assign tab_content = block.settings.page.content
@@ -315,9 +317,13 @@
           <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
         </summary>
         <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-          {{ block.settings.content }}
-          {{ block.settings.page.content }}
-          {{ block.settings.custom_liquid }}
+          {%- if block.settings.variant_content != blank -%}
+            {{ block.settings.variant_content }}
+          {%- else -%}
+            {{ block.settings.content }}
+            {{ block.settings.page.content }}
+            {{ block.settings.custom_liquid }}
+          {%- endif -%}
         </div>
       </details>
     </collapsible-row>
