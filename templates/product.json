@@ -193,6 +193,22 @@
     "product_details_m7HmCH": {
       "type": "product-details",
       "blocks": {
+        "summary_iFPtPr": {
+          "type": "summary",
+          "settings": {
+            "title": "Table of Contents",
+            "background_color": "#f8f9fa",
+            "text_color": "#0066cc",
+            "title_color": "#333333",
+            "border_color": "#e0e0e0",
+            "hover_color": "#f0f0f0",
+            "border_width": 1,
+            "border_radius": 8,
+            "padding": 20,
+            "title_font_size": 18,
+            "list_font_size": 14
+          }
+        },
         "description_gGPGfx": {
           "type": "description",
           "settings": {
@@ -204,6 +220,7 @@
         }
       },
       "block_order": [
+        "summary_iFPtPr",
         "description_gGPGfx"
       ],
       "name": "Product details",
