@@ -292,11 +292,21 @@
     {%- liquid
       assign tab_content = ''
       assign variant_metafield_content = ''
+      assign variant_metafield_raw = ''
       
       # Check for variant metafield content
       if block.settings.variant_metafield_namespace != blank and block.settings.variant_metafield_key != blank
         assign selected_variant = product.selected_or_first_available_variant
-        assign variant_metafield_content = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
+        assign variant_metafield_raw = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
+        
+        # Check if it's a metafield object and extract value properly
+        if variant_metafield_raw.type == 'rich_text_field'
+          assign variant_metafield_content = variant_metafield_raw.value
+        elsif variant_metafield_raw.value
+          assign variant_metafield_content = variant_metafield_raw.value
+        else
+          assign variant_metafield_content = variant_metafield_raw
+        endif
       endif
       
       # Combine all content sources - variant metafield has priority
