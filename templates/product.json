@@ -74,8 +74,9 @@
             "text": "<p>Profitez de -10% sur votre commande</p>",
             "coupon_text": "EVO10",
             "copy_text": "Copiez le code",
-            "coupon_box_color": "#ea6b24",
-            "coupon_box_color_link": "#ff6b00"
+            "coupon_box_bg_color": "#fff5f0",
+            "coupon_box_text_color": "#ea6b24",
+            "coupon_box_icon_color": "#ea6b24"
           }
         },
         "quantity": {
@@ -90,8 +91,9 @@
             "text": "<p>Advertise your coupon code here.</p>",
             "coupon_text": "VISION20",
             "copy_text": "Copy code",
-            "coupon_box_color": "#000000",
-            "coupon_box_color_link": "#000000"
+            "coupon_box_bg_color": "#f2ece9",
+            "coupon_box_text_color": "#da5d17",
+            "coupon_box_icon_color": "#d96a2d"
           }
         },
         "buy_buttons": {
