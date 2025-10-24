@@ -458,10 +458,11 @@
       assign copy_text = block.settings.copy_text
       assign has_background = block.settings.has_background
 
-      assign coupon_box_color = block.settings.coupon_box_color 
-      assign coupon_box_color_link = block.settings.coupon_box_color_link
+      assign coupon_box_bg_color = block.settings.coupon_box_bg_color 
+      assign coupon_box_text_color = block.settings.coupon_box_text_color
+      assign coupon_box_icon_color = block.settings.coupon_box_icon_color
     -%}
-    <coupon-code class="coupon-code{% if has_background %} coupon-code--has-bg{% endif %}" style="--color-body: {{ coupon_box_color }}; --color-body-rgb: {{ coupon_box_color.rgb | replace: ' ' , ',' }}; --color-accent: {{ coupon_box_color_link }}">
+    <coupon-code class="coupon-code{% if has_background %} coupon-code--has-bg{% endif %}" style="--coupon-bg: {{ coupon_box_bg_color }}; --coupon-bg-rgb: {{ coupon_box_bg_color.rgb | replace: ' ' , ',' }}; --coupon-text: {{ coupon_box_text_color }}; --coupon-icon: {{ coupon_box_icon_color }}">
       {% if block.settings.image %}
       <figure class="coupon-code--image">
         {%- render 'responsive-image', image: block.settings.image, sizes: '24x24,48x48,96x96' -%}
