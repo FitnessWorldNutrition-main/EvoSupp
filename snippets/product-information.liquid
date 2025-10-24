@@ -169,7 +169,7 @@
     </noscript>
   {%- when 'advantages' -%}
     {%- liquid
-      assign advantages_content = product.metafields.custom.advantages
+      assign advantages_content = block.settings.advantages_text
       assign icon_image = block.settings.icon_image
       assign icon_color = block.settings.icon_color
       assign text_color = block.settings.text_color
@@ -177,7 +177,7 @@
     {%- if advantages_content != blank -%}
       <div class="product-advantages" style="--advantage-text-color: {{ text_color }};" {{ block.shopify_attributes }}>
         <div class="product-advantages__list">
-          {%- assign advantages_lines = advantages_content.value | split: '</li>' -%}
+          {%- assign advantages_lines = advantages_content | split: '</li>' -%}
           {%- for line in advantages_lines -%}
             {%- assign clean_line = line | replace: '<ul>', '' | replace: '<ol>', '' | replace: '<li>', '' | replace: '</ul>', '' | replace: '</ol>', '' | strip -%}
             {%- if clean_line != blank -%}

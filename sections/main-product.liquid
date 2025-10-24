@@ -801,8 +801,11 @@
       "limit": 1,
       "settings": [
         {
-          "type": "paragraph",
-          "content": "The content will be pulled from the product metafield 'custom.advantages' (rich text). Create this metafield in your Shopify admin under Settings > Custom data > Products."
+          "type": "richtext",
+          "id": "advantages_text",
+          "label": "Advantages content",
+          "default": "<ul><li>Soutien l'ossature</li><li>Contribue au système immunitaire</li><li>3 000 UI par dose</li></ul>",
+          "info": "Add your advantages as a list. You can also connect this to a product metafield using the dynamic source button."
         },
         {
           "type": "header",
