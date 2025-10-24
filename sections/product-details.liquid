@@ -82,11 +82,18 @@
 													text-decoration: none;
 													display: block;
 													padding: 12px 0;
-													border-bottom: 1px solid {{ block.settings.summary_border_color | default: '#e0e0e0' }};
 													transition: all 0.3s ease;
 													font-size: {{ block.settings.summary_list_font_size | default: 15 }}px;
 													font-weight: 400;
 													line-height: 1.4;
+												}
+												
+												.description-summary-{{ block.id }} .summary-separator {
+													height: 1px;
+													width: 100%;
+													background-color: {{ block.settings.summary_border_color | default: '#e0e0e0' }};
+													box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.17);
+													margin-bottom: 0;
 												}
 												
 												.description-summary-{{ block.id }} .summary-link:hover {
@@ -160,7 +167,7 @@
 													
 													if (headings.length > 0) {
 														let headingCounter = 0;
-														headings.forEach(function(heading) {
+														headings.forEach(function(heading, index) {
 															headingCounter++;
 															
 															// Create unique ID for each heading if it doesn't have one
@@ -198,6 +205,12 @@
 															});
 															
 															listItem.appendChild(link);
+															
+															// Add separator after each link
+															const separator = document.createElement('div');
+															separator.className = 'summary-separator';
+															listItem.appendChild(separator);
+															
 															summaryList.appendChild(listItem);
 														});
 													} else {
