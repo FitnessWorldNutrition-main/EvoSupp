@@ -796,6 +796,40 @@
       ]
     },
 		{
+      "type": "advantages",
+      "name": "Product advantages",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "The content will be pulled from the product metafield 'custom.advantages' (rich text). Create this metafield in your Shopify admin under Settings > Custom data > Products."
+        },
+        {
+          "type": "header",
+          "content": "Icon settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Custom icon image",
+          "info": "Upload a custom icon image. If not set, a default checkmark will be used."
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon background color",
+          "default": "#FF6B35",
+          "info": "Only applies if no custom icon image is uploaded"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#2c2d2e"
+        }
+      ]
+    },
+		{
       "type": "side_panel",
       "name": "Information side panel",
       "limit": 1,
