@@ -1,1 +1,311 @@
-{"sections":{"breadcrumbs":{"type":"breadcrumbs","settings":{}},"main-product":{"type":"main-product","blocks":{"2b609eea-6cce-4efe-b447-c5560de1d797":{"type":"label","settings":{}},"e431a79e-9c7b-4a53-a79a-0cb918617ecf":{"type":"text","disabled":true,"settings":{"text":"{{ product.vendor }}","text_style":"style_vendor"}},"title":{"type":"title","settings":{"show_products_rating":true,"show_products_rating_average":true,"show_custom_badges":true}},"text_eBznQL":{"type":"text","settings":{"text":"- Test","text_style":"style_body"}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"dropdown","color_picker":true,"color_picker_size":"regular","color_picker_use_variants":false,"variant_is_disabled":true,"sizing_guide_variant":"Size","sizing_guide_text":"Sizing guide","sizing_guide_icon":"ruler","sizing_guide_page":""}},"coupon_code_hYPDYG":{"type":"coupon_code","disabled":true,"settings":{"icon":"lightning_bolt","has_background":true,"text":"<p>Profitez de -10% sur votre commande<\/p>","coupon_text":"EVO10","copy_text":"Copiez le code","coupon_box_color":"#ea6b24","coupon_box_color_link":"#ff6b00"}},"quantity":{"type":"quantity","settings":{}},"coupon_code_dhiG7D":{"type":"coupon_code","settings":{"icon":"ruler","has_background":true,"text":"<p>Advertise your coupon code here.<\/p>","coupon_text":"VISION20","copy_text":"Copy code","coupon_box_color":"#000000","coupon_box_color_link":"#000000"}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":false,"show_gift_card_recipient":false}},"fc6da228-45eb-4a6e-aa68-d6ec477bec34":{"type":"complementary","settings":{"block_heading":"À compléter avec :","product_list_limit":3}},"386f7e4a-6127-4141-928b-9cb4614ee18c":{"type":"collapsible_tab","settings":{"heading":"Valeurs nutritionnelles","open":false,"content":"","page":"","custom_liquid":""}},"d56924f2-0137-4e3b-8c33-49b1f28391c6":{"type":"collapsible_tab","settings":{"heading":"Ingrédients","open":false,"content":"","page":"","custom_liquid":""}},"collapsible_tab_VD9Y6t":{"type":"collapsible_tab","settings":{"heading":"Avertissement","open":false,"content":"{{ product.metafields.custom.avertissement | metafield_tag }}","page":"","custom_liquid":""}},"47f50ec7-2a76-44a7-bce6-b7895e0e8ca7":{"type":"info_box","settings":{"icon":"none","text":"{{ product.metafields.custom.description_courte.value }}","link":"","info_box_bg":"#ffefdd","info_box_color":"#000000"}}},"block_order":["2b609eea-6cce-4efe-b447-c5560de1d797","e431a79e-9c7b-4a53-a79a-0cb918617ecf","title","text_eBznQL","variant_picker","coupon_code_hYPDYG","quantity","coupon_code_dhiG7D","buy_buttons","fc6da228-45eb-4a6e-aa68-d6ec477bec34","386f7e4a-6127-4141-928b-9cb4614ee18c","d56924f2-0137-4e3b-8c33-49b1f28391c6","collapsible_tab_VD9Y6t","47f50ec7-2a76-44a7-bce6-b7895e0e8ca7"],"settings":{"enable_sticky_add_to_cart":true,"show_taxes_included":false,"thumbnail_position":"left","media_aspect_ratio":"square","display_captions":true,"hide_variants":false,"lightbox":true,"enable_video_looping":false,"media_fullwidth_mobile":true,"media_show_prevnext_mobile":true}},"0e93ba7e-195e-407f-9b80-7d265aa6e1e2":{"type":"spacer","settings":{"spacer_mobile":40,"spacer_desktop":40,"border_separator":false,"border_separator_full":false}},"product_details_m7HmCH":{"type":"product-details","blocks":{"description_gGPGfx":{"type":"description","settings":{"tab_label":"Description","icon":"none","text_columns":"2","page":""}}},"block_order":["description_gGPGfx"],"name":"Product details","settings":{"heading":" |EN SAVOIR PLUS| ","marker_style":"style1","description":"","text_size":"small","tab_alignment":"left","text_alignment":"left","color_bg":"rgba(0,0,0,0)","color_tabs":"#2c2d2e","color_text":"#2c2d2e","marker_color":"#fd6262","disable_top_spacing":true,"disable_bottom_spacing":true}},"spacer_PVRbwP":{"type":"spacer","settings":{"spacer_mobile":40,"spacer_desktop":40,"border_separator":false,"border_separator_full":false}},"product-recommendations":{"type":"product-recommendations","disabled":true,"settings":{"heading":"VOUS AIMEREZ AUSSI","description":"","mobile_swipe":true,"product_limit":4,"columns_desktop":4,"disable_top_spacing":true,"disable_bottom_spacing":false}},"text_with_icons_nCgnpc":{"type":"text-with-icons","blocks":{"icon_7fWGgw":{"type":"icon","settings":{"icon":"truck","heading":"LIVRAISON EXPRESS 24\/48H","text":"<p>Commandez aujourd’hui, recevez votre colis sous 24 à 48h (jours ouvrés).<\/p>"}},"icon_7bpbnE":{"type":"icon","settings":{"icon":"lock","heading":"PAIEMENT 100% SÉCURISÉ","text":"<p>Notre site utilise les dernières technologies de cryptage pour protéger vos données.<\/p>"}},"icon_cNUVyN":{"type":"icon","settings":{"icon":"chat_bubble","heading":"SERVICE CLIENT RÉACTIF","text":"<p>Une question ? Notre équipe vous répond rapidement 5J\/7 - 9H\/19H<\/p>"}},"icon_qJrtWy":{"type":"icon","settings":{"icon":"return","heading":"RETOURS FACILES SOUS 14 JOURS","text":"<p>Vous avez 14 jours pour changer d’avis, tout simplement.<\/p>"}}},"block_order":["icon_7fWGgw","icon_7bpbnE","icon_cNUVyN","icon_qJrtWy"],"name":"Text with icons","settings":{"text_alignment":"left","icon_position":"top","icon_size":"medium","heading_size":"medium","mobile_swipe":true,"color_bg":"#f2f2f2","color_heading":"#000000","color_text":"#000000","disable_top_spacing":true,"disable_bottom_spacing":true}}},"order":["breadcrumbs","main-product","0e93ba7e-195e-407f-9b80-7d265aa6e1e2","product_details_m7HmCH","spacer_PVRbwP","product-recommendations","text_with_icons_nCgnpc"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {}
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "2b609eea-6cce-4efe-b447-c5560de1d797": {
+          "type": "label",
+          "settings": {}
+        },
+        "e431a79e-9c7b-4a53-a79a-0cb918617ecf": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "style_vendor"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "show_products_rating": true,
+            "show_products_rating_average": true,
+            "show_custom_badges": true
+          }
+        },
+        "text_eBznQL": {
+          "type": "text",
+          "settings": {
+            "text": "- Test",
+            "text_style": "style_body"
+          }
+        },
+        "advantages_q68YjU": {
+          "type": "advantages",
+          "settings": {
+            "advantages_text": "{{ product.metafields.custom.avantages | metafield_tag }}",
+            "icon_color": "#ff6b35",
+            "text_color": "#2c2d2e"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "color_picker": true,
+            "color_picker_size": "regular",
+            "color_picker_use_variants": false,
+            "variant_is_disabled": true,
+            "sizing_guide_variant": "Size",
+            "sizing_guide_text": "Sizing guide",
+            "sizing_guide_icon": "ruler",
+            "sizing_guide_page": ""
+          }
+        },
+        "coupon_code_hYPDYG": {
+          "type": "coupon_code",
+          "disabled": true,
+          "settings": {
+            "icon": "lightning_bolt",
+            "has_background": true,
+            "text": "<p>Profitez de -10% sur votre commande</p>",
+            "coupon_text": "EVO10",
+            "copy_text": "Copiez le code",
+            "coupon_box_color": "#ea6b24",
+            "coupon_box_color_link": "#ff6b00"
+          }
+        },
+        "quantity": {
+          "type": "quantity",
+          "settings": {}
+        },
+        "coupon_code_dhiG7D": {
+          "type": "coupon_code",
+          "settings": {
+            "icon": "ruler",
+            "has_background": true,
+            "text": "<p>Advertise your coupon code here.</p>",
+            "coupon_text": "VISION20",
+            "copy_text": "Copy code",
+            "coupon_box_color": "#000000",
+            "coupon_box_color_link": "#000000"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "fc6da228-45eb-4a6e-aa68-d6ec477bec34": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "À compléter avec :",
+            "product_list_limit": 3
+          }
+        },
+        "386f7e4a-6127-4141-928b-9cb4614ee18c": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Valeurs nutritionnelles",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
+        "d56924f2-0137-4e3b-8c33-49b1f28391c6": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Ingrédients",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
+        "collapsible_tab_VD9Y6t": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Avertissement",
+            "open": false,
+            "content": "{{ product.metafields.custom.avertissement | metafield_tag }}",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
+        "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7": {
+          "type": "info_box",
+          "settings": {
+            "icon": "none",
+            "text": "{{ product.metafields.custom.description_courte.value }}",
+            "link": "",
+            "info_box_bg": "#ffefdd",
+            "info_box_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "2b609eea-6cce-4efe-b447-c5560de1d797",
+        "e431a79e-9c7b-4a53-a79a-0cb918617ecf",
+        "title",
+        "text_eBznQL",
+        "advantages_q68YjU",
+        "variant_picker",
+        "coupon_code_hYPDYG",
+        "quantity",
+        "coupon_code_dhiG7D",
+        "buy_buttons",
+        "fc6da228-45eb-4a6e-aa68-d6ec477bec34",
+        "386f7e4a-6127-4141-928b-9cb4614ee18c",
+        "d56924f2-0137-4e3b-8c33-49b1f28391c6",
+        "collapsible_tab_VD9Y6t",
+        "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7"
+      ],
+      "settings": {
+        "enable_sticky_add_to_cart": true,
+        "show_taxes_included": false,
+        "thumbnail_position": "left",
+        "media_aspect_ratio": "square",
+        "display_captions": true,
+        "hide_variants": false,
+        "lightbox": true,
+        "enable_video_looping": false,
+        "media_fullwidth_mobile": true,
+        "media_show_prevnext_mobile": true
+      }
+    },
+    "0e93ba7e-195e-407f-9b80-7d265aa6e1e2": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 40,
+        "spacer_desktop": 40,
+        "border_separator": false,
+        "border_separator_full": false
+      }
+    },
+    "product_details_m7HmCH": {
+      "type": "product-details",
+      "blocks": {
+        "description_gGPGfx": {
+          "type": "description",
+          "settings": {
+            "tab_label": "Description",
+            "icon": "none",
+            "text_columns": "2",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "description_gGPGfx"
+      ],
+      "name": "Product details",
+      "settings": {
+        "heading": " |EN SAVOIR PLUS| ",
+        "marker_style": "style1",
+        "description": "",
+        "text_size": "small",
+        "tab_alignment": "left",
+        "text_alignment": "left",
+        "color_bg": "rgba(0,0,0,0)",
+        "color_tabs": "#2c2d2e",
+        "color_text": "#2c2d2e",
+        "marker_color": "#fd6262",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "spacer_PVRbwP": {
+      "type": "spacer",
+      "settings": {
+        "spacer_mobile": 40,
+        "spacer_desktop": 40,
+        "border_separator": false,
+        "border_separator_full": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "heading": "VOUS AIMEREZ AUSSI",
+        "description": "",
+        "mobile_swipe": true,
+        "product_limit": 4,
+        "columns_desktop": 4,
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": false
+      }
+    },
+    "text_with_icons_nCgnpc": {
+      "type": "text-with-icons",
+      "blocks": {
+        "icon_7fWGgw": {
+          "type": "icon",
+          "settings": {
+            "icon": "truck",
+            "heading": "LIVRAISON EXPRESS 24/48H",
+            "text": "<p>Commandez aujourd’hui, recevez votre colis sous 24 à 48h (jours ouvrés).</p>"
+          }
+        },
+        "icon_7bpbnE": {
+          "type": "icon",
+          "settings": {
+            "icon": "lock",
+            "heading": "PAIEMENT 100% SÉCURISÉ",
+            "text": "<p>Notre site utilise les dernières technologies de cryptage pour protéger vos données.</p>"
+          }
+        },
+        "icon_cNUVyN": {
+          "type": "icon",
+          "settings": {
+            "icon": "chat_bubble",
+            "heading": "SERVICE CLIENT RÉACTIF",
+            "text": "<p>Une question ? Notre équipe vous répond rapidement 5J/7 - 9H/19H</p>"
+          }
+        },
+        "icon_qJrtWy": {
+          "type": "icon",
+          "settings": {
+            "icon": "return",
+            "heading": "RETOURS FACILES SOUS 14 JOURS",
+            "text": "<p>Vous avez 14 jours pour changer d’avis, tout simplement.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_7fWGgw",
+        "icon_7bpbnE",
+        "icon_cNUVyN",
+        "icon_qJrtWy"
+      ],
+      "name": "Text with icons",
+      "settings": {
+        "text_alignment": "left",
+        "icon_position": "top",
+        "icon_size": "medium",
+        "heading_size": "medium",
+        "mobile_swipe": true,
+        "color_bg": "#f2f2f2",
+        "color_heading": "#000000",
+        "color_text": "#000000",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-product",
+    "0e93ba7e-195e-407f-9b80-7d265aa6e1e2",
+    "product_details_m7HmCH",
+    "spacer_PVRbwP",
+    "product-recommendations",
+    "text_with_icons_nCgnpc"
+  ]
+}
