@@ -462,7 +462,85 @@
             }
           ],
           "default": "button",
-          "label": "Type"
+          "label": "Default picker type",
+          "info": "Default type for all options. You can override specific options below."
+        },
+        {
+          "type": "header",
+          "content": "Custom picker types per option"
+        },
+        {
+          "type": "paragraph",
+          "content": "Override the picker type for specific options. Enter the exact option name and select its type. Leave option name empty to skip."
+        },
+        {
+          "type": "text",
+          "id": "custom_option_1_name",
+          "label": "Option 1 name",
+          "placeholder": "Saveurs",
+          "info": "Enter the exact option name (case sensitive)"
+        },
+        {
+          "type": "select",
+          "id": "custom_option_1_type",
+          "label": "Option 1 type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "Dropdown"
+            },
+            {
+              "value": "button",
+              "label": "Block"
+            }
+          ],
+          "default": "dropdown"
+        },
+        {
+          "type": "text",
+          "id": "custom_option_2_name",
+          "label": "Option 2 name",
+          "placeholder": "Poids",
+          "info": "Enter the exact option name (case sensitive)"
+        },
+        {
+          "type": "select",
+          "id": "custom_option_2_type",
+          "label": "Option 2 type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "Dropdown"
+            },
+            {
+              "value": "button",
+              "label": "Block"
+            }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "text",
+          "id": "custom_option_3_name",
+          "label": "Option 3 name",
+          "placeholder": "Size",
+          "info": "Enter the exact option name (case sensitive)"
+        },
+        {
+          "type": "select",
+          "id": "custom_option_3_type",
+          "label": "Option 3 type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "Dropdown"
+            },
+            {
+              "value": "button",
+              "label": "Block"
+            }
+          ],
+          "default": "button"
         },
 				{
 					"type": "checkbox",

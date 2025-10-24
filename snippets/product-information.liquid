@@ -86,6 +86,28 @@
             assign option_name = option.name | downcase | escape
             assign option_type = block.settings.picker_type
             assign swatch_count = option.values | map: 'swatch' | compact | size 
+            
+            # Check for custom option type overrides
+            if block.settings.custom_option_1_name != blank
+              assign custom_option_1_name_lower = block.settings.custom_option_1_name | downcase
+              if option_name == custom_option_1_name_lower
+                assign option_type = block.settings.custom_option_1_type
+              endif
+            endif
+            
+            if block.settings.custom_option_2_name != blank
+              assign custom_option_2_name_lower = block.settings.custom_option_2_name | downcase
+              if option_name == custom_option_2_name_lower
+                assign option_type = block.settings.custom_option_2_type
+              endif
+            endif
+            
+            if block.settings.custom_option_3_name != blank
+              assign custom_option_3_name_lower = block.settings.custom_option_3_name | downcase
+              if option_name == custom_option_3_name_lower
+                assign option_type = block.settings.custom_option_3_type
+              endif
+            endif
 
             if block.settings.color_picker
               if option_name contains 'color' or option_name contains 'colour' or option_name contains 'couleur' or option_name contains 'farbe'
