@@ -26,8 +26,216 @@
 -%}
 <div class="row">
 	<div class="small-12 columns">
+		{%- liquid
+			assign has_summary = false
+			assign has_description = false
+			
+			for block in section.blocks
+				if block.type == 'summary'
+					assign has_summary = true
+				endif
+				if block.type == 'description'
+					assign has_description = true
+				endif
+			endfor
+		-%}
 		<div class="tabbed-content-wrapper {% if has_bg -%}tabbed-content--has-bg{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --bg-body-rgb: {{ color_bg.rgb | replace: ' ' , ',' }}; --color-body: {{ color_text }}; --color-tabs: {{ color_tabs.rgb | replace: ' ' , ',' }};">
 			{% render 'section-header', section_heading: section_heading, section_description: section_description, marker_color: marker_color, marker_style: marker_style %}
+			
+			<div class="product-details-content-wrapper {% if has_summary and has_description %}with-summary{% endif %}">
+				{%- comment -%} Render summary block on the left {%- endcomment -%}
+				{%- if has_summary and has_description -%}
+					{%- for block in section.blocks -%}
+						{%- if block.type == 'summary' -%}
+							<div class="product-details-summary" {{ block.shopify_attributes }}>
+								<style>
+									.product-details-summary-{{ block.id }} {
+										background-color: {{ block.settings.background_color | default: '#f8f9fa' }};
+										border: {{ block.settings.border_width | default: 1 }}px solid {{ block.settings.border_color | default: '#e0e0e0' }};
+										border-radius: {{ block.settings.border_radius | default: 8 }}px;
+										padding: {{ block.settings.padding | default: 20 }}px;
+										position: sticky;
+										top: 20px;
+										max-height: calc(100vh - 100px);
+										overflow-y: auto;
+									}
+									
+									.product-details-summary-{{ block.id }} .summary-title {
+										color: {{ block.settings.title_color | default: '#333' }};
+										font-size: {{ block.settings.title_font_size | default: 18 }}px;
+										font-weight: bold;
+										margin-bottom: 15px;
+									}
+									
+									.product-details-summary-{{ block.id }} .summary-list {
+										list-style: none;
+										padding: 0;
+										margin: 0;
+									}
+									
+									.product-details-summary-{{ block.id }} .summary-item {
+										margin-bottom: 8px;
+									}
+									
+									.product-details-summary-{{ block.id }} .summary-link {
+										color: {{ block.settings.text_color | default: '#0066cc' }};
+										text-decoration: none;
+										display: block;
+										padding: 8px 12px;
+										border-radius: 4px;
+										transition: background-color 0.2s ease;
+										font-size: {{ block.settings.list_font_size | default: 14 }}px;
+									}
+									
+									.product-details-summary-{{ block.id }} .summary-link:hover {
+										background-color: {{ block.settings.hover_color | default: '#f0f0f0' }};
+									}
+									
+									.product-details-summary-{{ block.id }} .summary-link.level-3 {
+										padding-left: 28px;
+										font-size: {{ block.settings.list_font_size | default: 14 | minus: 1 }}px;
+									}
+									
+									.product-details-summary-{{ block.id }} .summary-link.level-4 {
+										padding-left: 44px;
+										font-size: {{ block.settings.list_font_size | default: 14 | minus: 2 }}px;
+									}
+								</style>
+								
+								<div class="product-details-summary-{{ block.id }}">
+									<div class="summary-title">{{ block.settings.title | default: 'Table of Contents' }}</div>
+									<ul class="summary-list" id="product-details-summary-list-{{ block.id }}">
+										<!-- Summary items will be populated by JavaScript -->
+									</ul>
+								</div>
+								
+								<script>
+									document.addEventListener('DOMContentLoaded', function() {
+										const summaryList = document.getElementById('product-details-summary-list-{{ block.id }}');
+										const tabbedContent = document.querySelector('.tabbed-content');
+										
+										if (summaryList && tabbedContent) {
+											// Wait for tab content to be visible
+											setTimeout(function() {
+												const activeTabContent = tabbedContent.querySelector('.tabbed-content--content.active');
+												
+												if (activeTabContent) {
+													const headings = activeTabContent.querySelectorAll('h2, h3, h4');
+													
+													if (headings.length > 0) {
+														let headingCounter = 0;
+														headings.forEach(function(heading) {
+															headingCounter++;
+															
+															// Create unique ID for each heading if it doesn't have one
+															if (!heading.id) {
+																heading.id = 'heading-' + headingCounter;
+															}
+															
+															// Create summary item
+															const listItem = document.createElement('li');
+															listItem.className = 'summary-item';
+															
+															const link = document.createElement('a');
+															link.href = '#' + heading.id;
+															link.className = 'summary-link';
+															link.textContent = heading.textContent.trim();
+															
+															// Add level class for hierarchy
+															const tagName = heading.tagName.toLowerCase();
+															if (tagName === 'h3') {
+																link.classList.add('level-3');
+															} else if (tagName === 'h4') {
+																link.classList.add('level-4');
+															}
+															
+															// Add smooth scrolling behavior
+															link.addEventListener('click', function(e) {
+																e.preventDefault();
+																const targetElement = document.getElementById(heading.id);
+																if (targetElement) {
+																	targetElement.scrollIntoView({
+																		behavior: 'smooth',
+																		block: 'start'
+																	});
+																}
+															});
+															
+															listItem.appendChild(link);
+															summaryList.appendChild(listItem);
+														});
+													} else {
+														// Hide summary if no headings found
+														summaryList.innerHTML = '<li class="summary-item"><span style="color: #999; font-style: italic;">No headings found</span></li>';
+													}
+												}
+												
+												// Update summary when tab changes
+												const tabButtons = tabbedContent.querySelectorAll('.tabbed-content--tabs button');
+												tabButtons.forEach(function(button) {
+													button.addEventListener('click', function() {
+														setTimeout(function() {
+															// Clear and regenerate summary
+															summaryList.innerHTML = '';
+															const activeTabContent = tabbedContent.querySelector('.tabbed-content--content.active');
+															
+															if (activeTabContent) {
+																const headings = activeTabContent.querySelectorAll('h2, h3, h4');
+																
+																if (headings.length > 0) {
+																	let counter = 0;
+																	headings.forEach(function(heading) {
+																		counter++;
+																		
+																		if (!heading.id) {
+																			heading.id = 'heading-' + counter;
+																		}
+																		
+																		const listItem = document.createElement('li');
+																		listItem.className = 'summary-item';
+																		
+																		const link = document.createElement('a');
+																		link.href = '#' + heading.id;
+																		link.className = 'summary-link';
+																		link.textContent = heading.textContent.trim();
+																		
+																		const tagName = heading.tagName.toLowerCase();
+																		if (tagName === 'h3') {
+																			link.classList.add('level-3');
+																		} else if (tagName === 'h4') {
+																			link.classList.add('level-4');
+																		}
+																		
+																		link.addEventListener('click', function(e) {
+																			e.preventDefault();
+																			const targetElement = document.getElementById(heading.id);
+																			if (targetElement) {
+																				targetElement.scrollIntoView({
+																					behavior: 'smooth',
+																					block: 'start'
+																				});
+																			}
+																		});
+																		
+																		listItem.appendChild(link);
+																		summaryList.appendChild(listItem);
+																	});
+																} else {
+																	summaryList.innerHTML = '<li class="summary-item"><span style="color: #999; font-style: italic;">No headings found</span></li>';
+																}
+															}
+														}, 100);
+													});
+												});
+											}, 100);
+										}
+									});
+								</script>
+							</div>
+						{%- endif -%}
+					{%- endfor -%}
+				{%- endif -%}
+			
 			<tabbed-content class="tabbed-content tabs-{{ tab_alignment }} text-size--{{ text_size }}" selected-index="0">
 				<scroll-shadow class="tabbed-content--scroll">
 					<div class="tabbed-content--tabs tabs-{{ tab_alignment }}">
@@ -50,9 +258,35 @@
 					</div>
 				{%- endfor -%}
 			</tabbed-content>
+			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	.product-details-content-wrapper.with-summary {
+		display: grid;
+		grid-template-columns: 300px 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+	
+	@media screen and (max-width: 968px) {
+		.product-details-content-wrapper.with-summary {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+		
+		.product-details-summary {
+			order: -1;
+		}
+		
+		.product-details-summary > div[class*="product-details-summary-"] {
+			position: static !important;
+			max-height: none !important;
+		}
+	}
+</style>
 
 {% schema %}
   {
@@ -205,6 +439,107 @@
 			}
     ],
     "blocks": [
+			{
+        "type": "summary",
+        "name": "Table of Contents",
+        "limit": 1,
+        "settings": [
+					{
+						"type": "paragraph",
+						"content": "Automatically generates a table of contents from H2, H3, and H4 headings in the description tab. H3 will be nested under H2, and H4 will be nested under H3. The summary will appear on the left side when a description block is present."
+					},
+					{
+						"type": "text",
+						"id": "title",
+						"label": "Title",
+						"default": "Table of Contents"
+					},
+					{
+						"type": "header",
+						"content": "Styling"
+					},
+					{
+						"type": "color",
+						"id": "background_color",
+						"label": "Background color",
+						"default": "#f8f9fa"
+					},
+					{
+						"type": "color",
+						"id": "text_color",
+						"label": "Link color",
+						"default": "#0066cc"
+					},
+					{
+						"type": "color",
+						"id": "title_color",
+						"label": "Title color",
+						"default": "#333333"
+					},
+					{
+						"type": "color",
+						"id": "border_color",
+						"label": "Border color",
+						"default": "#e0e0e0"
+					},
+					{
+						"type": "color",
+						"id": "hover_color",
+						"label": "Hover background color",
+						"default": "#f0f0f0"
+					},
+					{
+						"type": "range",
+						"id": "border_width",
+						"label": "Border width",
+						"min": 0,
+						"max": 5,
+						"step": 1,
+						"unit": "px",
+						"default": 1
+					},
+					{
+						"type": "range",
+						"id": "border_radius",
+						"label": "Border radius",
+						"min": 0,
+						"max": 20,
+						"step": 1,
+						"unit": "px",
+						"default": 8
+					},
+					{
+						"type": "range",
+						"id": "padding",
+						"label": "Padding",
+						"min": 10,
+						"max": 40,
+						"step": 5,
+						"unit": "px",
+						"default": 20
+					},
+					{
+						"type": "range",
+						"id": "title_font_size",
+						"label": "Title font size",
+						"min": 14,
+						"max": 24,
+						"step": 1,
+						"unit": "px",
+						"default": 18
+					},
+					{
+						"type": "range",
+						"id": "list_font_size",
+						"label": "List font size",
+						"min": 12,
+						"max": 18,
+						"step": 1,
+						"unit": "px",
+						"default": 14
+					}
+        ]
+      },
 			{
         "type": "description",
         "name": "Description",
