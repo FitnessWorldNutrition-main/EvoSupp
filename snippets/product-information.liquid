@@ -291,38 +291,33 @@
   {%- when 'collapsible_tab' -%}
     {%- liquid
       assign tab_content = ''
-      assign variant_metafield_content = ''
-      assign variant_metafield_raw = ''
+      assign has_variant_metafield = false
+      assign variant_metafield_obj = null
       
       # Check for variant metafield content
       if block.settings.variant_metafield_namespace != blank and block.settings.variant_metafield_key != blank
         assign selected_variant = product.selected_or_first_available_variant
-        assign variant_metafield_raw = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
+        assign variant_metafield_obj = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
         
-        # Check if it's a metafield object and extract value properly
-        if variant_metafield_raw.type == 'rich_text_field'
-          assign variant_metafield_content = variant_metafield_raw.value
-        elsif variant_metafield_raw.value
-          assign variant_metafield_content = variant_metafield_raw.value
-        else
-          assign variant_metafield_content = variant_metafield_raw
+        if variant_metafield_obj != blank
+          assign has_variant_metafield = true
         endif
       endif
       
       # Combine all content sources - variant metafield has priority
-      if variant_metafield_content != blank
-        assign tab_content = variant_metafield_content
-      elsif block.settings.content != blank
-        assign tab_content = block.settings.content
-      elsif block.settings.page.content != blank
-        assign tab_content = block.settings.page.content
-      elsif block.settings.custom_liquid != blank
-        assign tab_content = block.settings.custom_liquid
+      if has_variant_metafield == false
+        if block.settings.content != blank
+          assign tab_content = block.settings.content
+        elsif block.settings.page.content != blank
+          assign tab_content = block.settings.page.content
+        elsif block.settings.custom_liquid != blank
+          assign tab_content = block.settings.custom_liquid
+        endif
       endif
       
       # Check if we have both heading and content
       assign has_content = false
-      if tab_content != blank
+      if has_variant_metafield or tab_content != blank
         assign has_content = true
       endif
     -%}
@@ -334,8 +329,8 @@
           <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
         </summary>
         <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-          {%- if variant_metafield_content != blank -%}
-            {{ variant_metafield_content }}
+          {%- if has_variant_metafield -%}
+            {{ variant_metafield_obj | metafield_tag }}
           {%- else -%}
             {{ block.settings.content }}
             {{ block.settings.page.content }}
