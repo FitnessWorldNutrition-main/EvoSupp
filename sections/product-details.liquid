@@ -26,101 +26,124 @@
 -%}
 <div class="row">
 	<div class="small-12 columns">
-		{%- liquid
-			assign has_summary = false
-			assign has_description = false
-			
-			for block in section.blocks
-				if block.type == 'summary'
-					assign has_summary = true
-				endif
-				if block.type == 'description'
-					assign has_description = true
-				endif
-			endfor
-		-%}
 		<div class="tabbed-content-wrapper {% if has_bg -%}tabbed-content--has-bg{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --bg-body-rgb: {{ color_bg.rgb | replace: ' ' , ',' }}; --color-body: {{ color_text }}; --color-tabs: {{ color_tabs.rgb | replace: ' ' , ',' }};">
 			{% render 'section-header', section_heading: section_heading, section_description: section_description, marker_color: marker_color, marker_style: marker_style %}
-			
-			<div class="product-details-content-wrapper {% if has_summary and has_description %}with-summary{% endif %}">
-				{%- comment -%} Render summary block on the left {%- endcomment -%}
-				{%- if has_summary and has_description -%}
-					{%- for block in section.blocks -%}
-						{%- if block.type == 'summary' -%}
-							<div class="product-details-summary" {{ block.shopify_attributes }}>
-								<style>
-									.product-details-summary-{{ block.id }} {
-										background-color: {{ block.settings.background_color | default: '#f8f9fa' }};
-										border: {{ block.settings.border_width | default: 1 }}px solid {{ block.settings.border_color | default: '#e0e0e0' }};
-										border-radius: {{ block.settings.border_radius | default: 8 }}px;
-										padding: {{ block.settings.padding | default: 20 }}px;
-										position: sticky;
-										top: 20px;
-										max-height: calc(100vh - 100px);
-										overflow-y: auto;
-									}
-									
-									.product-details-summary-{{ block.id }} .summary-title {
-										color: {{ block.settings.title_color | default: '#333' }};
-										font-size: {{ block.settings.title_font_size | default: 18 }}px;
-										font-weight: bold;
-										margin-bottom: 15px;
-									}
-									
-									.product-details-summary-{{ block.id }} .summary-list {
-										list-style: none;
-										padding: 0;
-										margin: 0;
-									}
-									
-									.product-details-summary-{{ block.id }} .summary-item {
-										margin-bottom: 8px;
-									}
-									
-									.product-details-summary-{{ block.id }} .summary-link {
-										color: {{ block.settings.text_color | default: '#0066cc' }};
-										text-decoration: none;
-										display: block;
-										padding: 8px 12px;
-										border-radius: 4px;
-										transition: background-color 0.2s ease;
-										font-size: {{ block.settings.list_font_size | default: 14 }}px;
-									}
-									
-									.product-details-summary-{{ block.id }} .summary-link:hover {
-										background-color: {{ block.settings.hover_color | default: '#f0f0f0' }};
-									}
-									
-									.product-details-summary-{{ block.id }} .summary-link.level-3 {
-										padding-left: 28px;
-										font-size: {{ block.settings.list_font_size | default: 14 | minus: 1 }}px;
-									}
-									
-									.product-details-summary-{{ block.id }} .summary-link.level-4 {
-										padding-left: 44px;
-										font-size: {{ block.settings.list_font_size | default: 14 | minus: 2 }}px;
-									}
-								</style>
-								
-								<div class="product-details-summary-{{ block.id }}">
-									<div class="summary-title">{{ block.settings.title | default: 'Table of Contents' }}</div>
-									<ul class="summary-list" id="product-details-summary-list-{{ block.id }}">
-										<!-- Summary items will be populated by JavaScript -->
-									</ul>
-								</div>
-								
-								<script>
-									document.addEventListener('DOMContentLoaded', function() {
-										const summaryList = document.getElementById('product-details-summary-list-{{ block.id }}');
-										const tabbedContent = document.querySelector('.tabbed-content');
-										
-										if (summaryList && tabbedContent) {
-											// Wait for tab content to be visible
-											setTimeout(function() {
-												const activeTabContent = tabbedContent.querySelector('.tabbed-content--content.active');
+			<tabbed-content class="tabbed-content tabs-{{ tab_alignment }} text-size--{{ text_size }}" selected-index="0">
+				<scroll-shadow class="tabbed-content--scroll">
+					<div class="tabbed-content--tabs tabs-{{ tab_alignment }}">
+						{%- for block in section.blocks -%}
+						<button class="{% if forloop.index == 1 %} active{%- endif -%}" {{ block.shopify_attributes }}>{% render 'svg-icons-inline', icon: block.settings.icon %} {{ block.settings.tab_label }}</button>
+						{%- endfor -%}
+					</div>
+				</scroll-shadow>
+				{%- for block in section.blocks -%}
+					<div class="tabbed-content--content rte text-{{ text_alignment }}{% if forloop.index == 1 %} active{%- endif -%}" style="--columns: {{ block.settings.text_columns | default: '1' }};" data-block-id="{{ block.id }}">
+						{%- case block.type -%}
+  						{%- when 'tab' -%}
+								{{ block.settings.text | newline_to_br }}
+								{{ block.settings.page.content }}
+							{%- when 'description' -%}
+								{%- if block.settings.show_summary -%}
+									<div class="description-with-summary">
+										<div class="description-summary" id="description-summary-{{ block.id }}">
+											<style>
+												.description-summary-{{ block.id }} {
+													background-color: {{ block.settings.summary_background_color | default: '#f8f9fa' }};
+													border: {{ block.settings.summary_border_width | default: 1 }}px solid {{ block.settings.summary_border_color | default: '#e0e0e0' }};
+													border-radius: {{ block.settings.summary_border_radius | default: 8 }}px;
+													padding: {{ block.settings.summary_padding | default: 20 }}px;
+													position: sticky;
+													top: 20px;
+													max-height: calc(100vh - 100px);
+													overflow-y: auto;
+												}
 												
-												if (activeTabContent) {
-													const headings = activeTabContent.querySelectorAll('h2, h3, h4');
+												.description-summary-{{ block.id }} .summary-title {
+													color: {{ block.settings.summary_title_color | default: '#333' }};
+													font-size: {{ block.settings.summary_title_font_size | default: 18 }}px;
+													font-weight: bold;
+													margin-bottom: 15px;
+												}
+												
+												.description-summary-{{ block.id }} .summary-list {
+													list-style: none;
+													padding: 0;
+													margin: 0;
+												}
+												
+												.description-summary-{{ block.id }} .summary-item {
+													margin-bottom: 8px;
+												}
+												
+												.description-summary-{{ block.id }} .summary-link {
+													color: {{ block.settings.summary_text_color | default: '#0066cc' }};
+													text-decoration: none;
+													display: block;
+													padding: 8px 12px;
+													border-radius: 4px;
+													transition: background-color 0.2s ease;
+													font-size: {{ block.settings.summary_list_font_size | default: 14 }}px;
+												}
+												
+												.description-summary-{{ block.id }} .summary-link:hover {
+													background-color: {{ block.settings.summary_hover_color | default: '#f0f0f0' }};
+												}
+												
+												.description-summary-{{ block.id }} .summary-link.level-3 {
+													padding-left: 28px;
+													font-size: {{ block.settings.summary_list_font_size | default: 14 | minus: 1 }}px;
+												}
+												
+												.description-summary-{{ block.id }} .summary-link.level-4 {
+													padding-left: 44px;
+													font-size: {{ block.settings.summary_list_font_size | default: 14 | minus: 2 }}px;
+												}
+												
+												.description-with-summary {
+													display: grid;
+													grid-template-columns: 300px 1fr;
+													gap: 2rem;
+													align-items: start;
+												}
+												
+												@media screen and (max-width: 968px) {
+													.description-with-summary {
+														grid-template-columns: 1fr;
+														gap: 1.5rem;
+													}
+													
+													.description-summary {
+														order: -1;
+													}
+													
+													.description-summary-{{ block.id }} {
+														position: static !important;
+														max-height: none !important;
+													}
+												}
+											</style>
+											
+											<div class="description-summary-{{ block.id }}">
+												<div class="summary-title">{{ block.settings.summary_title | default: 'Table of Contents' }}</div>
+												<ul class="summary-list" id="summary-list-{{ block.id }}">
+													<!-- Summary items will be populated by JavaScript -->
+												</ul>
+											</div>
+										</div>
+										<div class="description-content" id="description-content-{{ block.id }}">
+											{{ product.description }}
+										</div>
+									</div>
+									
+									<script>
+										(function() {
+											const summaryList = document.getElementById('summary-list-{{ block.id }}');
+											const descriptionContent = document.getElementById('description-content-{{ block.id }}');
+											
+											if (summaryList && descriptionContent) {
+												function generateSummary() {
+													const headings = descriptionContent.querySelectorAll('h2, h3, h4');
+													summaryList.innerHTML = '';
 													
 													if (headings.length > 0) {
 														let headingCounter = 0;
@@ -129,7 +152,7 @@
 															
 															// Create unique ID for each heading if it doesn't have one
 															if (!heading.id) {
-																heading.id = 'heading-' + headingCounter;
+																heading.id = 'heading-{{ block.id }}-' + headingCounter;
 															}
 															
 															// Create summary item
@@ -165,128 +188,27 @@
 															summaryList.appendChild(listItem);
 														});
 													} else {
-														// Hide summary if no headings found
 														summaryList.innerHTML = '<li class="summary-item"><span style="color: #999; font-style: italic;">No headings found</span></li>';
 													}
 												}
 												
-												// Update summary when tab changes
-												const tabButtons = tabbedContent.querySelectorAll('.tabbed-content--tabs button');
-												tabButtons.forEach(function(button) {
-													button.addEventListener('click', function() {
-														setTimeout(function() {
-															// Clear and regenerate summary
-															summaryList.innerHTML = '';
-															const activeTabContent = tabbedContent.querySelector('.tabbed-content--content.active');
-															
-															if (activeTabContent) {
-																const headings = activeTabContent.querySelectorAll('h2, h3, h4');
-																
-																if (headings.length > 0) {
-																	let counter = 0;
-																	headings.forEach(function(heading) {
-																		counter++;
-																		
-																		if (!heading.id) {
-																			heading.id = 'heading-' + counter;
-																		}
-																		
-																		const listItem = document.createElement('li');
-																		listItem.className = 'summary-item';
-																		
-																		const link = document.createElement('a');
-																		link.href = '#' + heading.id;
-																		link.className = 'summary-link';
-																		link.textContent = heading.textContent.trim();
-																		
-																		const tagName = heading.tagName.toLowerCase();
-																		if (tagName === 'h3') {
-																			link.classList.add('level-3');
-																		} else if (tagName === 'h4') {
-																			link.classList.add('level-4');
-																		}
-																		
-																		link.addEventListener('click', function(e) {
-																			e.preventDefault();
-																			const targetElement = document.getElementById(heading.id);
-																			if (targetElement) {
-																				targetElement.scrollIntoView({
-																					behavior: 'smooth',
-																					block: 'start'
-																				});
-																			}
-																		});
-																		
-																		listItem.appendChild(link);
-																		summaryList.appendChild(listItem);
-																	});
-																} else {
-																	summaryList.innerHTML = '<li class="summary-item"><span style="color: #999; font-style: italic;">No headings found</span></li>';
-																}
-															}
-														}, 100);
-													});
-												});
-											}, 100);
-										}
-									});
-								</script>
-							</div>
-						{%- endif -%}
-					{%- endfor -%}
-				{%- endif -%}
-			
-			<tabbed-content class="tabbed-content tabs-{{ tab_alignment }} text-size--{{ text_size }}" selected-index="0">
-				<scroll-shadow class="tabbed-content--scroll">
-					<div class="tabbed-content--tabs tabs-{{ tab_alignment }}">
-						{%- for block in section.blocks -%}
-						<button class="{% if forloop.index == 1 %} active{%- endif -%}" {{ block.shopify_attributes }}>{% render 'svg-icons-inline', icon: block.settings.icon %} {{ block.settings.tab_label }}</button>
-						{%- endfor -%}
-					</div>
-				</scroll-shadow>
-				{%- for block in section.blocks -%}
-					<div class="tabbed-content--content rte text-{{ text_alignment }}{% if forloop.index == 1 %} active{%- endif -%}" style="--columns: {{ block.settings.text_columns | default: '1' }};">
-						{%- case block.type -%}
-  						{%- when 'tab' -%}
-								{{ block.settings.text | newline_to_br }}
-								{{ block.settings.page.content }}
-							{%- when 'description' -%}
-								{{ product.description }}
+												// Generate summary on load
+												setTimeout(generateSummary, 100);
+											}
+										})();
+									</script>
+								{%- else -%}
+									{{ product.description }}
+								{%- endif -%}
 							{%- when 'custom_liquid' -%}
 								{{ block.settings.custom_liquid }}
 						{%- endcase -%}
 					</div>
 				{%- endfor -%}
 			</tabbed-content>
-			</div>
 		</div>
 	</div>
 </div>
-
-<style>
-	.product-details-content-wrapper.with-summary {
-		display: grid;
-		grid-template-columns: 300px 1fr;
-		gap: 2rem;
-		align-items: start;
-	}
-	
-	@media screen and (max-width: 968px) {
-		.product-details-content-wrapper.with-summary {
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
-		}
-		
-		.product-details-summary {
-			order: -1;
-		}
-		
-		.product-details-summary > div[class*="product-details-summary-"] {
-			position: static !important;
-			max-height: none !important;
-		}
-	}
-</style>
 
 {% schema %}
   {
@@ -440,58 +362,64 @@
     ],
     "blocks": [
 			{
-        "type": "summary",
-        "name": "Table of Contents",
-        "limit": 1,
+        "type": "description",
+        "name": "Description",
         "settings": [
 					{
-						"type": "paragraph",
-						"content": "Automatically generates a table of contents from H2, H3, and H4 headings in the description tab. H3 will be nested under H2, and H4 will be nested under H3. The summary will appear on the left side when a description block is present."
+						"type": "header",
+						"content": "Table of Contents"
+					},
+					{
+						"type": "checkbox",
+						"id": "show_summary",
+						"label": "Show table of contents",
+						"default": false,
+						"info": "Automatically generates a table of contents from H2, H3, and H4 headings in the description. H3 will be nested under H2, and H4 will be nested under H3."
 					},
 					{
 						"type": "text",
-						"id": "title",
-						"label": "Title",
+						"id": "summary_title",
+						"label": "Summary title",
 						"default": "Table of Contents"
 					},
 					{
 						"type": "header",
-						"content": "Styling"
+						"content": "Summary Styling"
 					},
 					{
 						"type": "color",
-						"id": "background_color",
-						"label": "Background color",
+						"id": "summary_background_color",
+						"label": "Summary background",
 						"default": "#f8f9fa"
 					},
 					{
 						"type": "color",
-						"id": "text_color",
-						"label": "Link color",
+						"id": "summary_text_color",
+						"label": "Summary link color",
 						"default": "#0066cc"
 					},
 					{
 						"type": "color",
-						"id": "title_color",
-						"label": "Title color",
+						"id": "summary_title_color",
+						"label": "Summary title color",
 						"default": "#333333"
 					},
 					{
 						"type": "color",
-						"id": "border_color",
-						"label": "Border color",
+						"id": "summary_border_color",
+						"label": "Summary border color",
 						"default": "#e0e0e0"
 					},
 					{
 						"type": "color",
-						"id": "hover_color",
-						"label": "Hover background color",
+						"id": "summary_hover_color",
+						"label": "Summary hover background",
 						"default": "#f0f0f0"
 					},
 					{
 						"type": "range",
-						"id": "border_width",
-						"label": "Border width",
+						"id": "summary_border_width",
+						"label": "Summary border width",
 						"min": 0,
 						"max": 5,
 						"step": 1,
@@ -500,8 +428,8 @@
 					},
 					{
 						"type": "range",
-						"id": "border_radius",
-						"label": "Border radius",
+						"id": "summary_border_radius",
+						"label": "Summary border radius",
 						"min": 0,
 						"max": 20,
 						"step": 1,
@@ -510,8 +438,8 @@
 					},
 					{
 						"type": "range",
-						"id": "padding",
-						"label": "Padding",
+						"id": "summary_padding",
+						"label": "Summary padding",
 						"min": 10,
 						"max": 40,
 						"step": 5,
@@ -520,8 +448,8 @@
 					},
 					{
 						"type": "range",
-						"id": "title_font_size",
-						"label": "Title font size",
+						"id": "summary_title_font_size",
+						"label": "Summary title font size",
 						"min": 14,
 						"max": 24,
 						"step": 1,
@@ -530,20 +458,18 @@
 					},
 					{
 						"type": "range",
-						"id": "list_font_size",
-						"label": "List font size",
+						"id": "summary_list_font_size",
+						"label": "Summary list font size",
 						"min": 12,
 						"max": 18,
 						"step": 1,
 						"unit": "px",
 						"default": 14
-					}
-        ]
-      },
-			{
-        "type": "description",
-        "name": "Description",
-        "settings": [
+					},
+					{
+						"type": "header",
+						"content": "General Settings"
+					},
 					{
 						"type": "text",
 						"id": "tab_label",
