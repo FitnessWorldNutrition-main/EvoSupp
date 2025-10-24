@@ -1497,14 +1497,7 @@
         {
           "type": "richtext",
           "id": "content",
-          "label": "Row content",
-          "info": "Static content or use dynamic source for product metafields"
-        },
-        {
-          "type": "html",
-          "id": "variant_content",
-          "label": "Variant metafield content",
-          "info": "Use the dynamic source button (🔗) to connect a variant metafield. Content will update when variant changes."
+          "label": "Row content"
         },
         {
           "type": "page",
@@ -1516,6 +1509,28 @@
           "id": "custom_liquid",
           "label": "Custom liquid",
           "info": "Add app snippets or other Liquid code to create advanced customizations. For product description, you can use {{ product.description }}"
+        },
+        {
+          "type": "header",
+          "content": "Variant Metafield (Optional)"
+        },
+        {
+          "type": "paragraph",
+          "content": "If you want to show content from a variant metafield, enter the namespace and key below. The content will change automatically when a different variant is selected."
+        },
+        {
+          "type": "text",
+          "id": "variant_metafield_namespace",
+          "label": "Variant metafield namespace",
+          "placeholder": "custom",
+          "info": "Example: custom"
+        },
+        {
+          "type": "text",
+          "id": "variant_metafield_key",
+          "label": "Variant metafield key",
+          "placeholder": "ingredients",
+          "info": "Example: ingredients, nutritional_info, description"
         }
       ]
     },

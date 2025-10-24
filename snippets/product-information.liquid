@@ -291,10 +291,17 @@
   {%- when 'collapsible_tab' -%}
     {%- liquid
       assign tab_content = ''
+      assign variant_metafield_content = ''
       
-      # Combine all content sources - variant content has priority
-      if block.settings.variant_content != blank
-        assign tab_content = block.settings.variant_content
+      # Check for variant metafield content
+      if block.settings.variant_metafield_namespace != blank and block.settings.variant_metafield_key != blank
+        assign selected_variant = product.selected_or_first_available_variant
+        assign variant_metafield_content = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
+      endif
+      
+      # Combine all content sources - variant metafield has priority
+      if variant_metafield_content != blank
+        assign tab_content = variant_metafield_content
       elsif block.settings.content != blank
         assign tab_content = block.settings.content
       elsif block.settings.page.content != blank
@@ -317,8 +324,8 @@
           <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
         </summary>
         <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-          {%- if block.settings.variant_content != blank -%}
-            {{ block.settings.variant_content }}
+          {%- if variant_metafield_content != blank -%}
+            {{ variant_metafield_content }}
           {%- else -%}
             {{ block.settings.content }}
             {{ block.settings.page.content }}
