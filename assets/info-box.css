@@ -1,6 +1,4 @@
 /* Info box desktop/mobile positioning */
-.product--infobox-container-desktop {
-  display: none !important; }
   @media only screen and (min-width: 1068px) {
     .product--infobox-container-desktop {
       display: grid;
@@ -15,6 +13,11 @@
   @media only screen and (min-width: 1068px) {
     .product--infobox-container-mobile {
       display: none !important; } }
+
+@media only screen and (max-width: 1067px) {
+  .product--infobox-container-desktop {
+    display: none !important; }
+}
 
 .product--infobox {
   isolation: isolate;
