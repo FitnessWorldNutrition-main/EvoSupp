@@ -244,6 +244,24 @@
     </side-panel-links>
   {%- when 'quantity' -%}
     {%- if product.available -%}
+    {%- comment -%} Cart Conditions: Calculate quantity in cart and max allowed {%- endcomment -%}
+    {%- assign item_quantity = 0 -%}
+    {%- for item in cart.items -%}
+      {%- if item.product.id == product.id -%}
+        {%- assign item_quantity = item.quantity -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign max_quantity = product.metafields.custom.max_quantity.value -%}
+    {%- assign item_count = 1 -%}
+    {%- if max_quantity != blank and max_quantity != 'none' -%}
+      {%- assign max_quantity_num = max_quantity | plus: 0 -%}
+      {%- assign item_count = max_quantity_num | minus: item_quantity -%}
+      {%- if item_count < 1 -%}
+        {%- assign item_count = 0 -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- unless item_quantity >= max_quantity and max_quantity != blank and max_quantity != 'none' -%}
     <div
       id="quantity-{{ section.id }}"
       {{ block.shopify_attributes }}
@@ -264,6 +282,8 @@
           {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
             data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
             max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+          {% elsif max_quantity != blank and max_quantity != 'none' %}
+            max="{{ item_count }}"
           {% endif %}
           step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
           form="{{ product_form_id }}"
@@ -272,6 +292,7 @@
         <button class="plus" type="button" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | escape }}">{% render 'svg-icons' with 'plus' %}</button>
       </quantity-selector>
     </div>
+    {%- endunless -%}
     {%- endif -%}
   {%- when 'buy_buttons' -%}
     {% render 'product-add-to-cart', product: product, form: form, product_form_id: product_form_id, block: block, pickup: pickup %}

@@ -265,6 +265,14 @@ if (!customElements.get('product-card')) {
       formData.append('quantity', 1);
       formData.append('sections', this.getSectionsToRender().map((section) => section.section));
       formData.append('sections_url', window.location.pathname);
+      
+      // Cart Conditions: Add metafield properties
+      if (this.quick_add.dataset.maxQuantity) {
+        formData.append('properties[_max_quantity]', this.quick_add.dataset.maxQuantity);
+      }
+      if (this.quick_add.dataset.incompatibleProducts) {
+        formData.append('properties[_produits_incompatibles]', this.quick_add.dataset.incompatibleProducts);
+      }
 
       config.body = formData;
 

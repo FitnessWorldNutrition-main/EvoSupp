@@ -24,6 +24,24 @@
     </div>
 		{%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
 			<input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+			{%- comment -%} Cart Conditions: Add metafield properties {%- endcomment -%}
+			{%- assign tabs_produits_incompatibles = "" -%}
+			{%- for produit in product.metafields.custom.produits_incompatibles.value -%}
+				{%- if forloop.first == false -%}
+					{%- assign tabs_produits_incompatibles = tabs_produits_incompatibles | append: "," -%}
+				{%- endif -%}
+				{%- assign tabs_produits_incompatibles = tabs_produits_incompatibles | append: produit.id -%}
+			{%- endfor -%}
+			{% if product.metafields.custom.max_quantity.value != blank and product.metafields.custom.produits_incompatibles.value != blank %}
+				<input type="hidden" name="properties[_max_quantity]" value="{{ product.metafields.custom.max_quantity.value }}">
+				<input type="hidden" name="properties[_produits_incompatibles]" value="{{ tabs_produits_incompatibles }}">
+			{% elsif product.metafields.custom.max_quantity.value != blank %}
+				<input type="hidden" name="properties[_max_quantity]" value="{{ product.metafields.custom.max_quantity.value }}">
+			{% elsif product.metafields.custom.produits_incompatibles.value != blank %}
+				<input type="hidden" name="properties[_produits_incompatibles]" value="{{ tabs_produits_incompatibles }}">
+			{% else %}
+				<input type="hidden" name="properties[_max_quantity]" value="none">
+			{% endif %}
 			{%- if gift_card_recipient_feature_active -%}
 				{%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
 			{%- endif -%}
