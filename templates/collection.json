@@ -1,1 +1,183 @@
-{"sections":{"breadcrumbs":{"type":"breadcrumbs","settings":{}},"template-header":{"type":"template-header","settings":{"show_collection_image":false,"collection_image_ratio":"adapt","collection_image_width":"small","show_collection_description":false,"seo_text_read_more":"Read more","seo_text_read_less":"Read less","seo_text_max_height":350,"show_subcollections":false,"color_subcollection_bg":"#ffffff","color_subcollection_text":"#303c43","display_description":true}},"product-grid":{"type":"main-collection-product-grid","blocks":{"promotion_XJ4gcz":{"type":"promotion","settings":{"promotion_collection":"","promotion_position":4,"promotion_width":"1","image":"shopify:\/\/shop_images\/Design_sans_titre_22.png","title":"Promo","text":"-10% sur votre commande avec le code EVO10 (dès 80€)","link_label":"","content_position":"bottom-left","text_alignment":"left","link":"","use_text_button":false,"block_link":"","overlay_color":"#000000","overlay_opacity":0}}},"block_order":["promotion_XJ4gcz"],"settings":{"products_per_page":16,"columns_desktop":4,"pagination_type":"paginated","enable_filtering":true,"enable_sorting":true,"show_counts":true,"filter_color_swatches":true,"filters_collapsed":false,"facets_desktop":"sidebar","box_filter_list":"4"}},"tabbed_content_LUnTB8":{"type":"tabbed-content","blocks":{"tab_KQgf8i":{"type":"tab","settings":{"tab_label":"Tab label","icon":"none","text":"<p>Le bisglycinate de magnésium s’impose aujourd’hui comme l’une des formes les plus recherchées et recommandées en supplémentation de magnésium. S’il est devenu un incontournable, c’est parce qu’il associe excellente biodisponibilité et qu’il se digère mieux que les formes de magnésium plus classique comme le citrate de magnésium. Contrairement à d'autres formes de magnésium souvent mal absorbées ou sources d’inconfort intestinal, le bisglycinate se distingue par sa capacité à être bien assimilé par l’organisme.Magnésium bisglycinate c'est quoi ?Le magnésium bisglycinate (aussi appelé bisglycinate de magnésium) est une forme chélatée, c’est-à-dire que le magnésium est lié à deux molécules de glycine, un acide aminé naturellement présent dans le corps humain. Cette liaison crée une structure stable et bien tolérée par le système digestif.Concrètement, cette forme \"bisglycinate\" permet au magnésium d’être mieux transporté à travers la paroi intestinale, grâce à la glycine. Cela se traduit par une meilleure biodisponibilité (absorption optimisée) et moins d’effets secondaires digestifs que d’autres formes plus courantes.Pourquoi prendre du magnésium ?Le magnésium est un minéral essentiel que l’on retrouve naturellement dans l’organisme, principalement dans les os (environ 60 %), mais aussi dans les muscles (environ 30 %) et, dans une moindre mesure, dans le sang et les tissus mous. Puisque notre corps ne sait pas le<\/p>","text_columns":"1","page":"","custom_liquid":""}}},"block_order":["tab_KQgf8i"],"name":"Tabbed content","settings":{"heading":"","marker_style":"style1","description":"","text_size":"regular","tab_alignment":"left","text_alignment":"left","color_bg":"rgba(0,0,0,0)","color_tabs":"#2c2d2e","color_text":"#2c2d2e","marker_color":"#fd6262","disable_top_spacing":true,"disable_bottom_spacing":true}},"spacer_rHGqQN":{"type":"spacer","name":"Spacer","settings":{"spacer_mobile":30,"spacer_desktop":30,"border_separator":false,"border_separator_full":false}},"text_with_icons_7kN3kK":{"type":"text-with-icons","blocks":{"icon_3CrE9m":{"type":"icon","settings":{"icon":"truck","heading":"LIVRAISON EXPRESS 24\/48H","text":"<p>Commandez aujourd’hui, recevez votre colis sous 24 à 48h (jours ouvrés).<\/p>"}},"icon_3cLUex":{"type":"icon","settings":{"icon":"lock","heading":"PAIEMENT 100% SÉCURISÉ","text":"<p>Notre site utilise les dernières technologies de cryptage pour protéger vos données.<\/p>"}},"icon_LQAyBa":{"type":"icon","settings":{"icon":"chat_bubble","heading":"SERVICE CLIENT RÉACTIF","text":"<p>Une question ? Notre équipe vous répond rapidement 5J\/7 - 9H\/19H<\/p>"}},"icon_gYw9eQ":{"type":"icon","settings":{"icon":"return","heading":"RETOURS FACILES SOUS 14 JOURS","text":"<p>Vous avez 14 jours pour changer d’avis, tout simplement.<\/p>"}}},"block_order":["icon_3CrE9m","icon_3cLUex","icon_LQAyBa","icon_gYw9eQ"],"name":"Text with icons","settings":{"text_alignment":"left","icon_position":"top","icon_size":"medium","heading_size":"medium","mobile_swipe":true,"color_bg":"#f2f2f2","color_heading":"#000000","color_text":"#000000","disable_top_spacing":true,"disable_bottom_spacing":true}}},"order":["breadcrumbs","template-header","product-grid","tabbed_content_LUnTB8","spacer_rHGqQN","text_with_icons_7kN3kK"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "settings": {}
+    },
+    "template-header": {
+      "type": "template-header",
+      "custom_css": [
+        ".template-header--content-width-small {grid-template-columns: 1fr;}"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "collection_image_ratio": "adapt",
+        "collection_image_width": "small",
+        "show_collection_description": false,
+        "seo_text_read_more": "Read more",
+        "seo_text_read_less": "Read less",
+        "seo_text_max_height": 350,
+        "show_subcollections": false,
+        "color_subcollection_bg": "#ffffff",
+        "color_subcollection_text": "#303c43",
+        "display_description": true
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "promotion_XJ4gcz": {
+          "type": "promotion",
+          "settings": {
+            "promotion_collection": "",
+            "promotion_position": 4,
+            "promotion_width": "1",
+            "image": "shopify://shop_images/Design_sans_titre_22.png",
+            "title": "Promo",
+            "text": "-10% sur votre commande avec le code EVO10 (dès 80€)",
+            "link_label": "",
+            "content_position": "bottom-left",
+            "text_alignment": "left",
+            "link": "",
+            "use_text_button": false,
+            "block_link": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "promotion_XJ4gcz"
+      ],
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "pagination_type": "paginated",
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "show_counts": true,
+        "filter_color_swatches": true,
+        "filters_collapsed": false,
+        "facets_desktop": "sidebar",
+        "box_filter_list": "4"
+      }
+    },
+    "tabbed_content_LUnTB8": {
+      "type": "tabbed-content",
+      "blocks": {
+        "tab_KQgf8i": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Tab label",
+            "icon": "none",
+            "text": "<p>Le bisglycinate de magnésium s’impose aujourd’hui comme l’une des formes les plus recherchées et recommandées en supplémentation de magnésium. S’il est devenu un incontournable, c’est parce qu’il associe excellente biodisponibilité et qu’il se digère mieux que les formes de magnésium plus classique comme le citrate de magnésium. Contrairement à d'autres formes de magnésium souvent mal absorbées ou sources d’inconfort intestinal, le bisglycinate se distingue par sa capacité à être bien assimilé par l’organisme.Magnésium bisglycinate c'est quoi ?Le magnésium bisglycinate (aussi appelé bisglycinate de magnésium) est une forme chélatée, c’est-à-dire que le magnésium est lié à deux molécules de glycine, un acide aminé naturellement présent dans le corps humain. Cette liaison crée une structure stable et bien tolérée par le système digestif.Concrètement, cette forme \"bisglycinate\" permet au magnésium d’être mieux transporté à travers la paroi intestinale, grâce à la glycine. Cela se traduit par une meilleure biodisponibilité (absorption optimisée) et moins d’effets secondaires digestifs que d’autres formes plus courantes.Pourquoi prendre du magnésium ?Le magnésium est un minéral essentiel que l’on retrouve naturellement dans l’organisme, principalement dans les os (environ 60 %), mais aussi dans les muscles (environ 30 %) et, dans une moindre mesure, dans le sang et les tissus mous. Puisque notre corps ne sait pas le</p>",
+            "text_columns": "1",
+            "page": "",
+            "custom_liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_KQgf8i"
+      ],
+      "name": "Tabbed content",
+      "settings": {
+        "heading": "",
+        "marker_style": "style1",
+        "description": "",
+        "text_size": "regular",
+        "tab_alignment": "left",
+        "text_alignment": "left",
+        "color_bg": "rgba(0,0,0,0)",
+        "color_tabs": "#2c2d2e",
+        "color_text": "#2c2d2e",
+        "marker_color": "#fd6262",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    },
+    "spacer_rHGqQN": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacer_mobile": 30,
+        "spacer_desktop": 30,
+        "border_separator": false,
+        "border_separator_full": false
+      }
+    },
+    "text_with_icons_7kN3kK": {
+      "type": "text-with-icons",
+      "blocks": {
+        "icon_3CrE9m": {
+          "type": "icon",
+          "settings": {
+            "icon": "truck",
+            "heading": "LIVRAISON EXPRESS 24/48H",
+            "text": "<p>Commandez aujourd’hui, recevez votre colis sous 24 à 48h (jours ouvrés).</p>"
+          }
+        },
+        "icon_3cLUex": {
+          "type": "icon",
+          "settings": {
+            "icon": "lock",
+            "heading": "PAIEMENT 100% SÉCURISÉ",
+            "text": "<p>Notre site utilise les dernières technologies de cryptage pour protéger vos données.</p>"
+          }
+        },
+        "icon_LQAyBa": {
+          "type": "icon",
+          "settings": {
+            "icon": "chat_bubble",
+            "heading": "SERVICE CLIENT RÉACTIF",
+            "text": "<p>Une question ? Notre équipe vous répond rapidement 5J/7 - 9H/19H</p>"
+          }
+        },
+        "icon_gYw9eQ": {
+          "type": "icon",
+          "settings": {
+            "icon": "return",
+            "heading": "RETOURS FACILES SOUS 14 JOURS",
+            "text": "<p>Vous avez 14 jours pour changer d’avis, tout simplement.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_3CrE9m",
+        "icon_3cLUex",
+        "icon_LQAyBa",
+        "icon_gYw9eQ"
+      ],
+      "name": "Text with icons",
+      "settings": {
+        "text_alignment": "left",
+        "icon_position": "top",
+        "icon_size": "medium",
+        "heading_size": "medium",
+        "mobile_swipe": true,
+        "color_bg": "#f2f2f2",
+        "color_heading": "#000000",
+        "color_text": "#000000",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "template-header",
+    "product-grid",
+    "tabbed_content_LUnTB8",
+    "spacer_rHGqQN",
+    "text_with_icons_7kN3kK"
+  ]
+}
