@@ -23,13 +23,19 @@
         "collection_image_ratio": "adapt",
         "collection_image_width": "small",
         "show_collection_description": false,
+        "show_short_description": true,
+        "short_description_max_height": 75,
+        "short_description_read_more": "Lire plus",
+        "short_description_read_less": "Lire moins",
         "seo_text_read_more": "Read more",
         "seo_text_read_less": "Read less",
         "seo_text_max_height": 350,
         "show_subcollections": false,
         "color_subcollection_bg": "#ffffff",
         "color_subcollection_text": "#303c43",
-        "display_description": true
+        "display_description": true,
+        "marker_style": "style1",
+        "marker_color": "#fd6262"
       }
     },
     "product-grid": {
