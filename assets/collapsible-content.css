@@ -67,7 +67,7 @@
   justify-content: var(--header-justify, left); }
 
 .collapsible-content-group {
-  margin-bottom: 50px; }
+  margin-bottom: 0px; }
   .collapsible-content-group:last-child {
     margin-bottom: 0; }
   .collapsible-content-group__heading {
