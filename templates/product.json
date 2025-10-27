@@ -95,8 +95,8 @@
             "icon": "ruler",
             "has_background": true,
             "text": "<p>Advertise your coupon code here.</p>",
-            "coupon_text": "VISION20",
-            "copy_text": "Copy code",
+            "coupon_text": "VISION10",
+            "copy_text": "Copier le code",
             "coupon_box_bg_color": "#ffefdd",
             "coupon_box_text_color": "#000000",
             "coupon_box_icon_color": "#d96a2d"
