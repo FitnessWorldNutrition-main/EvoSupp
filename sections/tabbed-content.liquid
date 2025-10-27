@@ -37,13 +37,224 @@
 					</div>
 				</scroll-shadow>
 				{%- for block in section.blocks -%}
-					<div class="tabbed-content--content text-{{ text_alignment }}{% if forloop.index == 1 %} active{%- endif -%}" style="--columns: {{ block.settings.text_columns }};">
+					<div class="tabbed-content--content text-{{ text_alignment }}{% if forloop.index == 1 %} active{%- endif -%}" style="--columns: {{ block.settings.text_columns }};" data-block-id="{{ block.id }}">
 						{%- if block.type == 'specification' -%}
 							{%- render 'product-specification-table', block: block -%}
-						{%- endif -%}
+						{%- elsif block.type == 'tab' and block.settings.show_summary -%}
+							<div class="description-with-summary">
+								<div class="description-summary" id="description-summary-{{ block.id }}">
+									<style>
+										.description-summary-{{ block.id }} {
+											background-color: {{ block.settings.summary_background_color | default: 'transparent' }};
+											border: {{ block.settings.summary_border_width | default: 0 }}px solid {{ block.settings.summary_border_color | default: '#e0e0e0' }};
+											border-radius: {{ block.settings.summary_border_radius | default: 0 }}px;
+											padding: {{ block.settings.summary_padding | default: 0 }}px;
+											position: sticky;
+											top: 20px;
+											max-height: calc(100vh - 100px);
+											overflow-y: auto;
+										}
+										
+										.description-summary-{{ block.id }} .summary-title {
+											color: {{ block.settings.summary_title_color | default: '#000' }};
+											font-size: {{ block.settings.summary_title_font_size | default: 24 }}px;
+											font-weight: 900;
+											margin-bottom: 20px;
+											text-transform: uppercase;
+											letter-spacing: 0.5px;
+										}
+										
+										.description-summary-{{ block.id }} .summary-list {
+											list-style: none;
+											padding: 0;
+											margin: 0;
+										}
+										
+										.description-summary-{{ block.id }} .summary-item {
+											margin-bottom: 0;
+										}
+										
+										.description-summary-{{ block.id }} .summary-link {
+											color: {{ block.settings.summary_text_color | default: '#FF6B35' }};
+											text-decoration: none;
+											display: block;
+											padding: 12px 0;
+											transition: all 0.3s ease;
+											font-size: {{ block.settings.summary_list_font_size | default: 15 }}px;
+											font-weight: 400;
+											line-height: 1.4;
+										}
+										
+										.description-summary-{{ block.id }} .summary-separator {
+											height: 1px;
+											width: 100%;
+											background-color: {{ block.settings.summary_border_color | default: '#e0e0e0' }};
+											box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.17);
+											margin-bottom: 0;
+										}
+										
+										.description-summary-{{ block.id }} .summary-link:hover {
+											color: {{ block.settings.summary_hover_color | default: '#e4f966' }};
+											padding-left: 5px;
+										}
+										
+										.description-summary-{{ block.id }} .summary-link.level-3 {
+											padding-left: 20px;
+											font-size: {{ block.settings.summary_list_font_size | default: 15 | minus: 1 }}px;
+										}
+										
+										.description-summary-{{ block.id }} .summary-link.level-3:hover {
+											padding-left: 25px;
+										}
+										
+										.description-summary-{{ block.id }} .summary-link.level-4 {
+											padding-left: 40px;
+											font-size: {{ block.settings.summary_list_font_size | default: 15 | minus: 2 }}px;
+										}
+										
+										.description-summary-{{ block.id }} .summary-link.level-4:hover {
+											padding-left: 45px;
+										}
+										
+										.description-with-summary {
+											display: grid;
+											grid-template-columns: 450px 1fr;
+											gap: 2rem;
+											align-items: start;
+										}
+										
+										@media screen and (max-width: 968px) {
+											.description-with-summary {
+												grid-template-columns: 1fr;
+												gap: 1.5rem;
+											}
+											
+											.description-summary {
+												order: -1;
+											}
+											
+											.description-summary-{{ block.id }} {
+												position: static !important;
+												max-height: none !important;
+											}
+										}
+									</style>
+									
+									<div class="description-summary-{{ block.id }}">
+										<div class="summary-title">{{ block.settings.summary_title | default: 'Sommaire' }}</div>
+										<ul class="summary-list" id="summary-list-{{ block.id }}">
+											<!-- Summary items will be populated by JavaScript -->
+										</ul>
+									</div>
+								</div>
+								<div class="description-content" id="description-content-{{ block.id }}">
 						{{ block.settings.text | newline_to_br }}
 						{{ block.settings.page.content }}
 						{{ block.settings.custom_liquid }}
+								</div>
+							</div>
+							
+							<script>
+								(function() {
+									const summaryList = document.getElementById('summary-list-{{ block.id }}');
+									const descriptionContent = document.getElementById('description-content-{{ block.id }}');
+									const summaryContainer = document.getElementById('description-summary-{{ block.id }}');
+									const summaryWrapper = summaryContainer ? summaryContainer.closest('.description-with-summary') : null;
+									
+									if (summaryList && descriptionContent) {
+										function generateSummary() {
+											const headings = descriptionContent.querySelectorAll('h2, h3, h4');
+											summaryList.innerHTML = '';
+											
+											if (headings.length > 0) {
+												let headingCounter = 0;
+												headings.forEach(function(heading, index) {
+													headingCounter++;
+													
+													// Create unique ID for each heading if it doesn't have one
+													if (!heading.id) {
+														heading.id = 'heading-{{ block.id }}-' + headingCounter;
+													}
+													
+													// Create summary item
+													const listItem = document.createElement('li');
+													listItem.className = 'summary-item';
+													
+													const link = document.createElement('a');
+													link.href = '#' + heading.id;
+													link.className = 'summary-link';
+													link.textContent = heading.textContent.trim();
+													
+													// Add level class for hierarchy
+													const tagName = heading.tagName.toLowerCase();
+													if (tagName === 'h3') {
+														link.classList.add('level-3');
+													} else if (tagName === 'h4') {
+														link.classList.add('level-4');
+													}
+													
+													// Add smooth scrolling behavior
+													link.addEventListener('click', function(e) {
+														e.preventDefault();
+														const targetElement = document.getElementById(heading.id);
+														if (targetElement) {
+															targetElement.scrollIntoView({
+																behavior: 'smooth',
+																block: 'start'
+															});
+														}
+													});
+													
+													listItem.appendChild(link);
+													
+													// Add separator after each link
+													const separator = document.createElement('div');
+													separator.className = 'summary-separator';
+													listItem.appendChild(separator);
+													
+													summaryList.appendChild(listItem);
+												});
+											} else {
+												// Hide the entire summary container if no headings found
+												if (summaryContainer) {
+													summaryContainer.style.display = 'none';
+												}
+												// Make description full width
+												if (summaryWrapper) {
+													summaryWrapper.style.display = 'block';
+												}
+											}
+										}
+										
+										// Generate summary on load
+										setTimeout(generateSummary, 100);
+										
+										// Regenerate summary when tab becomes active
+										const tabContent = descriptionContent.closest('.tabbed-content--content');
+										if (tabContent) {
+											const observer = new MutationObserver(function(mutations) {
+												mutations.forEach(function(mutation) {
+													if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+														if (tabContent.classList.contains('active')) {
+															setTimeout(generateSummary, 100);
+														}
+													}
+												});
+											});
+											
+											observer.observe(tabContent, {
+												attributes: true,
+												attributeFilter: ['class']
+											});
+										}
+									}
+								})();
+							</script>
+						{%- else -%}
+							{{ block.settings.text | newline_to_br }}
+							{{ block.settings.page.content }}
+							{{ block.settings.custom_liquid }}
+						{%- endif -%}
 					</div>
 				{%- endfor -%}
 			</tabbed-content>
@@ -203,6 +414,111 @@
         "type": "tab",
         "name": "Tab",
         "settings": [
+					{
+						"type": "header",
+						"content": "Table of Contents"
+					},
+					{
+						"type": "checkbox",
+						"id": "show_summary",
+						"label": "Show table of contents",
+						"default": false,
+						"info": "Automatically generates a table of contents from H2, H3, and H4 headings in the content. H3 will be nested under H2, and H4 will be nested under H3."
+					},
+					{
+						"type": "text",
+						"id": "summary_title",
+						"label": "Summary title",
+						"default": "Sommaire"
+					},
+					{
+						"type": "header",
+						"content": "Summary Styling"
+					},
+					{
+						"type": "color",
+						"id": "summary_background_color",
+						"label": "Summary background",
+						"default": "transparent"
+					},
+					{
+						"type": "color",
+						"id": "summary_text_color",
+						"label": "Summary link color",
+						"default": "#FF6B35"
+					},
+					{
+						"type": "color",
+						"id": "summary_title_color",
+						"label": "Summary title color",
+						"default": "#000000"
+					},
+					{
+						"type": "color",
+						"id": "summary_border_color",
+						"label": "Summary separator color",
+						"default": "#e0e0e0"
+					},
+					{
+						"type": "color",
+						"id": "summary_hover_color",
+						"label": "Summary hover color",
+						"default": "#e4f966"
+					},
+					{
+						"type": "range",
+						"id": "summary_border_width",
+						"label": "Summary container border width",
+						"min": 0,
+						"max": 5,
+						"step": 1,
+						"unit": "px",
+						"default": 0
+					},
+					{
+						"type": "range",
+						"id": "summary_border_radius",
+						"label": "Summary container border radius",
+						"min": 0,
+						"max": 20,
+						"step": 1,
+						"unit": "px",
+						"default": 0
+					},
+					{
+						"type": "range",
+						"id": "summary_padding",
+						"label": "Summary container padding",
+						"min": 0,
+						"max": 40,
+						"step": 5,
+						"unit": "px",
+						"default": 0
+					},
+					{
+						"type": "range",
+						"id": "summary_title_font_size",
+						"label": "Summary title font size",
+						"min": 16,
+						"max": 32,
+						"step": 1,
+						"unit": "px",
+						"default": 24
+					},
+					{
+						"type": "range",
+						"id": "summary_list_font_size",
+						"label": "Summary list font size",
+						"min": 12,
+						"max": 20,
+						"step": 1,
+						"unit": "px",
+						"default": 15
+					},
+					{
+						"type": "header",
+						"content": "Tab Settings"
+					},
 					{
 						"type": "text",
 						"id": "tab_label",
