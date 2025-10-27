@@ -199,7 +199,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--input-border-radius, 6px);
+        border-radius: 15px;
         padding: 5px 15px;
         margin: 0 6px 6px 0;
         font-size: 0.8125rem;
@@ -208,10 +208,14 @@
         [dir="rtl"] .variations .product-form__input--block input[type="radio"] + label {
           margin: 0 0 6px 6px; }
       .variations .product-form__input--block input[type="radio"] + label {
-        box-shadow: 0 0 0 1px var(--color-form-border) inset; }
+        border: 1px solid #D3D3D3;
+        background-color: #FFFAF6;
+        box-shadow: none; }
       .variations .product-form__input--block input[type="radio"]:checked + label {
         z-index: 5;
-        box-shadow: 0 0 0 1px var(--color-body, #2c2d2e) inset; }
+        border: 1px solid #D3D3D3;
+        background-color: #FFEFDD;
+        box-shadow: none; }
       .variations .product-form__input--block input[type="radio"]:focus-visible + label {
         box-shadow: 0 0 0 2px #015ecc; }
     .variations .product-form__input--color {
