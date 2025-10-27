@@ -83,6 +83,18 @@
         "tab_KQgf8i": {
           "type": "tab",
           "settings": {
+            "show_summary": true,
+            "summary_title": "Sommaire",
+            "summary_background_color": "rgba(0,0,0,0)",
+            "summary_text_color": "#ff6b35",
+            "summary_title_color": "#000000",
+            "summary_border_color": "#e0e0e0",
+            "summary_hover_color": "#e4f966",
+            "summary_border_width": 0,
+            "summary_border_radius": 0,
+            "summary_padding": 0,
+            "summary_title_font_size": 24,
+            "summary_list_font_size": 15,
             "tab_label": "Tab label",
             "icon": "none",
             "text": "<p>Le bisglycinate de magnésium s’impose aujourd’hui comme l’une des formes les plus recherchées et recommandées en supplémentation de magnésium. S’il est devenu un incontournable, c’est parce qu’il associe excellente biodisponibilité et qu’il se digère mieux que les formes de magnésium plus classique comme le citrate de magnésium. Contrairement à d'autres formes de magnésium souvent mal absorbées ou sources d’inconfort intestinal, le bisglycinate se distingue par sa capacité à être bien assimilé par l’organisme.Magnésium bisglycinate c'est quoi ?Le magnésium bisglycinate (aussi appelé bisglycinate de magnésium) est une forme chélatée, c’est-à-dire que le magnésium est lié à deux molécules de glycine, un acide aminé naturellement présent dans le corps humain. Cette liaison crée une structure stable et bien tolérée par le système digestif.Concrètement, cette forme \"bisglycinate\" permet au magnésium d’être mieux transporté à travers la paroi intestinale, grâce à la glycine. Cela se traduit par une meilleure biodisponibilité (absorption optimisée) et moins d’effets secondaires digestifs que d’autres formes plus courantes.Pourquoi prendre du magnésium ?Le magnésium est un minéral essentiel que l’on retrouve naturellement dans l’organisme, principalement dans les os (environ 60 %), mais aussi dans les muscles (environ 30 %) et, dans une moindre mesure, dans le sang et les tissus mous. Puisque notre corps ne sait pas le</p>",
