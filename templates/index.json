@@ -381,7 +381,7 @@
             "open": false,
             "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis mi id risus blandit, at commodo sem varius. Cras eget vulputate sem. Etiam non enim hendrerit urna vehicula scelerisque. Mauris in dapibus augue, sit amet ultricies risus. Sed euismod justo in urna vehicula commodo. Aenean pretium enim non libero eleifend, at convallis sapien sodales. Maecenas volutpat ante dui, et lacinia erat sagittis id. Nunc eget faucibus libero. Curabitur blandit ac lacus eu dictum. Aenean congue enim ut neque ultrices mollis.</p>",
             "page": "",
-            "custom_liquid": ".collapsible-content{\n   max-width:939px;\n   margin: 0 auto;\n}",
+            "custom_liquid": "",
             "icon_color": "#f67200"
           }
         },
