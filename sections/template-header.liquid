@@ -88,12 +88,21 @@
 					{%- if template contains 'collection' and collection.metafields.custom.description_courte != blank and section.settings.show_short_description -%}
 						<div class="collection-short-description">
 							{%- liquid
-								assign short_description = collection.metafields.custom.description_courte
+								assign short_description_metafield = collection.metafields.custom.description_courte
 								assign max_height = section.settings.short_description_max_height
 								assign read_more = section.settings.short_description_read_more
 								assign read_less = section.settings.short_description_read_less
 							-%}
-							{%- render 'text-max-height', content: short_description, max_height: max_height, read_more: read_more, read_less: read_less, no_bg: true, extra_class: 'collection-short-description--content' -%}
+							<max-height class="max-height max-height--no-background" data-max="{{ max_height }}" style="--max-height: {{ max_height | append: 'px'}};">
+								<div class="max-height--inner">
+									<div class="max-height--inner-content rte collection-short-description--content">
+										{{ short_description_metafield | metafield_tag }}
+									</div>
+								</div>
+								<button class="max-height--toggle"><span class="text-button text-button--read-more">{{ read_more }}</span><span class="text-button text-button--read-less">{{ read_less }}</span></button>
+							</max-height>
+							<link rel="stylesheet" href="{{ 'max-height.css' | asset_url }}" media="print" onload="this.media='all'">
+							<script src="{{ 'max-height.js' | asset_url }}" defer="defer"></script>
 						</div>
 					{%- endif -%}
 					{%- if template contains 'customers/account' -%}
