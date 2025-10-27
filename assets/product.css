@@ -194,8 +194,9 @@
       margin-bottom: 14px; }
       .variations .product-form__input--block input[type="radio"] + label {
         width: auto;
-        min-width: 42px;
+        min-width: 64px;
         height: 42px;
+        max-height: 33px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
