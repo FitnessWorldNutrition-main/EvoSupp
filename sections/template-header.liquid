@@ -42,6 +42,9 @@
 	endif
 -%}
 {{ 'template-header.css' | asset_url | stylesheet_tag }}
+{%- if template contains 'collection' -%}
+	{{ 'collection-short-description.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 <div class="template-header">
 	<div class="row">
 		<div class="small-12 columns">
@@ -79,6 +82,19 @@
 								{{ description }}
 							</div>
 						{%- endif -%}
+					{%- endif -%}
+					
+					{%- comment -%} Description courte de la collection {%- endcomment -%}
+					{%- if template contains 'collection' and collection.metafields.custom.description_courte != blank and section.settings.show_short_description -%}
+						<div class="collection-short-description">
+							{%- liquid
+								assign short_description = collection.metafields.custom.description_courte
+								assign max_height = section.settings.short_description_max_height
+								assign read_more = section.settings.short_description_read_more
+								assign read_less = section.settings.short_description_read_less
+							-%}
+							{%- render 'text-max-height', content: short_description, max_height: max_height, read_more: read_more, read_less: read_less, no_bg: true, extra_class: 'collection-short-description--content' -%}
+						</div>
 					{%- endif -%}
 					{%- if template contains 'customers/account' -%}
 					<a href="{{ routes.account_logout_url }}" title="{{ 'customer.account.log_out' | t | escape }}" class="myaccount--link">
@@ -212,6 +228,43 @@
 	      "default": true,
 	      "label": "Show collection description"
 	    },
+			{
+        "type": "header",
+        "content": "Short description"
+      },
+			{
+        "type": "checkbox",
+        "id": "show_short_description",
+        "label": "Show short description",
+        "default": true,
+        "info": "Displays the custom.description_courte metafield"
+      },
+			{
+        "type": "range",
+        "id": "short_description_max_height",
+        "min": 50,
+        "max": 200,
+        "step": 5,
+        "label": "Max height (px)",
+        "default": 75,
+        "info": "Maximum height before showing 'Read more'. About 75px for 3 lines."
+      },
+			{
+        "type": "text",
+        "id": "short_description_read_more",
+        "label": "Read more text",
+        "default": "Read more"
+      },
+			{
+        "type": "text",
+        "id": "short_description_read_less",
+        "label": "Read less text",
+        "default": "Read less"
+      },
+			{
+        "type": "header",
+        "content": "Collection description"
+      },
 			{
 				"type": "text",
 				"id": "seo_text_read_more",

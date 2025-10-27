@@ -1,5 +1,4 @@
 {{- 'facets.css' | asset_url | stylesheet_tag -}}
-{{- 'collection-short-description.css' | asset_url | stylesheet_tag -}}
 {%- liquid
 	assign enable_filtering = section.settings.enable_filtering
 	assign enable_sorting = section.settings.enable_sorting
@@ -29,20 +28,6 @@
 						{%- endif -%}
 						<div>
 						{%- render 'facets-bar', results: collection, enable_filtering: enable_filtering, enable_sorting: enable_sorting, facets_desktop: facets_desktop, filter_color_swatches: filter_color_swatches -%}
-						
-						{%- comment -%} Description courte de la collection {%- endcomment -%}
-						{%- if collection.metafields.custom.description_courte != blank and section.settings.show_short_description -%}
-							<div class="collection-short-description">
-								{%- liquid
-									assign short_description = collection.metafields.custom.description_courte
-									assign max_height = section.settings.short_description_max_height
-									assign read_more = section.settings.short_description_read_more
-									assign read_less = section.settings.short_description_read_less
-								-%}
-								{%- render 'text-max-height', content: short_description, max_height: max_height, read_more: read_more, read_less: read_less, no_bg: true, extra_class: 'collection-short-description--content' -%}
-							</div>
-						{%- endif -%}
-						
 							<ul id="product-grid" data-id="{{ section.id }}" class="products collection row small-up-2 medium-up-{{ columns_desktop }} pagination--{{ pagination_type }}{% if collection.products.size == 0 %} collection--empty{%- endif -%}">
 								{%- if collection.products.size == 0 -%}
 									<div class="collection-empty">
@@ -110,43 +95,6 @@
   {
     "name": "Product grid",
     "settings": [
-			{
-        "type": "header",
-        "content": "Description courte"
-      },
-			{
-        "type": "checkbox",
-        "id": "show_short_description",
-        "label": "Afficher la description courte",
-        "default": true,
-        "info": "Affiche le metafield custom.description_courte de la collection"
-      },
-			{
-        "type": "range",
-        "id": "short_description_max_height",
-        "min": 50,
-        "max": 200,
-        "step": 5,
-        "label": "Hauteur max (px)",
-        "default": 75,
-        "info": "Hauteur maximum avant d'afficher le bouton 'Lire plus'. Environ 75px pour 3 lignes."
-      },
-			{
-        "type": "text",
-        "id": "short_description_read_more",
-        "label": "Texte 'Lire plus'",
-        "default": "Lire plus"
-      },
-			{
-        "type": "text",
-        "id": "short_description_read_less",
-        "label": "Texte 'Lire moins'",
-        "default": "Lire moins"
-      },
-			{
-        "type": "header",
-        "content": "Produits"
-      },
 			{
         "type": "range",
         "id": "products_per_page",

@@ -1,5 +1,7 @@
-.collection-short-description {
-  margin-bottom: 30px;
+/* Description courte dans le template-header */
+.template-header .collection-short-description {
+  margin-top: 20px;
+  margin-bottom: 0;
   padding: 0;
 }
 
@@ -32,12 +34,13 @@
 }
 
 .collection-short-description .max-height--toggle:after {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 1) 90%);
+  background: linear-gradient(180deg, rgba(var(--color-body-bg-rgb, 255, 255, 255), 0) 10%, rgba(var(--color-body-bg-rgb, 255, 255, 255), 1) 90%);
 }
 
+/* Adaptation responsive */
 @media screen and (min-width: 768px) {
-  .collection-short-description {
-    margin-bottom: 40px;
+  .template-header .collection-short-description {
+    margin-top: 25px;
   }
   
   .collection-short-description--content {
