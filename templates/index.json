@@ -444,10 +444,10 @@
         "header_text_align": "center",
         "content_text_align": "left",
         "color_bg": "#fffaf7",
-        "color_heading": "#000000",
+        "color_heading": "#f67201",
         "marker_color": "#f67200",
         "color_text": "#000000",
-        "color_links": "#000000",
+        "color_links": "#f67201",
         "color_border": "#dadce0",
         "disable_top_spacing": true,
         "disable_bottom_spacing": true
