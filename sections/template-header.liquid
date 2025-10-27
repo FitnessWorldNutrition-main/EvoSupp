@@ -47,7 +47,13 @@
 		<div class="small-12 columns">
 			<div class="template-header--content template-header--content-width-{{ collection_image_width }}">
 				<div>
-					<h1 class="template-header--title h2">{{ heading }}</h1>
+					<h1 class="template-header--title h2">
+						{%- if template contains 'collection' -%}
+							{%- render 'animated-marker-last-word', heading: heading, style: section.settings.marker_style, color: section.settings.marker_color -%}
+						{%- else -%}
+							{{ heading }}
+						{%- endif -%}
+					</h1>
 					{%- if template == 'search' -%}
 						<form role="search" method="get" class="searchform" action="{{ routes.search_url }}">
 							<fieldset>
@@ -264,7 +270,47 @@
 	      "label": "Show description text",
 	      "default": true,
 				"info": "Displays the page SEO description text under page title. [Learn more](https://help.shopify.com/en/manual/online-store/themes/theme-structure/pages#edit-the-search-engine-listing-for-a-webpage)"
-	    }
+	    },
+			{
+        "type": "header",
+        "content": "Animated marker",
+        "info": "Only visible on collection pages"
+      },
+			{
+        "type": "select",
+        "id": "marker_style",
+        "label": "Marker style",
+        "options": [
+          {
+            "value": "style1",
+            "label": "Style 1"
+          },
+          {
+            "value": "style2",
+            "label": "Style 2"
+          },
+          {
+            "value": "style3",
+            "label": "Style 3"
+          },
+          {
+            "value": "style4",
+            "label": "Style 4"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
+        ],
+        "default": "style1",
+        "info": "Adds an animated marker to the last word of the collection title"
+      },
+      {
+        "type": "color",
+        "id": "marker_color",
+        "label": "Marker color",
+        "default": "#FD6262"
+      }
     ]
   }
 {% endschema %}

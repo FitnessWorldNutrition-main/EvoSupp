@@ -1,0 +1,24 @@
+{%- comment -%}
+  Adds an animated marker to the last word of a heading
+  Usage: {% render 'animated-marker-last-word', heading: heading_text, style: 'style1', color: '#FD6262' %}
+{%- endcomment -%}
+
+{%- liquid
+  if style == blank or style == 'none'
+    echo heading
+  else
+    assign words = heading | split: ' '
+    assign new_heading = ''
+    
+    for word in words
+      if forloop.last
+        assign new_heading = new_heading | append: '|' | append: word | append: '|'
+      else
+        assign new_heading = new_heading | append: word | append: ' '
+      endif
+    endfor
+    
+    render 'animated-marker-heading', heading: new_heading, style: style, color: color
+  endif
+-%}
+
