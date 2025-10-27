@@ -36,13 +36,6 @@
             "show_custom_badges": true
           }
         },
-        "text_eBznQL": {
-          "type": "text",
-          "settings": {
-            "text": "- Test",
-            "text_style": "style_body"
-          }
-        },
         "advantages_q68YjU": {
           "type": "advantages",
           "settings": {
@@ -167,7 +160,6 @@
         "2b609eea-6cce-4efe-b447-c5560de1d797",
         "e431a79e-9c7b-4a53-a79a-0cb918617ecf",
         "title",
-        "text_eBznQL",
         "advantages_q68YjU",
         "variant_picker",
         "coupon_code_hYPDYG",
