@@ -185,7 +185,7 @@
         "description_gGPGfx": {
           "type": "description",
           "settings": {
-            "tab_label": "Description",
+            "tab_label": "",
             "icon": "none",
             "text_columns": "2",
             "page": ""
