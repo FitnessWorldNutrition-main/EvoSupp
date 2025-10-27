@@ -16,7 +16,7 @@
     "template-header": {
       "type": "template-header",
       "custom_css": [
-        ".template-header--content-width-small {grid-template-columns: 1fr;}"
+        ".template-header--content-width-small {grid-template-columns: 1fr; text-align: center;}"
       ],
       "settings": {
         "show_collection_image": false,
