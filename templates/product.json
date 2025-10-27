@@ -97,8 +97,8 @@
             "text": "<p>Advertise your coupon code here.</p>",
             "coupon_text": "VISION20",
             "copy_text": "Copy code",
-            "coupon_box_bg_color": "#f2ece9",
-            "coupon_box_text_color": "#da5d17",
+            "coupon_box_bg_color": "#ffefdd",
+            "coupon_box_text_color": "#000000",
             "coupon_box_icon_color": "#d96a2d"
           }
         },
@@ -156,7 +156,7 @@
           "type": "info_box",
           "settings": {
             "icon": "none",
-            "text": "{{ product.metafields.custom.description_courte.value }} test",
+            "text": "{{ product.metafields.custom.description_courte.value }}",
             "link": "",
             "info_box_bg": "#ffefdd",
             "info_box_color": "#000000"
