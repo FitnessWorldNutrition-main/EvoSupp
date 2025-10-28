@@ -76,7 +76,7 @@
     color: var(--heading-text, var(--color-heading));
     background-color: var(--heading-bg, transparent);
     margin-bottom: 0px;
-    padding: 15px 20px; }
+    padding: 15px 60px; }
   .collapsible-content-group__text {
     margin-bottom: 25px;
     font-size: 0.9375rem;
@@ -84,7 +84,7 @@
     .collapsible-content-group__text > *:last-child {
       margin-bottom: 0; }
   .collapsible-content-group__accordions {
-    padding: 15px 20px;
+    padding: 15px 60px;
     margin-top: 0px; 
     }
 
