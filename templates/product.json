@@ -129,8 +129,8 @@
             "content": "",
             "page": "",
             "custom_liquid": "",
-            "variant_metafield_namespace": "",
-            "variant_metafield_key": "custom.ingredients"
+            "variant_metafield_namespace": "custom",
+            "variant_metafield_key": "ingredients"
           }
         },
         "collapsible_tab_VD9Y6t": {
