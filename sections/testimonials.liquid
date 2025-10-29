@@ -20,7 +20,7 @@
 		<div class="testimonials testimonials--full-width-{{ full_width }} section-spacing-padding{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg:{{ color_bg }}; --color-body: {{ color_text }}; --color-text:{{ color_text }}; --bg-body-rgb: {{ color_bg.rgb | replace: ' ' , ',' }}">
 			{%- if section_heading -%}
 			<div class="testimonials--heading">
-				<h6>{{ section_heading }}</h6>
+				<span class="h6">{{ section_heading }}</span>
 			</div>
 			{%- endif -%}
 			<div class="testimonials--inner text-{{ text_size }}">

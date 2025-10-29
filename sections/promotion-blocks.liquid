@@ -23,7 +23,7 @@
 			<div class="promotion-blocks--item" {{ block.shopify_attributes }}>
 				<div class="promotion-blocks--text">
 					{% if block.settings.title != blank %}
-						<h6>{{ block.settings.title }}</h6>
+						<span class="h6">{{ block.settings.title }}</span>
 					{% endif %}
 					{% if block.settings.button_text != blank %}
 						{% render 'text-button', url: block.settings.button_link, title: block.settings.button_text %}

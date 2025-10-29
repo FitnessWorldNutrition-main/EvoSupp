@@ -75,7 +75,7 @@
                   <div class="star-rating" style="--star-rating: {{ block.settings.stars }};"></div>
                 {%- endif -%}
                 {%- if block.settings.heading != blank -%}
-                  <h6>{{ block.settings.heading }}</h6>
+                  <span class="h6">{{ block.settings.heading }}</span>
                 {%- endif -%}
                 <p>{{ block.settings.text | newline_to_br }}</p>
                 {%- if block.settings.author != blank -%}

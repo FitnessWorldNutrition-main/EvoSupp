@@ -17,9 +17,9 @@ assign assign pick_up_availabilities = product_variant.store_availabilities | wh
 				<ul class="pickup-availability-list" role="list">
         {%- for availability in pick_up_availabilities -%}
           <li class="pickup-availability-list__item">
-            <h6 class="pickup-availability-list__location body-font">
+            <span class="pickup-availability-list__location h6 body-font">
               {{ availability.location.name }}
-            </h6>
+          </span>
             <div class="pickup-availability-list__stock">
               {%- if availability.available -%}
                 {% render 'svg-icons' with 'thb-availability-check' %} {{ 'products.product.pickup_availability.pick_up_available' | t }}, {{ availability.pick_up_time | downcase }}
