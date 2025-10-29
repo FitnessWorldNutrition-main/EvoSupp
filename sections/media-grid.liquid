@@ -53,7 +53,7 @@
 						<p class="subheading">{{ block.settings.subheading }}</p>
 					{% endif %}
 					{% if block.settings.heading != blank %}
-						<h4 class="{{ heading_size }}{% if block.settings.button_text == blank %} media-grid--heading-no-margin{% endif %}">{{ block.settings.heading | newline_to_br }}</h4>
+						<h3 class="{{ heading_size }}{% if block.settings.button_text == blank %} media-grid--heading-no-margin{% endif %}">{{ block.settings.heading | newline_to_br }}</h3>
 					{% endif %}
 					{% if block.settings.button_text != blank %}
 						{% render 'text-button', url: block.settings.button_link, title: block.settings.button_text %}
