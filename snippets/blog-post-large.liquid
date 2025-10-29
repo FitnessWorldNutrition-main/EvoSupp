@@ -56,7 +56,7 @@
 			{{ article.published_at | date: "%B %d %Y" }}
 		</aside>
 		{% endif %}
-		<h3><a href="{{ article.url }}" title="{{ article.title | escape }}">{{ article.title }}</a></h3>
+		<h2><a href="{{ article.url }}" title="{{ article.title | escape }}">{{ article.title }}</a></h2>
 		{% if show_excerpt %}
 		<div class="post-excerpt">
 			<p>{{ article.excerpt_or_content | strip_html | truncatewords: 30 }}</p>
@@ -84,7 +84,7 @@
 			{{ "today" | date: "%B %d %Y" }}
 		</aside>
 		{% endif %}
-		<h3><a role="link" aria-disabled="true">{{ 'sections.featured_blog.onboarding_title' | t }}</a></h3>
+		<h2><a role="link" aria-disabled="true">{{ 'sections.featured_blog.onboarding_title' | t }}</a></h2>
 		{% if show_excerpt %}
 		<div class="post-excerpt">
 			<p>{{ 'sections.featured_blog.onboarding_content' | t }}</p>

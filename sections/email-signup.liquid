@@ -32,7 +32,7 @@
 						{%- when 'subheading' -%}
 							<p class="subheading" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
 						{%- when 'heading' -%}
-							<h3 class="{{ block.settings.heading_size }}" {{ block.shopify_attributes }}>{{ block.settings.text | newline_to_br }}</h3>
+							<h2 class="{{ block.settings.heading_size }}" {{ block.shopify_attributes }}>{{ block.settings.text | newline_to_br }}</h2>
 						{%- when 'text' -%}
 							<div class="description-size--{{ block.settings.description_size }}" {{ block.shopify_attributes }}><p>{{ block.settings.text }}</p></div>
 						{%- when 'form' -%}
