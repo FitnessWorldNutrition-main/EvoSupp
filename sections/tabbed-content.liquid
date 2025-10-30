@@ -29,13 +29,13 @@
 		<div class="tabbed-content-wrapper {% if has_bg -%}tabbed-content--has-bg{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --bg-body-rgb: {{ color_bg.rgb | replace: ' ' , ',' }}; --color-body: {{ color_text }}; --color-tabs: {{ color_tabs.rgb | replace: ' ' , ',' }};">
 			{% render 'section-header', section_heading: section_heading, section_description: section_description, marker_color: marker_color, marker_style: marker_style %}
 			<tabbed-content class="tabbed-content tabs-{{ tab_alignment }} text-size--{{ text_size }}" selected-index="0">
-				<scroll-shadow class="tabbed-content--scroll">
+				{% comment %} <scroll-shadow class="tabbed-content--scroll">
 					<div class="tabbed-content--tabs tabs-{{ tab_alignment }}">
 						{%- for block in section.blocks -%}
 						<button class="{% if forloop.index == 1 %} active{%- endif -%}" {{ block.shopify_attributes }}>{% render 'svg-icons-inline', icon: block.settings.icon %} {{ block.settings.tab_label }}</button>
 						{%- endfor -%}
 					</div>
-				</scroll-shadow>
+				</scroll-shadow> {% endcomment %}
 				{%- for block in section.blocks -%}
 					<div class="tabbed-content--content text-{{ text_alignment }}{% if forloop.index == 1 %} active{%- endif -%}" style="--columns: {{ block.settings.text_columns }};" data-block-id="{{ block.id }}">
 						{%- if block.type == 'specification' -%}
@@ -62,6 +62,14 @@
 											margin-bottom: 20px;
 											text-transform: uppercase;
 											letter-spacing: 0.5px;
+											font-family: Prompt;
+											font-weight: 900;
+										}
+
+										@media only screen and (max-width: 768px) {
+											.description-summary-{{ block.id }} .summary-title {
+												margin-bottom: 0px;
+											}
 										}
 										
 										.description-summary-{{ block.id }} .summary-list {
