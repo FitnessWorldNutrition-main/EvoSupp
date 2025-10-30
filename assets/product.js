@@ -724,7 +724,7 @@ if (!customElements.get('product-form')) {
 
       this.hideErrors = this.dataset.hideErrors === 'true';
     }
-    onSubmitHandler(evt) {
+    async onSubmitHandler(evt) {
       evt.preventDefault();
 
       if (!this.form.reportValidity()) {
@@ -741,6 +741,46 @@ if (!customElements.get('product-form')) {
 
       this.handleErrorMessage();
 
+      let formData = new FormData(this.form);
+      
+      // Check max quantity before adding to cart
+      const maxQuantityFromForm = formData.get('properties[_max_quantity]');
+      const requestedQuantity = parseInt(formData.get('quantity')) || 1;
+      const productId = formData.get('properties[_product_id]');
+      
+      if (maxQuantityFromForm && maxQuantityFromForm !== 'none' && productId) {
+        const maxQuantity = parseInt(maxQuantityFromForm);
+        
+        try {
+          // Fetch current cart to check existing quantity
+          const cartResponse = await fetch(`${theme.routes.cart_url}.js`);
+          const cartData = await cartResponse.json();
+          
+          // Find all items of this product in cart (all variants of the same product)
+          let existingQuantity = 0;
+          cartData.items.forEach(item => {
+            // Match by product_id
+            if (String(item.product_id) === String(productId)) {
+              existingQuantity += item.quantity;
+            }
+          });
+          
+          const totalQuantity = existingQuantity + requestedQuantity;
+          
+          if (totalQuantity > maxQuantity) {
+            // Show error and don't add to cart
+            alert(`La quantité maximale pour ce produit est ${maxQuantity}. Vous avez déjà ${existingQuantity} dans votre panier.`);
+            
+            submitButtons.forEach((submitButton) => {
+              submitButton.classList.remove('loading');
+              submitButton.removeAttribute('aria-disabled');
+            });
+            return;
+          }
+        } catch (error) {
+          console.error('Error checking cart:', error);
+        }
+      }
 
       const config = {
         method: 'POST',
@@ -749,9 +789,6 @@ if (!customElements.get('product-form')) {
           'Accept': 'application/javascript'
         }
       };
-
-
-      let formData = new FormData(this.form);
 
       formData.append('sections', this.getSectionsToRender().map((section) => section.section));
       formData.append('sections_url', window.location.pathname);
