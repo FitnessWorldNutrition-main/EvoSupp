@@ -4150,7 +4150,8 @@ input[type="radio"], .field label, .custom-checkbox[type="checkbox"], .custom-ch
       flex-direction: row;
       align-items: end;
       justify-content: space-between;
-      gap: 30px; } }
+      gap: 30px; 
+      margin-top: 40px;} }
   .section-header--title {
     margin-bottom: 5px; }
     .section-header--title:only-child {
