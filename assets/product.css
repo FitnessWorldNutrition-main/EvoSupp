@@ -727,6 +727,35 @@
       height: auto; }
 
 
+.product-subtitle {
+  color: #000;
+  font-family: Prompt;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.product-title{
+  color: #000;
+  font-family: Prompt;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.product-price-container{
+  color: #000;
+  font-family: Prompt;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
 @media only screen and (min-width: 768px) {
   .thb-product-detail {
     margin-top: 40px; } }
