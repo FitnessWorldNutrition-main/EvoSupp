@@ -5,6 +5,29 @@
   assign color_picker = true
   assign color_picker_size = 'regular'
   assign color_picker_use_variants = false
+  
+  # Cart Conditions: Calculate quantity in cart and max allowed
+  assign item_quantity = 0
+  for item in cart.items
+    if item.product.id == product.id
+      assign item_quantity = item.quantity
+      break
+    endif
+  endfor
+  
+  assign max_quantity = product.metafields.custom.max_quantity.value
+  assign max_quantity_num = 0
+  assign item_count = 1
+  assign max_reached = false
+  
+  if max_quantity != blank and max_quantity != 'none'
+    assign max_quantity_num = max_quantity | plus: 0
+    assign item_count = max_quantity_num | minus: item_quantity
+    if item_count < 1
+      assign item_count = 0
+      assign max_reached = true
+    endif
+  endif
 -%}
 {% for block in section.blocks %}
   {%- case block.type -%}
@@ -247,25 +270,7 @@
     </side-panel-links>
   {%- when 'quantity' -%}
     {%- if product.available -%}
-    {%- comment -%} Cart Conditions: Calculate quantity in cart and max allowed {%- endcomment -%}
-    {%- assign item_quantity = 0 -%}
-    {%- for item in cart.items -%}
-      {%- if item.product.id == product.id -%}
-        {%- assign item_quantity = item.quantity -%}
-        {%- break -%}
-      {%- endif -%}
-    {%- endfor -%}
-    {%- assign max_quantity = product.metafields.custom.max_quantity.value -%}
-    {%- assign max_quantity_num = 0 -%}
-    {%- assign item_count = 1 -%}
-    {%- if max_quantity != blank and max_quantity != 'none' -%}
-      {%- assign max_quantity_num = max_quantity | plus: 0 -%}
-      {%- assign item_count = max_quantity_num | minus: item_quantity -%}
-      {%- if item_count < 1 -%}
-        {%- assign item_count = 0 -%}
-      {%- endif -%}
-    {%- endif -%}
-    {%- unless item_quantity >= max_quantity_num and max_quantity_num > 0 -%}
+    {%- unless max_reached -%}
     <div
       id="quantity-{{ section.id }}"
       {{ block.shopify_attributes }}
@@ -299,7 +304,7 @@
     {%- endunless -%}
     {%- endif -%}
   {%- when 'buy_buttons' -%}
-    {% render 'product-add-to-cart', product: product, form: form, product_form_id: product_form_id, block: block, pickup: pickup %}
+    {% render 'product-add-to-cart', product: product, form: form, product_form_id: product_form_id, block: block, pickup: pickup, max_reached: max_reached %}
     {%- comment -%} Render info boxes after buy buttons on mobile {%- endcomment -%}
     {%- assign info_boxes = section.blocks | where: "type", "info_box" -%}
     {%- assign has_visible_info_boxes = false -%}
@@ -627,7 +632,7 @@
 {%- endcase -%}
 {% endfor %}
 {%- if section.settings.enable_sticky_add_to_cart -%}
-{% render 'product-add-to-cart-sticky', product: product, media: first_image, color_picker: color_picker, color_picker_size: color_picker_size, color_picker_use_variants: color_picker_use_variants, picker_type: picker_type, form: form, is_disabled: is_disabled %}
+{% render 'product-add-to-cart-sticky', product: product, media: first_image, color_picker: color_picker, color_picker_size: color_picker_size, color_picker_use_variants: color_picker_use_variants, picker_type: picker_type, form: form, is_disabled: is_disabled, max_reached: max_reached %}
 {%- endif -%}
 
 {{ sizing_popup }}

@@ -47,11 +47,19 @@
 			{%- endif -%}
 			<div class="product-add-to-cart-container">
 				<div class="form-notification error" style="display:none;"></div>
+				{%- liquid
+					assign is_unavailable = false
+					if product.selected_or_first_available_variant.available == false or max_reached
+						assign is_unavailable = true
+					endif
+				-%}
 				<div class="add_to_cart_holder{% if show_dynamic_checkout %} add_to_cart_holder--multi{%- endif -%}">
-					<button type="submit" name="add" id="AddToCart" class="single-add-to-cart-button button accent {% unless product.selected_or_first_available_variant.available %}sold-out{% endunless %}" {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+					<button type="submit" name="add" id="AddToCart" class="single-add-to-cart-button button accent {% if is_unavailable %}sold-out{% endif %}" {% if is_unavailable %}disabled{% endif %}>
 						<span class="single-add-to-cart-button--text">
 							{%- liquid
-								if product.selected_or_first_available_variant.available == false
+								if max_reached
+									assign button_content = 'products.product.maximum_quantity' | t
+								elsif product.selected_or_first_available_variant.available == false
 									assign button_content = 'products.product.sold_out' | t
 								else
 									if product_template == 'pre-order'
@@ -67,7 +75,7 @@
 							{% render 'svg-icons' with 'thb-loading' %}
 						</span>
 					</button>
-					{%- if show_dynamic_checkout -%}
+					{%- if show_dynamic_checkout and max_reached == false -%}
 						{{ form | payment_button }}
 					{%- endif -%}
 				</div>
