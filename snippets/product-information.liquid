@@ -256,6 +256,7 @@
       {%- endif -%}
     {%- endfor -%}
     {%- assign max_quantity = product.metafields.custom.max_quantity.value -%}
+    {%- assign max_quantity_num = 0 -%}
     {%- assign item_count = 1 -%}
     {%- if max_quantity != blank and max_quantity != 'none' -%}
       {%- assign max_quantity_num = max_quantity | plus: 0 -%}
@@ -264,7 +265,7 @@
         {%- assign item_count = 0 -%}
       {%- endif -%}
     {%- endif -%}
-    {%- unless item_quantity >= max_quantity and max_quantity != blank and max_quantity != 'none' -%}
+    {%- unless item_quantity >= max_quantity_num and max_quantity_num > 0 -%}
     <div
       id="quantity-{{ section.id }}"
       {{ block.shopify_attributes }}
