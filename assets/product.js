@@ -723,6 +723,68 @@ if (!customElements.get('product-form')) {
       this.body = document.body;
 
       this.hideErrors = this.dataset.hideErrors === 'true';
+      
+      // Check for incompatible products on page load
+      this.checkIncompatibleProductsOnLoad();
+      
+      // Listen for cart changes to re-check incompatible products
+      document.addEventListener('cart:refresh', () => {
+        this.checkIncompatibleProductsOnLoad();
+      });
+    }
+    
+    async checkIncompatibleProductsOnLoad() {
+      try {
+        const cartResponse = await fetch(`${theme.routes.cart_url}.js`);
+        const cartData = await cartResponse.json();
+        
+        const formData = new FormData(this.form);
+        const incompatibleProductsFromForm = formData.get('properties[_produits_incompatibles]');
+        const submitButtons = document.querySelectorAll('.single-add-to-cart-button');
+        
+        let hasIncompatible = false;
+        
+        if (cartData.items.length > 0 && incompatibleProductsFromForm) {
+          const incompatibleProductIds = incompatibleProductsFromForm.split(',').map(id => String(id).trim());
+          
+          for (const item of cartData.items) {
+            if (incompatibleProductIds.includes(String(item.product_id))) {
+              hasIncompatible = true;
+              break;
+            }
+          }
+        }
+        
+        submitButtons.forEach((submitButton) => {
+          if (hasIncompatible) {
+            // Disable button if incompatible product found
+            submitButton.disabled = true;
+            submitButton.classList.add('sold-out');
+            const labelElement = submitButton.querySelector('.single-add-to-cart-button--text');
+            if (labelElement) {
+              labelElement.textContent = 'Produit incompatible dans le panier';
+            }
+          } else {
+            // Re-enable button if no incompatible products
+            const productAvailable = this.form.querySelector('[name=id]')?.value;
+            if (productAvailable && !submitButton.classList.contains('loading')) {
+              submitButton.disabled = false;
+              submitButton.classList.remove('sold-out');
+              const labelElement = submitButton.querySelector('.single-add-to-cart-button--text');
+              if (labelElement) {
+                const template = submitButton.closest('product-form')?.getAttribute('template');
+                if (template === 'pre-order') {
+                  labelElement.textContent = labelElement.dataset.preorder || 'Pré-commander';
+                } else {
+                  labelElement.textContent = labelElement.dataset.addtocart || 'Ajouter au panier';
+                }
+              }
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Error checking incompatible products on load:', error);
+      }
     }
     async onSubmitHandler(evt) {
       evt.preventDefault();
@@ -743,18 +805,40 @@ if (!customElements.get('product-form')) {
 
       let formData = new FormData(this.form);
       
-      // Check max quantity before adding to cart
       const maxQuantityFromForm = formData.get('properties[_max_quantity]');
       const requestedQuantity = parseInt(formData.get('quantity')) || 1;
       const productId = formData.get('properties[_product_id]');
+      const incompatibleProductsFromForm = formData.get('properties[_produits_incompatibles]');
       
-      if (maxQuantityFromForm && maxQuantityFromForm !== 'none' && productId) {
-        const maxQuantity = parseInt(maxQuantityFromForm);
+      try {
+        // Fetch current cart to check conditions
+        const cartResponse = await fetch(`${theme.routes.cart_url}.js`);
+        const cartData = await cartResponse.json();
         
-        try {
-          // Fetch current cart to check existing quantity
-          const cartResponse = await fetch(`${theme.routes.cart_url}.js`);
-          const cartData = await cartResponse.json();
+        // Check for incompatible products
+        if (incompatibleProductsFromForm) {
+          const incompatibleProductIds = incompatibleProductsFromForm.split(',').map(id => String(id).trim());
+          
+          for (const item of cartData.items) {
+            if (incompatibleProductIds.includes(String(item.product_id))) {
+              // Found incompatible product in cart
+              const productTitle = this.form.closest('.thb-product-detail')?.querySelector('.product-title')?.textContent || 'Ce produit';
+              const incompatibleTitle = item.product_title;
+              
+              alert(`Le produit "${productTitle}" est incompatible avec "${incompatibleTitle}" qui est déjà dans votre panier. Veuillez retirer le produit incompatible avant d'ajouter celui-ci.`);
+              
+              submitButtons.forEach((submitButton) => {
+                submitButton.classList.remove('loading');
+                submitButton.removeAttribute('aria-disabled');
+              });
+              return;
+            }
+          }
+        }
+        
+        // Check max quantity
+        if (maxQuantityFromForm && maxQuantityFromForm !== 'none' && productId) {
+          const maxQuantity = parseInt(maxQuantityFromForm);
           
           // Find all items of this product in cart (all variants of the same product)
           let existingQuantity = 0;
@@ -777,9 +861,9 @@ if (!customElements.get('product-form')) {
             });
             return;
           }
-        } catch (error) {
-          console.error('Error checking cart:', error);
         }
+      } catch (error) {
+        console.error('Error checking cart conditions:', error);
       }
 
       const config = {
