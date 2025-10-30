@@ -4,7 +4,7 @@
 		{%- if section_heading -%}
 			{%- liquid
 				assign is_product_page = false
-				if template.name == 'product' or section.type contains 'product'
+				if canonical_url contains '/products/'
 					assign is_product_page = true
 				endif
 			-%}
