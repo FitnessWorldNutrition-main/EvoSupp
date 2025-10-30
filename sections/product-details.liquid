@@ -68,6 +68,12 @@
 													font-family: Prompt;
 													font-weight: 900;
 												}
+
+												@media only screen and (max-width: 768px) {
+													.description-summary-{{ block.id }} .summary-title {
+														margin-bottom: 0px;
+													}
+												}
 												
 												.description-summary-{{ block.id }} .summary-list {
 													list-style: none;
