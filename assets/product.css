@@ -732,7 +732,7 @@
   font-family: Prompt;
   font-size: 16px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 900 !important;
   line-height: normal;
   text-transform: uppercase;
 }
@@ -742,7 +742,7 @@
   font-family: Prompt;
   font-size: 32px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 900 !important;
   line-height: normal;
   text-transform: uppercase;
 }
