@@ -737,7 +737,7 @@
   text-transform: uppercase;
 }
 
-.product-title{
+.thb-product-detail .product-title{
   color: #000;
   font-family: Prompt;
   font-size: 32px;
@@ -746,12 +746,12 @@
   line-height: normal;
   text-transform: uppercase;
 }
-.product-price-container{
+.product-price-container .price .amount{
   color: #000;
   font-family: Prompt;
   font-size: 24px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 900 !important;
   line-height: normal;
   text-transform: uppercase;
 }
