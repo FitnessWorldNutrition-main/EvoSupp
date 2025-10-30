@@ -2,9 +2,21 @@
 <div class="section-header">
 	<div class="section-header--content">
 		{%- if section_heading -%}
-			<h2 class="section-header--title h3">
-				{% render 'animated-marker-heading', heading: section_heading, style: marker_style, color: marker_color %}
-			</h2>
+			{%- liquid
+				assign is_product_page = false
+				if template.name == 'product' or section.type contains 'product'
+					assign is_product_page = true
+				endif
+			-%}
+			{%- if is_product_page -%}
+				<span class="section-header--title h3">
+					{% render 'animated-marker-heading', heading: section_heading, style: marker_style, color: marker_color %}
+				</span>
+			{%- else -%}
+				<h2 class="section-header--title h3">
+					{% render 'animated-marker-heading', heading: section_heading, style: marker_style, color: marker_color %}
+				</h2>
+			{%- endif -%}
 		{%- endif -%}
 		{%- if section_description != blank -%}
 			<div class="section-header--description rte">
