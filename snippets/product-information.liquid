@@ -270,7 +270,6 @@
     </side-panel-links>
   {%- when 'quantity' -%}
     {%- if product.available -%}
-    {%- unless max_reached -%}
     <div
       id="quantity-{{ section.id }}"
       {{ block.shopify_attributes }}
@@ -301,7 +300,6 @@
         <button class="plus" type="button" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | escape }}">{% render 'svg-icons' with 'plus' %}</button>
       </quantity-selector>
     </div>
-    {%- endunless -%}
     {%- endif -%}
   {%- when 'buy_buttons' -%}
     {% render 'product-add-to-cart', product: product, form: form, product_form_id: product_form_id, block: block, pickup: pickup, max_reached: max_reached %}

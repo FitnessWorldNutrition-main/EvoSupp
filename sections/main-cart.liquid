@@ -82,6 +82,13 @@
 															{%- endfor -%}
 														</ul>
 														{%- endif -%}
+														{%- liquid
+															assign item_max_quantity = item.product.metafields.custom.max_quantity.value
+															assign item_max_quantity_num = 0
+															if item_max_quantity != blank and item_max_quantity != 'none'
+																assign item_max_quantity_num = item_max_quantity | plus: 0
+															endif
+														-%}
 														<quantity-selector class="quantity cart-update cart-update-mobile small-qty" data-id="{{ item.key | escape }}">
 														<button class="minus" type="button" aria-label="{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}">{% render 'svg-icons' with 'minus' %}</button>
 														<input
@@ -90,7 +97,9 @@
 															id="updates_{{ item.key }}"
 															value="{{ item.quantity }}"
 															min="{{ item.variant.quantity_rule.min }}"
-															{% if item.variant.quantity_rule.max != null %}
+															{% if item_max_quantity_num > 0 %}
+																max="{{ item_max_quantity_num }}"
+															{% elsif item.variant.quantity_rule.max != null %}
 																max="{{ item.variant.quantity_rule.max }}"
 															{% endif %}
 															step="{{ item.variant.quantity_rule.increment }}"
@@ -117,7 +126,9 @@
 														id="updates_{{ item.key }}"
 														value="{{ item.quantity }}"
 														min="{{ item.variant.quantity_rule.min }}"
-														{% if item.variant.quantity_rule.max != null %}
+														{% if item_max_quantity_num > 0 %}
+															max="{{ item_max_quantity_num }}"
+														{% elsif item.variant.quantity_rule.max != null %}
 															max="{{ item.variant.quantity_rule.max }}"
 														{% endif %}
 														step="{{ item.variant.quantity_rule.increment }}"
