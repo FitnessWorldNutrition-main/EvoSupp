@@ -766,7 +766,6 @@
 .thb-product-detail .product-title {
   font-size: calc(var(--font-heading-scale) * 2.125rem);
   line-height: calc(var(--font-heading-line-height-scale) * 2.625rem);
-  font-weight: var(--font-body-medium-weight, 500);
   margin-bottom: 3px;
   color: var(--color-body, #2c2d2e); }
   .thb-product-detail .product-title a {
