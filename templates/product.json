@@ -33,6 +33,7 @@
           "settings": {
             "show_products_rating": true,
             "show_products_rating_average": true,
+            "subtitle_text": "{{ product.metafields.custom.product_subtitle.value }}",
             "show_custom_badges": true
           }
         },
