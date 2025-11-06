@@ -42,10 +42,10 @@
             "paragraph_spacing": 20
           }
         },
-        "summary_6Fh7iQ": {
+        "summary_NkLwnP": {
           "type": "summary",
           "settings": {
-            "title": "Sources",
+            "title": "Sommaire",
             "auto_generate": true,
             "background_color": "#f8f9fa",
             "text_color": "#333333",
@@ -77,7 +77,7 @@
       "block_order": [
         "title",
         "custom_text_4Dagqy",
-        "summary_6Fh7iQ",
+        "summary_NkLwnP",
         "content",
         "tags",
         "post_navigation"
@@ -86,7 +86,8 @@
         "article_show_date": true,
         "article_show_author": true,
         "article_show_nav": true,
-        "article_show_sharing": true
+        "article_show_sharing": true,
+        "content_width": "750px"
       }
     }
   },
