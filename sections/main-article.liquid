@@ -150,23 +150,15 @@
     }
   }
   
-  /* Featured Products Carousel Styles */
+  /* Featured Products Article Styles */
   .container__featured_products_article {
     max-width: var(--article-max-width);
     margin: 2rem auto;
   }
   
-  .container__featured_products_article .blog-post-card {
-    min-height: 420px;
-  }
-  
   @media screen and (max-width: 768px) {
     .container__featured_products_article {
       padding: 0 1rem !important;
-    }
-    
-    .container__featured_products_article .blog-post-card {
-      min-height: 320px;
     }
   }
   
@@ -233,44 +225,14 @@
   {%- assign featured_products_metafield = article.metafields.custom.featured_products -%}
   {%- if featured_products_metafield != blank -%}
     <div class="container__featured_products_article page-content-width" style="margin: 2rem auto;">
-      <h3 style="margin-bottom: 1.5rem; text-align: center;">Produits Recommandés</h3>
+      <h3 style="margin-bottom: 1.5rem; text-align: center; font-size: 1.75rem; font-weight: bold;">Produits Recommandés</h3>
       <div class="row">
         {%- for product_ref in featured_products_metafield.value limit: 12 -%}
-          {%- assign product = product_ref -%}
           <div class="small-12 medium-6 large-4 columns" style="margin-bottom: 2rem;">
-            <div class="blog-post-card" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
-              {%- if product.featured_image -%}
-                <a href="{{ product.url }}">
-                  <img src="{{ product.featured_image | image_url: width: 400 }}" 
-                       alt="{{ product.title | escape }}" 
-                       width="400"
-                       height="400"
-                       loading="lazy"
-                       style="width: 100%; height: 250px; object-fit: cover;">
-                </a>
-              {%- endif -%}
-              <div class="blog-post-card__info" style="padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0;">
-                  <a href="{{ product.url }}" style="text-decoration: none; color: #333;">
-                    {{ product.title }}
-                  </a>
-                </h4>
-                <div style="font-weight: bold; color: #2c3e50; margin-bottom: 0.5rem;">
-                  {{ product.price | money }}
-                </div>
-                <a href="{{ product.url }}" class="button button--secondary" style="display: inline-block; padding: 0.5rem 1rem; text-decoration: none;">
-                  Voir le produit
-                </a>
-              </div>
-            </div>
+            {%- render 'product-card', product_card_product: product_ref -%}
           </div>
         {%- endfor -%}
       </div>
-    </div>
-  {%- else -%}
-    <div class="container__featured_products_article page-content-width" style="margin: 2rem auto; padding: 2rem; background: #f0f0f0; text-align: center;">
-      <p><strong>DEBUG:</strong> No products found in metafield 'custom.featured_products'</p>
-      <p>Metafield exists: {% if article.metafields.custom.featured_products %}YES{% else %}NO{% endif %}</p>
     </div>
   {%- endif -%}
 {%- endcapture -%}
@@ -494,27 +456,6 @@
                 | replace: '[[featured_product]]', featured_product
                 | replace: '[[featured-products]]', featured_products
               }}
-            </div>
-            
-            {%- comment -%} DEBUG: Remove this after testing {%- endcomment -%}
-            <div class="page-content-width" style="margin: 2rem auto; padding: 1rem; background: #fff3cd; border: 2px solid #ffc107;">
-              <h4>🔧 Debug Information (remove this block after testing)</h4>
-              <p><strong>Featured Products Metafield:</strong></p>
-              <ul>
-                <li>Exists: {% if article.metafields.custom.featured_products %}✅ YES{% else %}❌ NO{% endif %}</li>
-                <li>Type: {{ article.metafields.custom.featured_products.type }}</li>
-                <li>Value is blank: {% if article.metafields.custom.featured_products.value == blank %}YES{% else %}NO{% endif %}</li>
-                <li>Value size: {{ article.metafields.custom.featured_products.value.size }}</li>
-                <li>Content has placeholder: {% if article.content contains '[[featured-products]]' %}✅ YES{% else %}❌ NO{% endif %}</li>
-                <li>Raw value: {{ article.metafields.custom.featured_products.value }}</li>
-              </ul>
-              <p><strong>Featured Product (Single) Metafield:</strong></p>
-              <ul>
-                <li>Exists: {% if article.metafields.custom.produit_avantages %}✅ YES{% else %}❌ NO{% endif %}</li>
-                <li>Type: {{ article.metafields.custom.produit_avantages.type }}</li>
-                <li>Value: {{ article.metafields.custom.produit_avantages.value.title }}</li>
-                <li>Content has placeholder: {% if article.content contains '[[featured_product]]' %}✅ YES{% else %}❌ NO{% endif %}</li>
-              </ul>
             </div>
           {% endif %}
           
