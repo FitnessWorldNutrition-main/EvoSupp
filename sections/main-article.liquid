@@ -230,14 +230,13 @@
 
 {%- comment -%} Capture featured products carousel {%- endcomment -%}
 {%- capture featured_products -%}
-  {%- liquid
-    assign products = article.metafields.custom.featured_products.value
-  -%}
-  {%- if products != blank and products.size > 0 -%}
+  {%- assign featured_products_metafield = article.metafields.custom.featured_products -%}
+  {%- if featured_products_metafield != blank -%}
     <div class="container__featured_products_article page-content-width" style="margin: 2rem auto;">
       <h3 style="margin-bottom: 1.5rem; text-align: center;">Produits Recommandés</h3>
       <div class="row">
-        {%- for product in products limit: 12 -%}
+        {%- for product_ref in featured_products_metafield.value limit: 12 -%}
+          {%- assign product = product_ref -%}
           <div class="small-12 medium-6 large-4 columns" style="margin-bottom: 2rem;">
             <div class="blog-post-card" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
               {%- if product.featured_image -%}
@@ -271,7 +270,6 @@
   {%- else -%}
     <div class="container__featured_products_article page-content-width" style="margin: 2rem auto; padding: 2rem; background: #f0f0f0; text-align: center;">
       <p><strong>DEBUG:</strong> No products found in metafield 'custom.featured_products'</p>
-      <p>Products count: {{ products.size }}</p>
       <p>Metafield exists: {% if article.metafields.custom.featured_products %}YES{% else %}NO{% endif %}</p>
     </div>
   {%- endif -%}
@@ -505,13 +503,16 @@
               <ul>
                 <li>Exists: {% if article.metafields.custom.featured_products %}✅ YES{% else %}❌ NO{% endif %}</li>
                 <li>Type: {{ article.metafields.custom.featured_products.type }}</li>
-                <li>Count: {{ article.metafields.custom.featured_products.value.size }}</li>
+                <li>Value is blank: {% if article.metafields.custom.featured_products.value == blank %}YES{% else %}NO{% endif %}</li>
+                <li>Value size: {{ article.metafields.custom.featured_products.value.size }}</li>
                 <li>Content has placeholder: {% if article.content contains '[[featured-products]]' %}✅ YES{% else %}❌ NO{% endif %}</li>
+                <li>Raw value: {{ article.metafields.custom.featured_products.value }}</li>
               </ul>
               <p><strong>Featured Product (Single) Metafield:</strong></p>
               <ul>
                 <li>Exists: {% if article.metafields.custom.produit_avantages %}✅ YES{% else %}❌ NO{% endif %}</li>
                 <li>Type: {{ article.metafields.custom.produit_avantages.type }}</li>
+                <li>Value: {{ article.metafields.custom.produit_avantages.value.title }}</li>
                 <li>Content has placeholder: {% if article.content contains '[[featured_product]]' %}✅ YES{% else %}❌ NO{% endif %}</li>
               </ul>
             </div>
