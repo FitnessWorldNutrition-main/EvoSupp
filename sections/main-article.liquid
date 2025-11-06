@@ -388,13 +388,15 @@
                       text-decoration: none;
                       display: block;
                       padding: 8px 12px;
-                      border-radius: 4px;
-                      transition: background-color 0.2s ease;
+					  border-bottom: 1px solid;
+    				  border-radius: 0px;
+					  transition: all 0.3s  ease;
                       font-size: {{ block.settings.text_font_size | default: 16 }}px;
                     }
                     
                     .article-summary-{{ block.id }} .summary-link:hover {
-                      background-color: {{ block.settings.hover_color | default: '#f0f0f0' }};
+                      color: #FF6B00;
+					  border: none;
                     }
                   </style>
                   
