@@ -169,6 +169,12 @@
       min-height: 320px;
     }
   }
+  
+  /* Fix article content border when list block is present */
+  .post-content {
+    border-bottom: none !important;
+    padding-bottom: 0px !important;
+  }
 </style>
 
 {{ 'article.css' | asset_url | stylesheet_tag }}
@@ -224,7 +230,12 @@
 
 {%- comment -%} Capture featured products carousel {%- endcomment -%}
 {%- capture featured_products -%}
-  {%- assign products = article.metafields.custom.featured_products.value -%}
+  {%- liquid
+    assign products_metafield = article.metafields.custom.featured_products
+    if products_metafield != blank
+      assign products = products_metafield.value
+    endif
+  -%}
   {%- if products != blank and products.size > 0 -%}
     <div class="container__featured_products_article page-content-width" style="margin: 2rem auto;">
       <div class="row">
