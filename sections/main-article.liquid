@@ -1,261 +1,1027 @@
 {%- liquid
 	assign article_show_sharing = section.settings.article_show_sharing
 	assign article_show_nav = section.settings.article_show_nav
-
 	assign article_card_shadow = settings.article_card_shadow
 	assign article_card_shadow_class = 'has-shadow--' | append: article_card_shadow
-
+	assign article_card_border = settings.article_card_border
 -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --article-max-width: {{ section.settings.content_width | default: '750px' }};
+  }
+  
+  /* Featured Product with Description Styles */
+  .featured-product-with-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin: 2rem auto;
+    max-width: var(--article-max-width);
+  }
+  
+  .featured-product-with-description a {
+    background: none !important;
+  }
+  
+  .featured-product-left {
+    position: relative;
+  }
+  
+  .featured-product-left img {
+    margin: 0px !important;
+  }
+  
+  .featured-product-left .blog-post-card {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .featured-product-left .blog-post-card__info {
+    display: none !important;
+  }
+  
+  .featured-product-right {
+    padding: 1rem 0;
+  }
+  
+  .featured-product-description {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .product-title-large {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.3;
+    margin: 0 0 1rem 0;
+  }
+  
+  .product-description-content {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .product-description-content h1,
+  .product-description-content h2,
+  .product-description-content h3,
+  .product-description-content h4,
+  .product-description-content h5,
+  .product-description-content h6 {
+    color: #333;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .product-description-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .product-description-content ul,
+  .product-description-content ol {
+    margin-bottom: 1rem;
+    padding-left: 20px;
+  }
+  
+  .product-description-content ul li {
+    list-style: disc;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-price-large {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .product-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background-color: #3498db;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .product-cta-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+  
+  .product-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Mobile responsiveness for featured product */
+  @media (max-width: 968px) {
+    .featured-product-with-description {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .featured-product-with-description {
+      gap: 1rem;
+    }
+    
+    .container-custom-text,
+    .container-summary {
+      max-width: calc(100vw - 2rem) !important;
+      margin-left: 1rem !important;
+      margin-right: 1rem !important;
+    }
+  }
+  
+  /* Featured Products Carousel Styles */
+  .container__featured_products_article {
+    max-width: var(--article-max-width);
+    margin: 2rem auto;
+  }
+  
+  .container__featured_products_article .blog-post-card {
+    min-height: 420px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container__featured_products_article {
+      padding: 0 1rem !important;
+    }
+    
+    .container__featured_products_article .blog-post-card {
+      min-height: 320px;
+    }
+  }
+</style>
+
 {{ 'article.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} Capture featured product (single) {%- endcomment -%}
+{%- capture featured_product -%}
+  {%- assign product = article.metafields.custom.produit_avantages.value -%}
+  {%- if product != blank -%}
+    <div class="container__featured_products_article page-content-width" style="margin: 2rem auto;">
+      <div class="featured-product-with-description">
+        <div class="featured-product-left">
+          <div class="featured-product-image">
+            {%- if product.featured_image -%}
+              <a href="{{ product.url }}">
+                <img src="{{ product.featured_image | image_url: width: 600 }}" 
+                     alt="{{ product.title | escape }}" 
+                     loading="lazy"
+                     style="width: 100%; height: auto; border-radius: 8px;">
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+        
+        <div class="featured-product-right">
+          <div class="featured-product-description">
+            <div class="product-header">
+              <h3 class="product-title-large">{{ product.title }}</h3>
+              <div class="product-price-large">{{ product.price | money }}</div>
+            </div>
+            
+            {%- if product.description != blank -%}
+              <div class="product-description-content">
+                {{ product.description | truncate: 300 }}
+              </div>
+            {%- endif -%}
+            
+            <div class="product-details">
+              <div class="product-actions">
+                <a href="{{ product.url }}" class="product-cta-button">
+                  Voir le produit
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- comment -%} Capture featured products carousel {%- endcomment -%}
+{%- capture featured_products -%}
+  {%- assign products = article.metafields.custom.featured_products.value -%}
+  {%- if products != blank and products.size > 0 -%}
+    <div class="container__featured_products_article page-content-width" style="margin: 2rem auto;">
+      <div class="row">
+        {%- for product in products limit: 12 -%}
+          <div class="small-12 medium-6 large-4 columns" style="margin-bottom: 2rem;">
+            <div class="blog-post-card" style="border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+              {%- if product.featured_image -%}
+                <a href="{{ product.url }}">
+                  <img src="{{ product.featured_image | image_url: width: 400 }}" 
+                       alt="{{ product.title | escape }}" 
+                       loading="lazy"
+                       style="width: 100%; height: 250px; object-fit: cover;">
+                </a>
+              {%- endif -%}
+              <div class="blog-post-card__info" style="padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0;">
+                  <a href="{{ product.url }}" style="text-decoration: none; color: #333;">
+                    {{ product.title }}
+                  </a>
+                </h4>
+                <div style="font-weight: bold; color: #2c3e50; margin-bottom: 0.5rem;">
+                  {{ product.price | money }}
+                </div>
+                <a href="{{ product.url }}" class="button button--secondary" style="display: inline-block; padding: 0.5rem 1rem; text-decoration: none;">
+                  Voir le produit
+                </a>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+
 {%- render 'article-navigation', article_show_nav: article_show_nav, article_show_sharing: article_show_sharing -%}
+
 <div class="blog-post-detail--wrapper section-spacing-bottom">
-	<div class="row">
-		<div class="small-12 columns">
-			<article class="blog-post-detail" id="main-article">
-				{% for block in section.blocks %}
-					{% if block.type == '@app' %}
-						<div class="page-content-width">
-							{% render block %}
-						</div>
-					{% endif %}
-					{% if block.type == 'title' %}
-					{%- liquid
-						assign has_image = false
-						if article.image
-							assign has_image = true
-						endif
-
-						assign article_card_border = settings.article_card_border
-					-%}
-					<div class="post-title-wrapper post-title-wrapper--has-img-{{- has_image }} post-title-wrapper--border-{{ article_card_border }} {{ article_card_shadow_class }}" id="post-title-wrapper" {{ block.shopify_attributes }}>
-						<div class="post-title">
-							{% if section.settings.article_show_date or section.settings.article_show_author %}
-							<div class="post-meta-wrapper">
-								{%- if section.settings.article_show_date -%}
-								<aside class="post-meta">
-									{{- article.published_at | time_tag: '%b %d, %Y' -}}
-								</aside>
-								{%- endif -%}
-								{%- if section.settings.article_show_author -%}
-								<aside class="post-author">{{- article.author -}}</aside>
-								{% endif %}
-							</div>
-							{% endif %}
-							<h1 class="entry-title h2">{{ article.title }}</h1>
-							{%- liquid
-								if article_show_sharing
-									render 'social-share', share_label: true, share_title: article.title, share_permalink: article.url, share_image: article.image
-								endif
-							-%}
-						</div>
-						{%- if article.image -%}
-						<div class="featured-image">
-							{%- render 'responsive-image', image: article.image, sizes: '345x300,640x550,1280x1100' -%}
-						</div>
-						{%- endif -%}
-					</div>
-					{% endif %}
-					{% if block.type == 'content' %}
-						<div class="post-content page-content-width rte" {{ block.shopify_attributes }}>
-							{{ article.content }}
-						</div>
-					{% endif %}
-					{% if block.type == 'tags' %}
-						{%- if article.tags.size > 0 -%}
-						<footer class="article-tags page-content-width" {{ block.shopify_attributes }}>
-					    {% for tag in article.tags %}
-					      <a href="{{ blog.url | escape }}/tagged/{{ tag | handle }}" class="tag-link">{{ tag }}</a>
-					    {% endfor %}
-					  </footer>
-						{%- endif -%}
-					{% endif %}
-					{% if block.type == 'post_navigation' %}
-						{%- liquid
-							assign current_found = false
-							assign done = false
-
-							for a in blog.articles
-								if current_found and done == false
-									assign next_article = a
-									assign done = true
-								endif
-								unless done
-									if a.id == article.id
-										assign current_found = true
-									endif
-								endunless
-							endfor
-						-%}
-						{%- if next_article -%}
-						<div class="page-content-width">
-							<div class="blog-post-detail--continue {{ article_card_shadow_class }} blog-post-detail--continue--border-{{ article_card_border }}">
-								<div class="blog-post-detail--continue-content">
-									<span class="blog-post-detail--continue-title">{{ 'blogs.article.continue_reading' | t }}</span>
-									<h5><a href="{{ next_article.url }}" title="{{ next_article.title | escape }}">{{ next_article.title }}</a></h5>
-									{%- assign read_more = 'blogs.article.read_more' | t -%}
-									{%- render 'text-button', url: next_article.url, title: read_more -%}
-								</div>
-								{%- if next_article.image -%}
-								<div class="blog-post-detail--continue-image">
-									<a href="{{ next_article.url }}" title="{{ next_article.title | escape }}">
-										{%- render 'responsive-image', image: next_article.image, sizes: '380x360' -%}
-									</a>
-								</div>
-								{%- endif -%}
-							</div>
-						</div>
-						{%- endif -%}
-					{% endif %}
-				{% endfor %}
-				<div class="blog-post-detail--end"></div>
-			</article>
-		</div>
-	</div>
-	{% if blog.comments_enabled? %}
-	{{ 'comments.css' | asset_url | stylesheet_tag }}
-	<div class="row">
-		<div class="small-12 columns">
-			<div class="comments-wrapper page-content-width">
-			  {% if article.comments_count > 0 %}
-					<div class="comments-container page-content-width" id="comments">
-			      <h5 class="comments-title">{{ 'blogs.article.comments_html' | t: count: article.comments_count, title: article.title }}</h5>
-			      <ul class="commentlist">
-			        {% paginate article.comments by 5 %}
-			          {% for comment in article.comments %}
-			            <li class="comment">
-			              <img data-src="https://www.gravatar.com/avatar/{{ comment.email | remove: ' ' | strip_newlines | downcase | md5 }}?s=200" class="avatar lazyload" alt="{{ comment.author | escape }}" width="100" height="100" />
-										<div class="comment-body">
-			                <div class="comment-author">
-			                  <cite class="fn">{{ comment.author }}</cite>
-			                </div>
-											<div class="comment-text">
-				                {{ comment.content }}
-											</div>
-											<a href="{{ comment.url }}" class="comment-meta">{{ comment.created_at | date: "%B %d, %Y" }}</a>
-			              </div>
-			            </li>
-			          {% endfor %}
-			          {% if paginate.pages > 1 %}
-			            {{ paginate | default_pagination }}
-			          {% endif %}
-			        {% endpaginate %}
-			      </ul>
-			    </div>
-			  {% endif %}
-				<div class="respond-container page-content-width">
-		      <div class="comment-respond">
-		        {% form 'new_comment', article %}
-							{%- liquid
-		            assign post_message = 'blogs.article.success'
-		            if blog.moderated? and comment.status == 'unapproved'
-		              assign post_message = 'blogs.article.success_moderated'
-		            endif
-		          -%}
-							<div class="comment-reply-title--container">
-			          <h5 id="reply-title" class="comment-reply-title">{{ 'blogs.article.comment_form_title' | t }}</h5>
-			          <p class="comment-notes">{{ 'blogs.article.comment_form_note' | t }}.</p>
-							</div>
-		          {% if form.errors %}
-								<div class="form-notification error">
-		              {% render 'svg-icons' with 'thb-error' %} {{ form.errors | default_errors }}
-								</div>
-							{%- elsif form.posted_successfully? -%}
-								<div class="form-notification success">
-									{% render 'svg-icons' with 'thb-success' %} {{ post_message | t }}
-								</div>
-		          {%- endif -%}
-							<div class="comment-form-fields">
-		            <div class="field">
-		              <textarea name="comment[body]" class="full {% if form.errors contains 'body' %}invalid{% endif %}" id="CommentBody" placeholder="{{ 'blogs.article.message' | t }}">{{ form.body }}</textarea>
-									<label>{{ 'blogs.article.message' | t }}</label>
-		            </div>
-		            <div class="field">
-		              <input type="text" class="full {% if form.errors contains 'author' %}invalid{% endif %}" name="comment[author]" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words" placeholder="{{ 'blogs.article.name' | t }}">
-									<label>{{ 'blogs.article.name' | t }}</label>
-		            </div>
-		            <div class="field">
-		              <input type="email" class="full {% if form.errors contains 'email' %}invalid{% endif %}" name="comment[email]" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off" placeholder="{{ 'blogs.article.email' | t }}">
-									<label>{{ 'blogs.article.email' | t }}</label>
-		            </div>
-							</div>
-							<input class="button" type="submit" value="{{ 'blogs.article.post' | t | escape }}">
-		        {% endform %}
-		      </div>
-		    </div>
-			</div>
-	  </div>
-	</div>
-	{% endif %}
+  <div class="row">
+    <div class="small-12 columns">
+      <article class="blog-post-detail" id="main-article">
+        {% for block in section.blocks %}
+          {% if block.type == '@app' %}
+            <div class="page-content-width">
+              {% render block %}
+            </div>
+          {% endif %}
+          
+          {% if block.type == 'title' %}
+            {%- liquid
+              assign has_image = false
+              if article.image
+                assign has_image = true
+              endif
+            -%}
+            <div class="post-title-wrapper post-title-wrapper--has-img-{{- has_image }} post-title-wrapper--border-{{ article_card_border }} {{ article_card_shadow_class }}" id="post-title-wrapper" {{ block.shopify_attributes }}>
+              <div class="post-title">
+                {% if section.settings.article_show_date or section.settings.article_show_author %}
+                  <div class="post-meta-wrapper">
+                    {%- if section.settings.article_show_date -%}
+                      <aside class="post-meta">
+                        {{- article.published_at | time_tag: '%b %d, %Y' -}}
+                      </aside>
+                    {%- endif -%}
+                    {%- if section.settings.article_show_author -%}
+                      <aside class="post-author">{{- article.author -}}</aside>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                <h1 class="entry-title h2">{{ article.title }}</h1>
+                {%- liquid
+                  if article_show_sharing
+                    render 'social-share', share_label: true, share_title: article.title, share_permalink: article.url, share_image: article.image
+                  endif
+                -%}
+              </div>
+              {%- if article.image -%}
+                <div class="featured-image">
+                  {%- render 'responsive-image', image: article.image, sizes: '345x300,640x550,1280x1100' -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {% endif %}
+          
+          {%- comment -%} Introduction Block (custom_text) {%- endcomment -%}
+          {% if block.type == 'custom_text' %}
+            {%- liquid
+              assign text_content = ''
+              
+              if block.settings.content_source == 'metafield'
+                assign metafield_content = article.metafields.custom.introduction.value
+                if metafield_content != blank
+                  assign text_content = metafield_content
+                endif
+              endif
+              
+              if text_content == blank and block.settings.custom_content != blank
+                assign text_content = block.settings.custom_content
+              endif
+            -%}
+            
+            {%- if text_content != blank -%}
+              <div class="page-content-width container-custom-text">
+                <div class="article-custom-text article-custom-text-{{ block.id }}" {{ block.shopify_attributes }}>
+                  <style>
+                    .article-custom-text-{{ block.id }} {
+                      background-color: {{ block.settings.background_color | default: '#ffffff' }};
+                      border: {{ block.settings.border_width | default: 0 }}px solid {{ block.settings.border_color | default: '#e0e0e0' }};
+                      border-radius: {{ block.settings.border_radius | default: 0 }}px;
+                      padding: {{ block.settings.padding_top | default: 20 }}px {{ block.settings.padding_horizontal | default: 20 }}px {{ block.settings.padding_bottom | default: 20 }}px {{ block.settings.padding_horizontal | default: 20 }}px;
+                      margin: {{ block.settings.margin_top | default: 20 }}px auto {{ block.settings.margin_bottom | default: 20 }}px auto;
+                      text-align: {{ block.settings.text_alignment | default: 'left' }};
+                      max-width: var(--article-max-width);
+                    }
+                    
+                    .article-custom-text-{{ block.id }} .custom-text-content {
+                      color: {{ block.settings.text_color | default: '#333333' }};
+                      font-size: {{ block.settings.font_size | default: 16 }}px;
+                      line-height: {{ block.settings.line_height | default: 1.6 }};
+                      font-weight: {{ block.settings.font_weight | default: 'normal' }};
+                    }
+                    
+                    .article-custom-text-{{ block.id }} .custom-text-content p {
+                      margin-bottom: {{ block.settings.paragraph_spacing | default: 20 }}px;
+                    }
+                  </style>
+                  
+                  <div class="custom-text-content rte">
+                    {{ text_content }}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {% endif %}
+          
+          {%- comment -%} Summary/Table of Contents Block {%- endcomment -%}
+          {% if block.type == 'summary' %}
+            {%- assign summary_content = article.metafields.custom.sources.value -%}
+            {%- if summary_content != blank or block.settings.auto_generate -%}
+              <div class="page-content-width container-summary">
+                <div class="article-summary article-summary-{{ block.id }}" {{ block.shopify_attributes }}>
+                  <style>
+                    .article-summary-{{ block.id }} {
+                      background-color: {{ block.settings.background_color | default: '#f8f9fa' }};
+                      border: {{ block.settings.border_width | default: 1 }}px solid {{ block.settings.border_color | default: '#e0e0e0' }};
+                      border-radius: {{ block.settings.border_radius | default: 8 }}px;
+                      padding: {{ block.settings.padding | default: 20 }}px;
+                      margin: {{ block.settings.margin | default: 20 }}px auto;
+                      max-width: var(--article-max-width);
+                    }
+                    
+                    .article-summary-{{ block.id }} .summary-title {
+                      color: {{ block.settings.title_color | default: '#333' }};
+                      font-size: {{ block.settings.title_font_size | default: 18 }}px;
+                      font-weight: bold;
+                      margin-bottom: 15px;
+                    }
+                    
+                    .article-summary-{{ block.id }} .summary-content {
+                      color: {{ block.settings.text_color | default: '#333' }};
+                      font-size: {{ block.settings.text_font_size | default: 16 }}px;
+                      line-height: 1.6;
+                    }
+                    
+                    .article-summary-{{ block.id }} .summary-list {
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                    }
+                    
+                    .article-summary-{{ block.id }} .summary-item {
+                      margin-bottom: 8px;
+                    }
+                    
+                    .article-summary-{{ block.id }} .summary-link {
+                      color: {{ block.settings.link_color | default: '#0066cc' }};
+                      text-decoration: none;
+                      display: block;
+                      padding: 8px 12px;
+                      border-radius: 4px;
+                      transition: background-color 0.2s ease;
+                    }
+                    
+                    .article-summary-{{ block.id }} .summary-link:hover {
+                      background-color: {{ block.settings.hover_color | default: '#f0f0f0' }};
+                    }
+                  </style>
+                  
+                  <div class="summary-title">{{ block.settings.title | default: 'Sources' }}</div>
+                  
+                  {%- if summary_content != blank -%}
+                    <div class="summary-content rte">
+                      {{ summary_content }}
+                    </div>
+                  {%- elsif block.settings.auto_generate -%}
+                    <ul class="summary-list" id="article-summary-list-{{ block.id }}">
+                      <!-- Auto-generated from article headings -->
+                    </ul>
+                    
+                    <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        const summaryList = document.getElementById('article-summary-list-{{ block.id }}');
+                        const articleContent = document.querySelector('.post-content');
+                        
+                        if (summaryList && articleContent) {
+                          const headings = articleContent.querySelectorAll('h2, h3');
+                          
+                          if (headings.length > 0) {
+                            let headingCounter = 0;
+                            headings.forEach(function(heading) {
+                              headingCounter++;
+                              
+                              if (!heading.id) {
+                                heading.id = 'heading-' + headingCounter;
+                              }
+                              
+                              const listItem = document.createElement('li');
+                              listItem.className = 'summary-item';
+                              
+                              const link = document.createElement('a');
+                              link.href = '#' + heading.id;
+                              link.className = 'summary-link';
+                              link.textContent = heading.textContent.trim();
+                              
+                              if (heading.tagName.toLowerCase() === 'h3') {
+                                link.style.paddingLeft = '30px';
+                                link.style.fontSize = '{{ block.settings.text_font_size | default: 16 | minus: 1 }}px';
+                              }
+                              
+                              link.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const targetElement = document.getElementById(heading.id);
+                                if (targetElement) {
+                                  targetElement.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                  });
+                                }
+                              });
+                              
+                              listItem.appendChild(link);
+                              summaryList.appendChild(listItem);
+                            });
+                          }
+                        }
+                      });
+                    </script>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {% endif %}
+          
+          {%- comment -%} Main Content Block {%- endcomment -%}
+          {% if block.type == 'content' %}
+            <div class="post-content page-content-width rte" {{ block.shopify_attributes }}>
+              {{ article.content 
+                | replace: '[[featured_product]]', featured_product
+                | replace: '[[featured-products]]', featured_products
+              }}
+            </div>
+          {% endif %}
+          
+          {% if block.type == 'tags' %}
+            {%- if article.tags.size > 0 -%}
+              <footer class="article-tags page-content-width" {{ block.shopify_attributes }}>
+                {% for tag in article.tags %}
+                  <a href="{{ blog.url | escape }}/tagged/{{ tag | handle }}" class="tag-link">{{ tag }}</a>
+                {% endfor %}
+              </footer>
+            {%- endif -%}
+          {% endif %}
+          
+          {% if block.type == 'post_navigation' %}
+            {%- liquid
+              assign current_found = false
+              assign done = false
+              
+              for a in blog.articles
+                if current_found and done == false
+                  assign next_article = a
+                  assign done = true
+                endif
+                unless done
+                  if a.id == article.id
+                    assign current_found = true
+                  endif
+                endunless
+              endfor
+            -%}
+            {%- if next_article -%}
+              <div class="page-content-width">
+                <div class="blog-post-detail--continue {{ article_card_shadow_class }} blog-post-detail--continue--border-{{ article_card_border }}">
+                  <div class="blog-post-detail--continue-content">
+                    <span class="blog-post-detail--continue-title">{{ 'blogs.article.continue_reading' | t }}</span>
+                    <h5><a href="{{ next_article.url }}" title="{{ next_article.title | escape }}">{{ next_article.title }}</a></h5>
+                    {%- assign read_more = 'blogs.article.read_more' | t -%}
+                    {%- render 'text-button', url: next_article.url, title: read_more -%}
+                  </div>
+                  {%- if next_article.image -%}
+                    <div class="blog-post-detail--continue-image">
+                      <a href="{{ next_article.url }}" title="{{ next_article.title | escape }}">
+                        {%- render 'responsive-image', image: next_article.image, sizes: '380x360' -%}
+                      </a>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {% endif %}
+        {% endfor %}
+        <div class="blog-post-detail--end"></div>
+      </article>
+    </div>
+  </div>
+  
+  {% if blog.comments_enabled? %}
+    {{ 'comments.css' | asset_url | stylesheet_tag }}
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="comments-wrapper page-content-width">
+          {% if article.comments_count > 0 %}
+            <div class="comments-container page-content-width" id="comments">
+              <h5 class="comments-title">{{ 'blogs.article.comments_html' | t: count: article.comments_count, title: article.title }}</h5>
+              <ul class="commentlist">
+                {% paginate article.comments by 5 %}
+                  {% for comment in article.comments %}
+                    <li class="comment">
+                      <img data-src="https://www.gravatar.com/avatar/{{ comment.email | remove: ' ' | strip_newlines | downcase | md5 }}?s=200" class="avatar lazyload" alt="{{ comment.author | escape }}" width="100" height="100" />
+                      <div class="comment-body">
+                        <div class="comment-author">
+                          <cite class="fn">{{ comment.author }}</cite>
+                        </div>
+                        <div class="comment-text">
+                          {{ comment.content }}
+                        </div>
+                        <a href="{{ comment.url }}" class="comment-meta">{{ comment.created_at | date: "%B %d, %Y" }}</a>
+                      </div>
+                    </li>
+                  {% endfor %}
+                  {% if paginate.pages > 1 %}
+                    {{ paginate | default_pagination }}
+                  {% endif %}
+                {% endpaginate %}
+              </ul>
+            </div>
+          {% endif %}
+          <div class="respond-container page-content-width">
+            <div class="comment-respond">
+              {% form 'new_comment', article %}
+                {%- liquid
+                  assign post_message = 'blogs.article.success'
+                  if blog.moderated? and comment.status == 'unapproved'
+                    assign post_message = 'blogs.article.success_moderated'
+                  endif
+                -%}
+                <div class="comment-reply-title--container">
+                  <h5 id="reply-title" class="comment-reply-title">{{ 'blogs.article.comment_form_title' | t }}</h5>
+                  <p class="comment-notes">{{ 'blogs.article.comment_form_note' | t }}.</p>
+                </div>
+                {% if form.errors %}
+                  <div class="form-notification error">
+                    {% render 'svg-icons' with 'thb-error' %} {{ form.errors | default_errors }}
+                  </div>
+                {%- elsif form.posted_successfully? -%}
+                  <div class="form-notification success">
+                    {% render 'svg-icons' with 'thb-success' %} {{ post_message | t }}
+                  </div>
+                {%- endif -%}
+                <div class="comment-form-fields">
+                  <div class="field">
+                    <textarea name="comment[body]" class="full {% if form.errors contains 'body' %}invalid{% endif %}" id="CommentBody" placeholder="{{ 'blogs.article.message' | t }}">{{ form.body }}</textarea>
+                    <label>{{ 'blogs.article.message' | t }}</label>
+                  </div>
+                  <div class="field">
+                    <input type="text" class="full {% if form.errors contains 'author' %}invalid{% endif %}" name="comment[author]" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words" placeholder="{{ 'blogs.article.name' | t }}">
+                    <label>{{ 'blogs.article.name' | t }}</label>
+                  </div>
+                  <div class="field">
+                    <input type="email" class="full {% if form.errors contains 'email' %}invalid{% endif %}" name="comment[email]" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off" placeholder="{{ 'blogs.article.email' | t }}">
+                    <label>{{ 'blogs.article.email' | t }}</label>
+                  </div>
+                </div>
+                <input class="button" type="submit" value="{{ 'blogs.article.post' | t | escape }}">
+              {% endform %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
+
 <script type="application/ld+json">
   {{ article | structured_data }}
 </script>
+
 {% schema %}
-  {
-		"name": "Blog post",
-		"class": "article-section",
-    "settings": [
-			{
-				"type": "header",
-				"content": "Settings"
-			},
-			{
-				"type": "checkbox",
-				"id": "article_show_date",
-				"label": "Show date",
-				"default": true
-			},
-			{
-				"type": "checkbox",
-				"id": "article_show_author",
-				"label": "Show author",
-				"default": true
-			},
-			{
-				"type": "checkbox",
-				"id": "article_show_nav",
-				"label": "Show sticky information",
-				"default": true
-			},
-			{
-				"type": "checkbox",
-				"id": "article_show_sharing",
-				"label": "Show sharing buttons",
-				"default": true
-			},
-			{
-				"type": "paragraph",
-				"content": "If you include a link in social media posts, the page’s featured image will be shown as the preview image. [Learn more](https://help.shopify.com/en/manual/online-store/images/showing-social-media-thumbnail-images)."
-			},
-			{
-				"type": "paragraph",
-				"content": "A store title and description are included with the preview image. [Learn more](https://help.shopify.com/en/manual/promoting-marketing/seo/adding-keywords#set-a-title-and-description-for-your-online-store)."
-			}
-    ],
-		"blocks": [
-			{
-	      "type": "@app"
-	    },
-			{
-        "type": "title",
-        "name": "Title",
-	      "limit": 1
-      },
-			{
-        "type": "post_navigation",
-        "name": "Next article",
-	      "limit": 1
-      },
-			{
-        "type": "content",
-        "name": "Content",
-	      "limit": 1
-      },
-			{
-        "type": "tags",
-        "name": "Tags",
-	      "limit": 1
-      }
-    ]
-  }
+{
+  "name": "Blog post",
+  "class": "article-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_nav",
+      "label": "Show sticky information",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_sharing",
+      "label": "Show sharing buttons",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "Content width",
+      "options": [
+        {
+          "label": "Small (750px)",
+          "value": "750px"
+        },
+        {
+          "label": "Medium (950px)",
+          "value": "950px"
+        },
+        {
+          "label": "Large (1150px)",
+          "value": "1150px"
+        }
+      ],
+      "default": "750px"
+    },
+    {
+      "type": "paragraph",
+      "content": "If you include a link in social media posts, the page's featured image will be shown as the preview image. [Learn more](https://help.shopify.com/en/manual/online-store/images/showing-social-media-thumbnail-images)."
+    },
+    {
+      "type": "paragraph",
+      "content": "A store title and description are included with the preview image. [Learn more](https://help.shopify.com/en/manual/promoting-marketing/seo/adding-keywords#set-a-title-and-description-for-your-online-store)."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "custom_text",
+      "name": "Introduction (Custom Text)",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content Source"
+        },
+        {
+          "type": "select",
+          "id": "content_source",
+          "label": "Content source",
+          "options": [
+            {
+              "value": "custom",
+              "label": "Custom text"
+            },
+            {
+              "value": "metafield",
+              "label": "Article metafield (custom.introduction)"
+            }
+          ],
+          "default": "metafield",
+          "info": "Use metafield 'custom.introduction' or add custom text below"
+        },
+        {
+          "type": "richtext",
+          "id": "custom_content",
+          "label": "Custom content",
+          "info": "Used if metafield is empty or content source is set to custom"
+        },
+        {
+          "type": "header",
+          "content": "Typography"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            {"value": "left", "label": "Left"},
+            {"value": "center", "label": "Center"},
+            {"value": "right", "label": "Right"},
+            {"value": "justify", "label": "Justify"}
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "line_height",
+          "label": "Line height",
+          "min": 1.0,
+          "max": 2.5,
+          "step": 0.1,
+          "default": 1.6
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font weight",
+          "options": [
+            {"value": "normal", "label": "Normal"},
+            {"value": "bold", "label": "Bold"},
+            {"value": "lighter", "label": "Light"}
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "header",
+          "content": "Border & Spacing"
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "label": "Border width",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "Border radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding top",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding bottom",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "padding_horizontal",
+          "label": "Padding horizontal",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "paragraph_spacing",
+          "label": "Paragraph spacing",
+          "min": 0,
+          "max": 50,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "summary",
+      "name": "Sources / Table of Contents",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Sources"
+        },
+        {
+          "type": "paragraph",
+          "content": "This block will display the metafield 'custom.sources' if available, or auto-generate a table of contents from article headings."
+        },
+        {
+          "type": "checkbox",
+          "id": "auto_generate",
+          "label": "Auto-generate from headings",
+          "default": true,
+          "info": "If metafield is empty, generate TOC from H2 and H3 headings"
+        },
+        {
+          "type": "header",
+          "content": "Styling"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#f8f9fa"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link color",
+          "default": "#0066cc"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "color",
+          "id": "hover_color",
+          "label": "Hover background",
+          "default": "#f0f0f0"
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "label": "Border width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "Border radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "padding",
+          "label": "Padding",
+          "min": 10,
+          "max": 40,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "margin",
+          "label": "Margin",
+          "min": 0,
+          "max": 40,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "label": "Title font size",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "label": "Text font size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Content",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Main article content. Use [[featured_product]] to insert a single featured product (from custom.produit_avantages metafield) or [[featured-products]] to insert a carousel of products (from custom.featured_products metafield)."
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "limit": 1
+    },
+    {
+      "type": "post_navigation",
+      "name": "Next article",
+      "limit": 1
+    }
+  ]
+}
 {% endschema %}
