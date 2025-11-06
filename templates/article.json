@@ -24,7 +24,7 @@
           "type": "custom_text",
           "settings": {
             "content_source": "metafield",
-            "custom_content": "{{ article.metafields.custom.introduction | metafield_tag }}",
+            "custom_content": "<p>{{ article.metafields.custom.introduction | metafield_tag }}</p>",
             "text_alignment": "left",
             "font_size": 16,
             "line_height": 1.6,
@@ -70,8 +70,8 @@
           "settings": {
             "title": "Sources",
             "title_color": "#333333",
-            "title_font_size": 24,
-            "title_font_weight": "bold",
+            "title_font_size": 18,
+            "title_font_weight": "normal",
             "title_margin_bottom": 20,
             "text_color": "#333333",
             "text_font_size": 16,
