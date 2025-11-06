@@ -315,20 +315,22 @@
           {% if block.type == 'custom_text' %}
             {%- liquid
               assign text_content = ''
+              assign has_content = false
               
               if block.settings.content_source == 'metafield'
-                assign metafield_content = article.metafields.custom.introduction.value
-                if metafield_content != blank
-                  assign text_content = metafield_content
+                assign metafield_obj = article.metafields.custom.introduction
+                if metafield_obj != blank
+                  assign has_content = true
                 endif
               endif
               
-              if text_content == blank and block.settings.custom_content != blank
+              if has_content == false and block.settings.custom_content != blank
                 assign text_content = block.settings.custom_content
+                assign has_content = true
               endif
             -%}
             
-            {%- if text_content != blank -%}
+            {%- if has_content -%}
               <div class="page-content-width container-custom-text">
                 <div class="article-custom-text article-custom-text-{{ block.id }}" {{ block.shopify_attributes }}>
                   <style>
@@ -355,7 +357,11 @@
                   </style>
                   
                   <div class="custom-text-content rte">
-                    {{ text_content }}
+                    {%- if block.settings.content_source == 'metafield' and metafield_obj != blank -%}
+                      {{ metafield_obj | metafield_tag }}
+                    {%- else -%}
+                      {{ text_content }}
+                    {%- endif -%}
                   </div>
                 </div>
               </div>
@@ -364,8 +370,8 @@
           
           {%- comment -%} Summary/Table of Contents Block {%- endcomment -%}
           {% if block.type == 'summary' %}
-            {%- assign summary_content = article.metafields.custom.sources.value -%}
-            {%- if summary_content != blank or block.settings.auto_generate -%}
+            {%- assign summary_metafield = article.metafields.custom.sources -%}
+            {%- if summary_metafield != blank or block.settings.auto_generate -%}
               <div class="page-content-width container-summary">
                 <div class="article-summary article-summary-{{ block.id }}" {{ block.shopify_attributes }}>
                   <style>
@@ -417,9 +423,9 @@
                   
                   <div class="summary-title">{{ block.settings.title | default: 'Sources' }}</div>
                   
-                  {%- if summary_content != blank -%}
+                  {%- if summary_metafield != blank -%}
                     <div class="summary-content rte">
-                      {{ summary_content }}
+                      {{ summary_metafield | metafield_tag }}
                     </div>
                   {%- elsif block.settings.auto_generate -%}
                     <ul class="summary-list" id="article-summary-list-{{ block.id }}">
@@ -883,14 +889,14 @@
     },
     {
       "type": "summary",
-      "name": "Sources",
+      "name": "Summary",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Sources"
+          "default": "Sommaire"
         },
         {
           "type": "paragraph",
