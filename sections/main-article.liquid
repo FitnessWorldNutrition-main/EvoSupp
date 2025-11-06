@@ -173,8 +173,9 @@
 
 {%- comment -%} Capture featured product (single) {%- endcomment -%}
 {%- capture featured_product -%}
-  {%- assign product = article.metafields.custom.produit_avantages.value -%}
-  {%- if product != blank -%}
+  {%- assign product_metafield = article.metafields.custom.produit_avantages -%}
+  {%- if product_metafield != blank -%}
+    {%- assign product = product_metafield.value -%}
     <div class="container__featured_products_article page-content-width" style="margin: 2rem auto;">
       <div class="featured-product-with-description">
         <div class="featured-product-left">
@@ -226,7 +227,7 @@
   {%- if featured_products_metafield != blank -%}
     <div class="container__featured_products_article page-content-width" style="margin: 2rem auto;">
       <h3 style="margin-bottom: 1.5rem; text-align: center; font-size: 1.75rem; font-weight: bold;">Produits Recommandés</h3>
-      <div class="row">
+      <div class="row" style="justify-content: center;">
         {%- for product_ref in featured_products_metafield.value limit: 12 -%}
           <div class="small-12 medium-6 large-4 columns" style="margin-bottom: 2rem;">
             {%- render 'product-card', product_card_product: product_ref -%}
