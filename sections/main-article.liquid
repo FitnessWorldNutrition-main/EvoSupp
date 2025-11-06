@@ -370,8 +370,7 @@
           
           {%- comment -%} Summary/Table of Contents Block {%- endcomment -%}
           {% if block.type == 'summary' %}
-            {%- assign summary_metafield = article.metafields.custom.sources -%}
-            {%- if summary_metafield != blank or block.settings.auto_generate -%}
+            {%- if block.settings.auto_generate -%}
               <div class="page-content-width container-summary">
                 <div class="article-summary article-summary-{{ block.id }}" {{ block.shopify_attributes }}>
                   <style>
@@ -391,12 +390,6 @@
                       margin-bottom: 15px;
                     }
                     
-                    .article-summary-{{ block.id }} .summary-content {
-                      color: {{ block.settings.text_color | default: '#333' }};
-                      font-size: {{ block.settings.text_font_size | default: 16 }}px;
-                      line-height: 1.6;
-                    }
-                    
                     .article-summary-{{ block.id }} .summary-list {
                       list-style: none;
                       padding: 0;
@@ -414,6 +407,7 @@
                       padding: 8px 12px;
                       border-radius: 4px;
                       transition: background-color 0.2s ease;
+                      font-size: {{ block.settings.text_font_size | default: 16 }}px;
                     }
                     
                     .article-summary-{{ block.id }} .summary-link:hover {
@@ -421,66 +415,60 @@
                     }
                   </style>
                   
-                  <div class="summary-title">{{ block.settings.title | default: 'Sources' }}</div>
+                  <div class="summary-title">{{ block.settings.title | default: 'Sommaire' }}</div>
                   
-                  {%- if summary_metafield != blank -%}
-                    <div class="summary-content rte">
-                      {{ summary_metafield | metafield_tag }}
-                    </div>
-                  {%- elsif block.settings.auto_generate -%}
-                    <ul class="summary-list" id="article-summary-list-{{ block.id }}">
-                      <!-- Auto-generated from article headings -->
-                    </ul>
-                    
-                    <script>
-                      document.addEventListener('DOMContentLoaded', function() {
-                        const summaryList = document.getElementById('article-summary-list-{{ block.id }}');
-                        const articleContent = document.querySelector('.post-content');
+                  <ul class="summary-list" id="article-summary-list-{{ block.id }}">
+                    <!-- Auto-generated from article headings -->
+                  </ul>
+                  
+                  <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                      const summaryList = document.getElementById('article-summary-list-{{ block.id }}');
+                      const articleContent = document.querySelector('.post-content');
+                      
+                      if (summaryList && articleContent) {
+                        const headings = articleContent.querySelectorAll('h2, h3');
                         
-                        if (summaryList && articleContent) {
-                          const headings = articleContent.querySelectorAll('h2, h3');
-                          
-                          if (headings.length > 0) {
-                            let headingCounter = 0;
-                            headings.forEach(function(heading) {
-                              headingCounter++;
-                              
-                              if (!heading.id) {
-                                heading.id = 'heading-' + headingCounter;
+                        if (headings.length > 0) {
+                          let headingCounter = 0;
+                          headings.forEach(function(heading) {
+                            headingCounter++;
+                            
+                            if (!heading.id) {
+                              heading.id = 'heading-' + headingCounter;
+                            }
+                            
+                            const listItem = document.createElement('li');
+                            listItem.className = 'summary-item';
+                            
+                            const link = document.createElement('a');
+                            link.href = '#' + heading.id;
+                            link.className = 'summary-link';
+                            link.textContent = heading.textContent.trim();
+                            
+                            if (heading.tagName.toLowerCase() === 'h3') {
+                              link.style.paddingLeft = '30px';
+                              link.style.fontSize = '{{ block.settings.text_font_size | default: 16 | minus: 1 }}px';
+                            }
+                            
+                            link.addEventListener('click', function(e) {
+                              e.preventDefault();
+                              const targetElement = document.getElementById(heading.id);
+                              if (targetElement) {
+                                targetElement.scrollIntoView({
+                                  behavior: 'smooth',
+                                  block: 'start'
+                                });
                               }
-                              
-                              const listItem = document.createElement('li');
-                              listItem.className = 'summary-item';
-                              
-                              const link = document.createElement('a');
-                              link.href = '#' + heading.id;
-                              link.className = 'summary-link';
-                              link.textContent = heading.textContent.trim();
-                              
-                              if (heading.tagName.toLowerCase() === 'h3') {
-                                link.style.paddingLeft = '30px';
-                                link.style.fontSize = '{{ block.settings.text_font_size | default: 16 | minus: 1 }}px';
-                              }
-                              
-                              link.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                const targetElement = document.getElementById(heading.id);
-                                if (targetElement) {
-                                  targetElement.scrollIntoView({
-                                    behavior: 'smooth',
-                                    block: 'start'
-                                  });
-                                }
-                              });
-                              
-                              listItem.appendChild(link);
-                              summaryList.appendChild(listItem);
                             });
-                          }
+                            
+                            listItem.appendChild(link);
+                            summaryList.appendChild(listItem);
+                          });
                         }
-                      });
-                    </script>
-                  {%- endif -%}
+                      }
+                    });
+                  </script>
                 </div>
               </div>
             {%- endif -%}
@@ -494,6 +482,88 @@
                 | replace: '[[featured-products]]', featured_products
               }}
             </div>
+          {% endif %}
+          
+          {%- comment -%} Sources List Block {%- endcomment -%}
+          {% if block.type == 'sources_list' %}
+            {%- assign sources_metafield = article.metafields.custom.sources -%}
+            {%- if sources_metafield != blank -%}
+              <div class="page-content-width">
+                <div class="article-list-block article-list-block-{{ block.id }}" {{ block.shopify_attributes }}>
+                  <style>
+                    .article-list-block-{{ block.id }} {
+                      background-color: {{ block.settings.background_color | default: '#ffffff' }};
+                      border: {{ block.settings.border_width | default: 0 }}px solid {{ block.settings.border_color | default: '#e0e0e0' }};
+                      border-radius: {{ block.settings.border_radius | default: 0 }}px;
+                      padding: {{ block.settings.padding_top | default: 30 }}px {{ block.settings.padding_horizontal | default: 30 }}px {{ block.settings.padding_bottom | default: 30 }}px {{ block.settings.padding_horizontal | default: 30 }}px;
+                      margin: {{ block.settings.margin_top | default: 40 }}px auto {{ block.settings.margin_bottom | default: 40 }}px auto;
+                      text-align: {{ block.settings.text_alignment | default: 'left' }};
+                      max-width: var(--article-max-width);
+                    }
+                    
+                    .article-list-block-{{ block.id }} .list-title {
+                      color: {{ block.settings.title_color | default: '#333333' }};
+                      font-size: {{ block.settings.title_font_size | default: 24 }}px;
+                      font-weight: {{ block.settings.title_font_weight | default: 'bold' }};
+                      margin-bottom: {{ block.settings.title_margin_bottom | default: 20 }}px;
+                      line-height: 1.3;
+                    }
+                    
+                    .article-list-block-{{ block.id }} .list-content {
+                      color: {{ block.settings.text_color | default: '#333333' }};
+                      font-size: {{ block.settings.text_font_size | default: 16 }}px;
+                      line-height: {{ block.settings.line_height | default: 1.6 }};
+                    }
+                    
+                    .article-list-block-{{ block.id }} .list-content ul,
+                    .article-list-block-{{ block.id }} .list-content ol {
+                      padding-left: {{ block.settings.indent | default: 20 }}px;
+                      margin: 0;
+                    }
+                    
+                    .article-list-block-{{ block.id }} .list-content li {
+                      margin-bottom: {{ block.settings.item_spacing | default: 12 }}px;
+                      position: relative;
+                    }
+                    
+                    .article-list-block-{{ block.id }} .list-content ul li {
+                      list-style: none;
+                    }
+                    
+                    .article-list-block-{{ block.id }} .list-content ul li:before {
+                      content: "{{ block.settings.bullet_style | default: '•' }}";
+                      color: {{ block.settings.bullet_color | default: '#666666' }};
+                      position: absolute;
+                      left: -{{ block.settings.indent | default: 20 }}px;
+                      font-weight: bold;
+                    }
+                    
+                    .article-list-block-{{ block.id }} .list-content li:last-child {
+                      margin-bottom: 0;
+                    }
+                    
+                    @media (max-width: 768px) {
+                      .article-list-block-{{ block.id }} {
+                        max-width: calc(100vw - 2rem) !important;
+                        overflow-x: hidden !important;
+                        word-wrap: break-word !important;
+                        margin-left: 1rem !important;
+                        margin-right: 1rem !important;
+                        box-sizing: border-box !important;
+                      }
+                    }
+                  </style>
+                  
+                  {%- if block.settings.title != blank -%}
+                    <h2 class="list-title">{{ block.settings.title }}</h2>
+                  {%- endif -%}
+                  
+                  <div class="list-content rte">
+                    {{ sources_metafield | metafield_tag }}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
           {% endif %}
           
           {% if block.type == 'tags' %}
@@ -900,14 +970,14 @@
         },
         {
           "type": "paragraph",
-          "content": "This block will display the metafield 'custom.sources' if available, or auto-generate a table of contents from article headings."
+          "content": "This block auto-generates a table of contents from article H2 and H3 headings with smooth scroll navigation."
         },
         {
           "type": "checkbox",
           "id": "auto_generate",
           "label": "Auto-generate from headings",
           "default": true,
-          "info": "If metafield is empty, generate TOC from H2 and H3 headings"
+          "info": "Generate TOC from H2 and H3 headings in article content"
         },
         {
           "type": "header",
@@ -1019,6 +1089,223 @@
         {
           "type": "paragraph",
           "content": "Main article content. Use [[featured_product]] to insert a single featured product (from custom.produit_avantages metafield) or [[featured-products]] to insert a carousel of products (from custom.featured_products metafield)."
+        }
+      ]
+    },
+    {
+      "type": "sources_list",
+      "name": "Sources",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Title"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Block title",
+          "default": "Sources"
+        },
+        {
+          "type": "paragraph",
+          "content": "This block displays the metafield 'custom.sources' as a styled list."
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "label": "Title font size",
+          "min": 18,
+          "max": 36,
+          "step": 1,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "select",
+          "id": "title_font_weight",
+          "label": "Title font weight",
+          "options": [
+            {"value": "normal", "label": "Normal"},
+            {"value": "bold", "label": "Bold"},
+            {"value": "bolder", "label": "Extra Bold"}
+          ],
+          "default": "bold"
+        },
+        {
+          "type": "range",
+          "id": "title_margin_bottom",
+          "label": "Title bottom margin",
+          "min": 10,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "header",
+          "content": "List Styling"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "label": "Text font size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "line_height",
+          "label": "Line height",
+          "min": 1.2,
+          "max": 2.0,
+          "step": 0.1,
+          "default": 1.6
+        },
+        {
+          "type": "range",
+          "id": "item_spacing",
+          "label": "Space between items",
+          "min": 5,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "indent",
+          "label": "Text indent",
+          "min": 15,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "bullet_style",
+          "label": "Bullet character",
+          "default": "•",
+          "info": "Custom bullet character (e.g., •, ▶, ★, →)"
+        },
+        {
+          "type": "color",
+          "id": "bullet_color",
+          "label": "Bullet color",
+          "default": "#666666"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            {"value": "left", "label": "Left"},
+            {"value": "center", "label": "Center"},
+            {"value": "right", "label": "Right"}
+          ],
+          "default": "left"
+        },
+        {
+          "type": "header",
+          "content": "Container Styling"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "label": "Border width",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "label": "Border radius",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding top",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding bottom",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "padding_horizontal",
+          "label": "Padding horizontal",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "Margin top",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "Margin bottom",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "default": 40
         }
       ]
     },
