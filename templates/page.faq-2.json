@@ -101,7 +101,7 @@
             "icon_color": "#ff6b00"
           }
         },
-        "content_group_9Ycxkm": {
+        "content_group_TXtGG9": {
           "type": "content_group",
           "settings": {
             "heading": "RETOURS & REMBOURSEMENTS",
@@ -110,12 +110,32 @@
             "heading_text": "#f67200"
           }
         },
-        "collapsible_tab_BnBUYe": {
+        "content_group_etepP6": {
+          "type": "content_group",
+          "settings": {
+            "heading": "PROBLEMES DE COMMANDE",
+            "text": "",
+            "heading_bg": "#ffefdd",
+            "heading_text": "#f67200"
+          }
+        },
+        "collapsible_tab_Hg9xBG": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Mon colis est en retard ou introuvable, que dois-je faire ?",
             "open": false,
-            "content": "",
+            "content": "<p>Si vous rencontrez un retard de livraison ou pensez que votre colis a été perdu, contactez-nous dès que possible. Nous nous chargerons de vérifier la situation auprès du transporteur et ferons le nécessaire pour résoudre le problème dans les meilleurs délais.</p>",
+            "page": "",
+            "custom_liquid": "",
+            "icon_color": "#1a1c1d"
+          }
+        },
+        "collapsible_tab_PJAB4Y": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Comment obtenir un remboursement ?",
+            "open": false,
+            "content": "<p>Pour demander un remboursement, il vous suffit de nous contacter en indiquant votre numéro de commande. Une fois votre produit retourné, reçu et contrôlé, le remboursement sera traité dans les jours qui suivent.</p>",
             "page": "",
             "custom_liquid": "",
             "icon_color": "#1a1c1d"
@@ -131,8 +151,10 @@
         "collapsible_tab_DVrpAp",
         "collapsible_tab_kFNzRE",
         "collapsible_tab_7eLUnc",
-        "content_group_9Ycxkm",
-        "collapsible_tab_BnBUYe"
+        "content_group_TXtGG9",
+        "content_group_etepP6",
+        "collapsible_tab_Hg9xBG",
+        "collapsible_tab_PJAB4Y"
       ],
       "name": "Collapsible content",
       "settings": {
