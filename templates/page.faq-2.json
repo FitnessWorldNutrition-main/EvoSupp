@@ -34,7 +34,7 @@
             "content": "<p>Si vous souhaitez annuler ou apporter un changement à votre commande, contactez-nous dès que possible via notre formulaire de contact en indiquant votre numéro de commande ainsi que la modification souhaitée.</p><p>Nous reviendrons vers vous rapidement. Si la commande n’a pas encore été expédiée, nous ferons le nécessaire pour procéder à l’annulation ou appliquer les ajustements demandés.</p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
         "collapsible_tab_eftghh": {
@@ -45,7 +45,7 @@
             "content": "<p>Votre confirmation de commande est envoyée automatiquement par e-mail dès que votre paiement est validé. Si vous ne la voyez pas dans votre boîte de réception, pensez à vérifier vos spams ou dossiers de courriers indésirables.</p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
         "content_group_h3UqAR": {
@@ -65,7 +65,7 @@
             "content": "<p>Toute commande passée en semaine avant 14h00 est expédiée le jour même. Les envois ne sont pas traités les week-ends ni les jours fériés.</p><p>Pour les livraisons hors Union Européenne, un délai supplémentaire pouvant aller jusqu’à 48h peut être appliqué en raison des procédures douanières propres à chaque pays.</p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
         "collapsible_tab_DVrpAp": {
@@ -76,7 +76,7 @@
             "content": "<p>Les délais de réception dépendent de votre zone de livraison :</p><ul><li><strong>France métropolitaine :</strong> environ 1 à 2 jours ouvrés (hors week-ends et jours fériés)</li><li><strong>Livraison internationale :</strong> entre 2 et 4 jours ouvrés en moyenne</li></ul>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
         "collapsible_tab_kFNzRE": {
@@ -87,7 +87,7 @@
             "content": "<p>Dès que votre commande est expédiée, vous recevez un e-mail contenant un lien de suivi. Vous pouvez cliquer directement sur ce lien pour connaître l’avancée de votre livraison ou entrer votre numéro de suivi sur le site du transporteur : <br/><a href=\"https://www.chronopost.fr/fr/suivi-colis\" target=\"_blank\" title=\"https://www.chronopost.fr/fr/suivi-colis\">Chronopost : Suivi colis | Chronopost</a><br/><a href=\"https://gls-group.com/FR/fr/suivi-colis\" target=\"_blank\" title=\"https://gls-group.com/FR/fr/suivi-colis\">GLS : Suivi de votre colis | GLS France</a></p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
         "collapsible_tab_7eLUnc": {
@@ -98,7 +98,7 @@
             "content": "<p>Oui, nos expéditions couvrent plusieurs zones : la France métropolitaine, la Corse, les pays de l’Union Européenne ainsi que certains pays hors UE tels que la Suisse, la Norvège ou encore les Émirats Arabes Unis.<br/>Les frais de livraison sont automatiquement calculés au moment de votre commande, selon votre destination.</p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
         "content_group_9Ycxkm": {
