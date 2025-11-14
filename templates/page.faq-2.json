@@ -109,6 +109,17 @@
             "heading_bg": "#ffefdd",
             "heading_text": "#f67200"
           }
+        },
+        "collapsible_tab_BnBUYe": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Collapsible row",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": "",
+            "icon_color": "#1a1c1d"
+          }
         }
       },
       "block_order": [
@@ -120,7 +131,8 @@
         "collapsible_tab_DVrpAp",
         "collapsible_tab_kFNzRE",
         "collapsible_tab_7eLUnc",
-        "content_group_9Ycxkm"
+        "content_group_9Ycxkm",
+        "collapsible_tab_BnBUYe"
       ],
       "name": "Collapsible content",
       "settings": {
