@@ -109,28 +109,6 @@
             "heading_bg": "#ffefdd",
             "heading_text": "#f67200"
           }
-        },
-        "collapsible_tab_FNKQpX": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Puis-je retourner un article ?",
-            "open": false,
-            "content": "<p>Oui. Vous disposez d’un délai de 14 jours après réception de votre commande pour nous retourner un produit, à condition qu’il soit intact, non utilisé et conservé dans son emballage d’origine.</p>",
-            "page": "",
-            "custom_liquid": "",
-            "icon_color": "#1a1c1d"
-          }
-        },
-        "collapsible_tab_9qeLbc": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Comment obtenir un remboursement ?",
-            "open": false,
-            "content": "<p>Pour demander un remboursement, il vous suffit de nous contacter en indiquant votre numéro de commande. Une fois votre produit retourné, reçu et contrôlé, le remboursement sera traité dans les jours qui suivent.</p>",
-            "page": "",
-            "custom_liquid": "",
-            "icon_color": "#1a1c1d"
-          }
         }
       },
       "block_order": [
@@ -142,9 +120,7 @@
         "collapsible_tab_DVrpAp",
         "collapsible_tab_kFNzRE",
         "collapsible_tab_7eLUnc",
-        "content_group_9Ycxkm",
-        "collapsible_tab_FNKQpX",
-        "collapsible_tab_9qeLbc"
+        "content_group_9Ycxkm"
       ],
       "name": "Collapsible content",
       "settings": {
