@@ -150,7 +150,7 @@
           "type": "info_box",
           "settings": {
             "icon": "none",
-            "text": "",
+            "text": "{{ product.metafields.custom.description_courte | metafield_tag }}",
             "link": "",
             "info_box_bg": "#ffefdd",
             "info_box_color": "#000000"
