@@ -118,7 +118,7 @@
             "content": "",
             "page": "",
             "custom_liquid": "",
-            "variant_metafield_namespace": "woo",
+            "variant_metafield_namespace": "custom",
             "variant_metafield_key": "valeurs_nutritionnelles"
           }
         },
