@@ -344,7 +344,7 @@
       assign has_variant_metafield = false
       assign variant_metafield_obj = null
       
-      # Check for variant metafield content
+      # Check for variant metafield content first
       if block.settings.variant_metafield_namespace != blank and block.settings.variant_metafield_key != blank
         assign selected_variant = product.selected_or_first_available_variant
         assign variant_metafield_obj = selected_variant.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
@@ -352,9 +352,18 @@
         if variant_metafield_obj != blank
           assign has_variant_metafield = true
         endif
+        
+        # Fallback to product metafield if variant metafield is not found
+        if has_variant_metafield == false
+          assign variant_metafield_obj = product.metafields[block.settings.variant_metafield_namespace][block.settings.variant_metafield_key]
+          
+          if variant_metafield_obj != blank
+            assign has_variant_metafield = true
+          endif
+        endif
       endif
       
-      # Combine all content sources - variant metafield has priority
+      # Combine all content sources - variant/product metafield has priority
       if has_variant_metafield == false
         if block.settings.content != blank
           assign tab_content = block.settings.content
