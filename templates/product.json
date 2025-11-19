@@ -119,7 +119,9 @@
             "page": "",
             "custom_liquid": "",
             "variant_metafield_namespace": "custom",
-            "variant_metafield_key": "valeurs_nutritionnelles"
+            "variant_metafield_key": "valeurs_nutritionnelles",
+            "product_metafield_namespace": "woo",
+            "product_metafield_key": "valeurs-nutritionelles"
           }
         },
         "d56924f2-0137-4e3b-8c33-49b1f28391c6": {
@@ -131,7 +133,9 @@
             "page": "",
             "custom_liquid": "",
             "variant_metafield_namespace": "custom",
-            "variant_metafield_key": "ingredients"
+            "variant_metafield_key": "ingredients",
+            "product_metafield_namespace": "custom",
+            "product_metafield_key": "ingredients"
           }
         },
         "collapsible_tab_VD9Y6t": {
@@ -143,7 +147,9 @@
             "page": "",
             "custom_liquid": "",
             "variant_metafield_namespace": "",
-            "variant_metafield_key": ""
+            "variant_metafield_key": "",
+            "product_metafield_namespace": "",
+            "product_metafield_key": ""
           }
         },
         "collapsible_tab_GK3Dxc": {
@@ -155,7 +161,9 @@
             "page": "",
             "custom_liquid": "",
             "variant_metafield_namespace": "",
-            "variant_metafield_key": ""
+            "variant_metafield_key": "",
+            "product_metafield_namespace": "",
+            "product_metafield_key": ""
           }
         },
         "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7": {
