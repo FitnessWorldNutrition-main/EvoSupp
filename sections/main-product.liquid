@@ -1595,25 +1595,47 @@
         },
         {
           "type": "header",
-          "content": "Variant/Product Metafield (Optional)"
+          "content": "Variant Metafield (Optional)"
         },
         {
           "type": "paragraph",
-          "content": "Show content from a metafield by entering the namespace and key below. It will first check variant metafields, then fallback to product metafields if not found. Content changes automatically when a different variant is selected (if using variant metafields)."
+          "content": "Show content from a variant metafield. Content will change automatically when a different variant is selected."
         },
         {
           "type": "text",
           "id": "variant_metafield_namespace",
-          "label": "Metafield namespace",
+          "label": "Variant metafield namespace",
           "placeholder": "custom",
           "info": "Example: custom"
         },
         {
           "type": "text",
           "id": "variant_metafield_key",
-          "label": "Metafield key",
+          "label": "Variant metafield key",
           "placeholder": "ingredients",
           "info": "Example: ingredients, nutritional_info, description"
+        },
+        {
+          "type": "header",
+          "content": "Product Metafield (Optional)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Show content from a product metafield. This is used if no variant metafield is found above."
+        },
+        {
+          "type": "text",
+          "id": "product_metafield_namespace",
+          "label": "Product metafield namespace",
+          "placeholder": "custom",
+          "info": "Example: custom"
+        },
+        {
+          "type": "text",
+          "id": "product_metafield_key",
+          "label": "Product metafield key",
+          "placeholder": "description",
+          "info": "Example: description, benefits, specifications"
         }
       ]
     },
