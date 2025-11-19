@@ -162,8 +162,8 @@
             "custom_liquid": "",
             "variant_metafield_namespace": "",
             "variant_metafield_key": "",
-            "product_metafield_namespace": "",
-            "product_metafield_key": ""
+            "product_metafield_namespace": "woo",
+            "product_metafield_key": "recommendations"
           }
         },
         "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7": {
