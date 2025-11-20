@@ -180,15 +180,17 @@ if (!customElements.get('full-menu')) {
             e.preventDefault();
             e.stopPropagation(); // Prevent bubbling to document click handler
             
-            // Close other mega menus
+            const isCurrentlyOpen = item.classList.contains('menu-open');
+            
+            // Close all mega menus first
             this.megaMenuItems.forEach((otherItem) => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('menu-open');
-              }
+              otherItem.classList.remove('menu-open');
             });
             
-            // Toggle current mega menu
-            item.classList.toggle('menu-open');
+            // If it wasn't open, open it now (toggle behavior)
+            if (!isCurrentlyOpen) {
+              item.classList.add('menu-open');
+            }
           });
         }
       });
