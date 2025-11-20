@@ -16,7 +16,7 @@
 .accordion {
   display: block;
   border-top: 1px solid var(--color-border, #dadce0);
-  border-bottom: 1px solid var(--color-border, #dadce0);
+  /* border-bottom: 1px solid var(--color-border, #dadce0); */
   margin-bottom: 25px; }
   .accordion + .accordion {
     border-top: 0;
