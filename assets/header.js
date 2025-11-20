@@ -158,9 +158,10 @@ if (!customElements.get('full-menu')) {
       super();
 
       this.submenus = this.querySelectorAll('.thb-full-menu>.menu-item-has-children:not(.menu-item-has-megamenu)>.sub-menu');
+      this.megaMenuItems = this.querySelectorAll('.thb-full-menu>.menu-item-has-megamenu');
     }
     connectedCallback() {
-      if (!this.submenus.length) {
+      if (!this.submenus.length && !this.megaMenuItems.length) {
         return;
       }
       const _this = this;
@@ -169,6 +170,35 @@ if (!customElements.get('full-menu')) {
         window.addEventListener('resize', debounce(function() {
           _this.resizeSubMenus();
         }, 100));
+      });
+
+      // Handle mega menu click
+      this.megaMenuItems.forEach((item) => {
+        const link = item.querySelector(':scope > a');
+        if (link) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Close other mega menus
+            this.megaMenuItems.forEach((otherItem) => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('menu-open');
+              }
+            });
+            
+            // Toggle current mega menu
+            item.classList.toggle('menu-open');
+          });
+        }
+      });
+
+      // Close mega menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.menu-item-has-megamenu')) {
+          this.megaMenuItems.forEach((item) => {
+            item.classList.remove('menu-open');
+          });
+        }
       });
 
     }

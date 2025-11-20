@@ -2708,14 +2708,12 @@ h6,
   .thb-full-menu li.menu-item-has-children {
     position: relative;
     z-index: 1; }
-    .thb-full-menu li.menu-item-has-children:hover {
+    .thb-full-menu li.menu-item-has-children:not(.menu-item-has-megamenu):hover {
       z-index: 2; }
-      .thb-full-menu li.menu-item-has-children:hover > .sub-menu {
+      .thb-full-menu li.menu-item-has-children:not(.menu-item-has-megamenu):hover > .sub-menu {
         visibility: visible;
         opacity: 1; }
-        .thb-full-menu li.menu-item-has-children:hover > .sub-menu.mega-menu-container {
-          clip-path: polygon(0 0, 100% 0, 100% calc(100% + 15px), 0 calc(100% + 15px)); }
-      .thb-full-menu li.menu-item-has-children:hover:before {
+      .thb-full-menu li.menu-item-has-children:not(.menu-item-has-megamenu):hover:before {
         content: attr(data-item-title);
         position: absolute;
         height: 100%;
@@ -2749,8 +2747,26 @@ h6,
         z-index: 1;
         pointer-events: none;
         transition: opacity 0.25s ease; }
-      .thb-full-menu li.menu-item-has-children.menu-item-has-megamenu:hover:after {
-        opacity: 1; }
+      .thb-full-menu li.menu-item-has-children.menu-item-has-megamenu.menu-open {
+        z-index: 2; }
+        .thb-full-menu li.menu-item-has-children.menu-item-has-megamenu.menu-open > .sub-menu {
+          visibility: visible;
+          opacity: 1; }
+          .thb-full-menu li.menu-item-has-children.menu-item-has-megamenu.menu-open > .sub-menu.mega-menu-container {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% + 15px), 0 calc(100% + 15px)); }
+        .thb-full-menu li.menu-item-has-children.menu-item-has-megamenu.menu-open:before {
+          content: attr(data-item-title);
+          position: absolute;
+          height: calc(100% + 15px);
+          top: 0;
+          margin-left: -30px;
+          padding-left: 30px;
+          padding-right: 30px;
+          opacity: 0; }
+        .thb-full-menu li.menu-item-has-children.menu-item-has-megamenu.menu-open:after {
+          opacity: 1; }
+      .thb-full-menu li.menu-item-has-children.menu-item-has-megamenu > a {
+        cursor: pointer; }
     .thb-full-menu li.menu-item-has-children > .thb-full-menu--link {
       padding-right: 15px;
       position: relative; }
