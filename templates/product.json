@@ -249,7 +249,7 @@
       "settings": {
         "heading": " |EN SAVOIR PLUS| ",
         "marker_style": "style2",
-        "description": "",
+        "description": "{{ product.description }}",
         "text_size": "small",
         "tab_alignment": "left",
         "text_alignment": "left",
