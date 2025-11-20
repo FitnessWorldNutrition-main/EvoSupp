@@ -30,6 +30,7 @@
     "color_header_bg": "#fffaf6",
     "color_header_text": "#000000",
     "color_header_links": "#000000",
+    "color_header_links_hover": "#f67200",
     "color_header_icons": "#000000",
     "color_header_border": "#E2E2E2",
     "solid_button_background": "#f67200",
