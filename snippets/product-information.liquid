@@ -381,23 +381,32 @@
       endif
     -%}
     {%- if block.settings.heading != blank and has_content -%}
-    <collapsible-row class="product__accordion accordion" {{ block.shopify_attributes }}>
-      <details id="Details-{{ block.id }}-{{ section.id }}" {% if block.settings.open %}open{% endif %}>
-        <summary>
-          {{ block.settings.heading | default: block.settings.page.title }}
-          <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
-        </summary>
-        <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-          {%- if has_metafield -%}
-            {{ metafield_obj | metafield_tag }}
-          {%- else -%}
-            {{ block.settings.content }}
-            {{ block.settings.page.content }}
-            {{ block.settings.custom_liquid }}
-          {%- endif -%}
-        </div>
-      </details>
-    </collapsible-row>
+    {%- liquid
+      # Add wrapper ID if this tab has variant metafields for dynamic updates
+      assign has_variant_metafield_setting = false
+      if block.settings.variant_metafield_namespace != blank and block.settings.variant_metafield_key != blank
+        assign has_variant_metafield_setting = true
+      endif
+    -%}
+    <div id="collapsible-tab-{{ block.id }}-{{ section.id }}"{% if has_variant_metafield_setting %} data-variant-metafield="true"{% endif %}>
+      <collapsible-row class="product__accordion accordion" {{ block.shopify_attributes }}>
+        <details id="Details-{{ block.id }}-{{ section.id }}" {% if block.settings.open %}open{% endif %}>
+          <summary>
+            {{ block.settings.heading | default: block.settings.page.title }}
+            <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
+          </summary>
+          <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+            {%- if has_metafield -%}
+              {{ metafield_obj | metafield_tag }}
+            {%- else -%}
+              {{ block.settings.content }}
+              {{ block.settings.page.content }}
+              {{ block.settings.custom_liquid }}
+            {%- endif -%}
+          </div>
+        </details>
+      </collapsible-row>
+    </div>
     {%- endif -%}
   {%- when 'specifications_tab' -%}
     {%- if block.settings.heading != blank -%}

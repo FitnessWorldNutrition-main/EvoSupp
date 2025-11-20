@@ -198,7 +198,15 @@ if (!customElements.get('variant-selects')) {
     }
 
     getSectionsToRender() {
-      return [`price-${this.dataset.section}`, `price-${this.dataset.section}--sticky`, `product-image-${this.dataset.section}--sticky`, `inventory-${this.dataset.section}`, `sku-${this.dataset.section}`, `quantity-${this.dataset.section}`];
+      const sections = [`price-${this.dataset.section}`, `price-${this.dataset.section}--sticky`, `product-image-${this.dataset.section}--sticky`, `inventory-${this.dataset.section}`, `sku-${this.dataset.section}`, `quantity-${this.dataset.section}`];
+      
+      // Add collapsible tabs with variant metafields
+      const variantMetafieldTabs = document.querySelectorAll(`[data-variant-metafield="true"]`);
+      variantMetafieldTabs.forEach(tab => {
+        sections.push(tab.id);
+      });
+      
+      return sections;
     }
 
     renderProductInfo() {
@@ -213,7 +221,19 @@ if (!customElements.get('variant-selects')) {
             const destination = document.getElementById(id);
             const source = html.getElementById(id);
 
-            if (source && destination) destination.innerHTML = source.innerHTML;
+            if (source && destination) {
+              // Preserve the open state of collapsible tabs
+              const details = destination.querySelector('details');
+              const wasOpen = details ? details.hasAttribute('open') : false;
+              
+              destination.innerHTML = source.innerHTML;
+              
+              // Restore the open state
+              if (wasOpen) {
+                const newDetails = destination.querySelector('details');
+                if (newDetails) newDetails.setAttribute('open', '');
+              }
+            }
 
             const price = document.getElementById(id);
             const price_fixed = document.getElementById(id + '--sticky');
