@@ -1,1 +1,265 @@
-{"type":"header","name":"Header group","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"text-1":{"type":"text","settings":{"icon":"price_tag","text":"-10% avec le code EVO10","link":"","color_bg":"#ff6b00","color_text":"#ffffff"}},"text_6ftWAE":{"type":"text","settings":{"icon":"price_tag","text":"-10% avec le code EVO10","link":"","color_bg":"#ff6b00","color_text":"#ffffff"}},"text_XMFe7X":{"type":"text","settings":{"icon":"price_tag","text":"-10% avec le code EVO10","link":"","color_bg":"#ff6b00","color_text":"#ffffff"}},"text_8HdNrL":{"type":"text","settings":{"icon":"price_tag","text":"-10% avec le code EVO10","link":"","color_bg":"#ff6b00","color_text":"#ffffff"}},"text_haehtc":{"type":"text","settings":{"icon":"price_tag","text":"-10% avec le code EVO10","link":"","color_bg":"#ff6b00","color_text":"#ffffff"}}},"block_order":["text-1","text_6ftWAE","text_XMFe7X","text_8HdNrL","text_haehtc"],"settings":{"announcement_bar":true,"announcement_bar_homepage_only":false,"announcement_bar_layout":"marquee","direction":"left","speed":"50s","use_block_colors":false,"autoplay":false,"autoplay_length":5}},"header-secondary-menu":{"type":"header-secondary-menu","disabled":true,"settings":{"full_width":false,"secondary_menu":"","show_language_switcher":false,"show_currency_switcher":true,"show_social_media":true}},"header":{"type":"header","blocks":{"menu_badge":{"type":"menu_badge","settings":{"badge_position":"1","text":"🔥","color_bg":"#fffaf5","color_text":"#252f35"}},"megamenu_n9Rmye":{"type":"megamenu","settings":{"position":"2","limit_columns":false,"max_columns":"4","promo_1_heading":"","promo_1_content":"","promo_1_link":"","promo_2_heading":"Promotion heading","promo_2_content":"","promo_2_link":"","promo_3_heading":"Promotion heading","promo_3_content":"","promo_3_link":"","promo_4_heading":"Promotion heading","promo_4_content":"","promo_4_link":""}},"megamenu_trFhRq":{"type":"megamenu","settings":{"position":"3","limit_columns":false,"max_columns":"4","promo_1_heading":"Promotion heading","promo_1_content":"","promo_1_link":"","promo_2_heading":"Promotion heading","promo_2_content":"","promo_2_link":"","promo_3_heading":"Promotion heading","promo_3_content":"","promo_3_link":"","promo_4_heading":"Promotion heading","promo_4_content":"","promo_4_link":""}},"megamenu_B637Ak":{"type":"megamenu","settings":{"position":"4","limit_columns":false,"max_columns":"4","promo_1_image":"shopify:\/\/shop_images\/PROMO_3.png","promo_1_heading":"","promo_1_content":"","promo_1_link":"","promo_2_heading":"Promotion heading","promo_2_content":"","promo_2_link":"","promo_3_heading":"Promotion heading","promo_3_content":"","promo_3_link":"","promo_4_heading":"Promotion heading","promo_4_content":"","promo_4_link":""}},"megamenu_DCtjBY":{"type":"megamenu","settings":{"position":"5","limit_columns":false,"max_columns":"4","promo_1_heading":"Promotion heading","promo_1_content":"","promo_1_link":"","promo_2_heading":"Promotion heading","promo_2_content":"","promo_2_link":"","promo_3_heading":"Promotion heading","promo_3_content":"","promo_3_link":"","promo_4_heading":"Promotion heading","promo_4_content":"","promo_4_link":""}},"megamenu_wKByTE":{"type":"megamenu","settings":{"position":"6","limit_columns":false,"max_columns":"4","promo_1_heading":"Promotion heading","promo_1_content":"","promo_1_link":"","promo_2_heading":"Promotion heading","promo_2_content":"","promo_2_link":"","promo_3_heading":"Promotion heading","promo_3_content":"","promo_3_link":"","promo_4_heading":"Promotion heading","promo_4_content":"","promo_4_link":""}},"secondary_nav_yYbJbx":{"type":"secondary_nav","settings":{"menu":""}},"mobile_secondary_menu_AjC9EX":{"type":"mobile_secondary_menu","settings":{"menu":""}}},"block_order":["menu_badge","megamenu_n9Rmye","megamenu_trFhRq","megamenu_B637Ak","megamenu_DCtjBY","megamenu_wKByTE","secondary_nav_yYbJbx","mobile_secondary_menu_AjC9EX"],"settings":{"sticky_header":false,"full_width":false,"logo":"shopify:\/\/shop_images\/Capture_d_ecran_2025-07-30_a_16.58.46-removebg-preview.png","logo_height_range":54,"logo_height_range_mobile":26,"style":"style1","header_shadow":"header--shadow-small","menu":"main-menu","cart_icon":"cart","minimized_search":true,"transparent_header":false,"show_social_links":true,"show_language_switcher":false,"show_currency_switcher":true}},"header-mobile-navigation":{"type":"header-mobile-navigation","settings":{"mobile_nav":"main-menu","color_links":"#000000","color_bg":"#fffaf6"}}},"order":["announcement-bar","header-secondary-menu","header","header-mobile-navigation"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "icon": "price_tag",
+            "text": "-10% avec le code EVO10",
+            "link": "",
+            "color_bg": "#ff6b00",
+            "color_text": "#ffffff"
+          }
+        },
+        "text_6ftWAE": {
+          "type": "text",
+          "settings": {
+            "icon": "price_tag",
+            "text": "-10% avec le code EVO10",
+            "link": "",
+            "color_bg": "#ff6b00",
+            "color_text": "#ffffff"
+          }
+        },
+        "text_XMFe7X": {
+          "type": "text",
+          "settings": {
+            "icon": "price_tag",
+            "text": "-10% avec le code EVO10",
+            "link": "",
+            "color_bg": "#ff6b00",
+            "color_text": "#ffffff"
+          }
+        },
+        "text_8HdNrL": {
+          "type": "text",
+          "settings": {
+            "icon": "price_tag",
+            "text": "-10% avec le code EVO10",
+            "link": "",
+            "color_bg": "#ff6b00",
+            "color_text": "#ffffff"
+          }
+        },
+        "text_haehtc": {
+          "type": "text",
+          "settings": {
+            "icon": "price_tag",
+            "text": "-10% avec le code EVO10",
+            "link": "",
+            "color_bg": "#ff6b00",
+            "color_text": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "text-1",
+        "text_6ftWAE",
+        "text_XMFe7X",
+        "text_8HdNrL",
+        "text_haehtc"
+      ],
+      "settings": {
+        "announcement_bar": true,
+        "announcement_bar_homepage_only": false,
+        "announcement_bar_layout": "marquee",
+        "direction": "left",
+        "speed": "50s",
+        "use_block_colors": false,
+        "autoplay": false,
+        "autoplay_length": 5
+      }
+    },
+    "header-secondary-menu": {
+      "type": "header-secondary-menu",
+      "disabled": true,
+      "settings": {
+        "full_width": false,
+        "secondary_menu": "",
+        "show_language_switcher": false,
+        "show_currency_switcher": true,
+        "show_social_media": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "menu_badge": {
+          "type": "menu_badge",
+          "settings": {
+            "badge_position": "1",
+            "text": "🔥",
+            "color_bg": "#fffaf5",
+            "color_text": "#252f35"
+          }
+        },
+        "megamenu_n9Rmye": {
+          "type": "megamenu",
+          "settings": {
+            "position": "2",
+            "limit_columns": false,
+            "max_columns": "4",
+            "promo_1_heading": "",
+            "promo_1_content": "",
+            "promo_1_link": "",
+            "promo_2_heading": "Promotion heading",
+            "promo_2_content": "",
+            "promo_2_link": "",
+            "promo_3_heading": "Promotion heading",
+            "promo_3_content": "",
+            "promo_3_link": "",
+            "promo_4_heading": "Promotion heading",
+            "promo_4_content": "",
+            "promo_4_link": ""
+          }
+        },
+        "megamenu_trFhRq": {
+          "type": "megamenu",
+          "settings": {
+            "position": "3",
+            "limit_columns": false,
+            "max_columns": "4",
+            "promo_1_heading": "Promotion heading",
+            "promo_1_content": "",
+            "promo_1_link": "",
+            "promo_2_heading": "Promotion heading",
+            "promo_2_content": "",
+            "promo_2_link": "",
+            "promo_3_heading": "Promotion heading",
+            "promo_3_content": "",
+            "promo_3_link": "",
+            "promo_4_heading": "Promotion heading",
+            "promo_4_content": "",
+            "promo_4_link": ""
+          }
+        },
+        "megamenu_B637Ak": {
+          "type": "megamenu",
+          "settings": {
+            "position": "4",
+            "limit_columns": false,
+            "max_columns": "4",
+            "promo_1_image": "shopify://shop_images/PROMO_3.png",
+            "promo_1_heading": "",
+            "promo_1_content": "",
+            "promo_1_link": "",
+            "promo_2_heading": "Promotion heading",
+            "promo_2_content": "",
+            "promo_2_link": "",
+            "promo_3_heading": "Promotion heading",
+            "promo_3_content": "",
+            "promo_3_link": "",
+            "promo_4_heading": "Promotion heading",
+            "promo_4_content": "",
+            "promo_4_link": ""
+          }
+        },
+        "megamenu_DCtjBY": {
+          "type": "megamenu",
+          "settings": {
+            "position": "5",
+            "limit_columns": false,
+            "max_columns": "4",
+            "promo_1_heading": "Promotion heading",
+            "promo_1_content": "",
+            "promo_1_link": "",
+            "promo_2_heading": "Promotion heading",
+            "promo_2_content": "",
+            "promo_2_link": "",
+            "promo_3_heading": "Promotion heading",
+            "promo_3_content": "",
+            "promo_3_link": "",
+            "promo_4_heading": "Promotion heading",
+            "promo_4_content": "",
+            "promo_4_link": ""
+          }
+        },
+        "megamenu_wKByTE": {
+          "type": "megamenu",
+          "settings": {
+            "position": "6",
+            "limit_columns": false,
+            "max_columns": "4",
+            "promo_1_heading": "Promotion heading",
+            "promo_1_content": "",
+            "promo_1_link": "",
+            "promo_2_heading": "Promotion heading",
+            "promo_2_content": "",
+            "promo_2_link": "",
+            "promo_3_heading": "Promotion heading",
+            "promo_3_content": "",
+            "promo_3_link": "",
+            "promo_4_heading": "Promotion heading",
+            "promo_4_content": "",
+            "promo_4_link": ""
+          }
+        },
+        "secondary_nav_yYbJbx": {
+          "type": "secondary_nav",
+          "settings": {
+            "menu": ""
+          }
+        },
+        "mobile_secondary_menu_AjC9EX": {
+          "type": "mobile_secondary_menu",
+          "settings": {
+            "menu": ""
+          }
+        }
+      },
+      "block_order": [
+        "menu_badge",
+        "megamenu_n9Rmye",
+        "megamenu_trFhRq",
+        "megamenu_B637Ak",
+        "megamenu_DCtjBY",
+        "megamenu_wKByTE",
+        "secondary_nav_yYbJbx",
+        "mobile_secondary_menu_AjC9EX"
+      ],
+      "settings": {
+        "sticky_header": true,
+        "full_width": false,
+        "logo": "shopify://shop_images/Capture_d_ecran_2025-07-30_a_16.58.46-removebg-preview.png",
+        "logo_height_range": 54,
+        "logo_height_range_mobile": 26,
+        "style": "style1",
+        "header_shadow": "header--shadow-small",
+        "menu": "main-menu",
+        "cart_icon": "cart",
+        "minimized_search": true,
+        "transparent_header": false,
+        "show_social_links": true,
+        "show_language_switcher": false,
+        "show_currency_switcher": true
+      }
+    },
+    "header-mobile-navigation": {
+      "type": "header-mobile-navigation",
+      "settings": {
+        "mobile_nav": "main-menu",
+        "color_links": "#000000",
+        "color_bg": "#fffaf6"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header-secondary-menu",
+    "header",
+    "header-mobile-navigation"
+  ]
+}
