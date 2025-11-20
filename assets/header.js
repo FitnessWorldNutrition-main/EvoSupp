@@ -178,6 +178,7 @@ if (!customElements.get('full-menu')) {
         if (link) {
           link.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation(); // Prevent bubbling to document click handler
             
             // Close other mega menus
             this.megaMenuItems.forEach((otherItem) => {
@@ -188,6 +189,16 @@ if (!customElements.get('full-menu')) {
             
             // Toggle current mega menu
             item.classList.toggle('menu-open');
+          });
+        }
+      });
+
+      // Prevent closing when clicking inside mega menu content
+      this.megaMenuItems.forEach((item) => {
+        const submenu = item.querySelector('.sub-menu');
+        if (submenu) {
+          submenu.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent clicks inside mega menu content from closing it
           });
         }
       });
