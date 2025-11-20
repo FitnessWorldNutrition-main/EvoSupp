@@ -23,9 +23,31 @@
 	if color_body_bg == color_bg or color_bg == 'transparent' or color_bg == 'rgba(0,0,0,0)'
 		assign has_bg = false
 	endif
+
+	# Check if there's any content in blocks
+	assign has_content = false
+	for block in section.blocks
+		if block.type == 'tab'
+			if block.settings.text != blank or block.settings.page.content != blank
+				assign has_content = true
+				break
+			endif
+		elsif block.type == 'description'
+			if product.description != blank
+				assign has_content = true
+				break
+			endif
+		elsif block.type == 'custom_liquid'
+			if block.settings.custom_liquid != blank
+				assign has_content = true
+				break
+			endif
+		endif
+	endfor
 -%}
 <div class="row">
 	<div class="small-12 columns">
+		{%- if has_content -%}
 		<div class="tabbed-content-wrapper {% if has_bg -%}tabbed-content--has-bg{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --bg-body-rgb: {{ color_bg.rgb | replace: ' ' , ',' }}; --color-body: {{ color_text }}; --color-tabs: {{ color_tabs.rgb | replace: ' ' , ',' }};">
 			{% render 'section-header', section_heading: section_heading, section_description: section_description, marker_color: marker_color, marker_style: marker_style %}
 			<tabbed-content class="tabbed-content tabs-{{ tab_alignment }} text-size--{{ text_size }}" selected-index="0">
@@ -250,6 +272,7 @@
 				{%- endfor -%}
 			</tabbed-content>
 		</div>
+		{%- endif -%}
 	</div>
 </div>
 
