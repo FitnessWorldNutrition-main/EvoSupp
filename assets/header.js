@@ -190,6 +190,8 @@ if (!customElements.get('full-menu')) {
             // If it wasn't open, open it now (toggle behavior)
             if (!isCurrentlyOpen) {
               item.classList.add('menu-open');
+            } else {
+              link.blur();
             }
           });
         }
