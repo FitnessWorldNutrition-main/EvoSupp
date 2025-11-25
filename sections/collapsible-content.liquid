@@ -43,7 +43,7 @@
 									
 									for next_block in section.blocks offset: current_index
 										if next_block.type == 'content_group'
-											assign next_group_index = forloop.index | plus: current_index
+											assign next_group_index = forloop.index
 											break
 										endif
 									endfor
