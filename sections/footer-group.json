@@ -1,1 +1,75 @@
-{"type":"footer","name":"Footer group","sections":{"footer":{"type":"footer","blocks":{"text":{"type":"text","settings":{"column_size":"large","text_alignment":"left","title":"","image":"shopify:\/\/shop_images\/Capture_d_ecran_2025-07-30_a_16.58.46-removebg-preview.png","text":"","text_size":"medium","button_text":"","button_link":"","show_social_links":false}},"menu-1":{"type":"menu","settings":{"column_size":"small","title":"AIDE","menu":"footer"}},"menu-2":{"type":"menu","settings":{"column_size":"small","title":"NOTRE SÉLECTION","menu":"notre-s-lection"}},"signup":{"type":"signup","settings":{"column_size":"large","title":"REJOINS LA TEAM","text":"<p>Inscris-toi à notre newsletter et reçois <strong>-10% sur ta première commande !<\/strong><\/p>"}}},"block_order":["text","menu-1","menu-2","signup"],"settings":{"footer_reveal_animation":true,"copyright_text":"Tous droits reservés","show_language_switcher":true,"show_currency_switcher":true,"show_payment_icons":true,"enable_follow_on_shop":false}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "column_size": "large",
+            "text_alignment": "left",
+            "title": "",
+            "image": "shopify://shop_images/evosupp-condense.svg",
+            "text": "",
+            "text_size": "medium",
+            "button_text": "",
+            "button_link": "",
+            "show_social_links": false
+          }
+        },
+        "menu-1": {
+          "type": "menu",
+          "settings": {
+            "column_size": "small",
+            "title": "AIDE",
+            "menu": "footer"
+          }
+        },
+        "menu-2": {
+          "type": "menu",
+          "settings": {
+            "column_size": "small",
+            "title": "NOTRE SÉLECTION",
+            "menu": "notre-s-lection"
+          }
+        },
+        "signup": {
+          "type": "signup",
+          "settings": {
+            "column_size": "large",
+            "title": "REJOINS LA TEAM",
+            "text": "<p>Inscris-toi à notre newsletter et reçois <strong>-10% sur ta première commande !</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "menu-1",
+        "menu-2",
+        "signup"
+      ],
+      "settings": {
+        "footer_reveal_animation": true,
+        "copyright_text": "Tous droits reservés",
+        "show_language_switcher": true,
+        "show_currency_switcher": true,
+        "show_payment_icons": true,
+        "enable_follow_on_shop": false
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
