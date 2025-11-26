@@ -32,7 +32,7 @@
           "type": "menu",
           "settings": {
             "column_size": "small",
-            "title": "AIDE",
+            "title": "AIDE & INFOS",
             "menu": "footer"
           }
         },
@@ -40,7 +40,7 @@
           "type": "menu",
           "settings": {
             "column_size": "small",
-            "title": "NOTRE SÉLECTION",
+            "title": "LIENS UTILES",
             "menu": "notre-s-lection"
           }
         },
