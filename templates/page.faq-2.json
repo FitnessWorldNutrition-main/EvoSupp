@@ -177,21 +177,19 @@
           "settings": {
             "heading": "Comment nous contacter ?",
             "open": false,
-            "content": "<p>Vous pouvez nous contacter grâce à notre <a href=\"https://www.fitness-world-nutrition.com/pages/contact\" title=\"Contact\">formulaire de contact</a>.</p>",
+            "content": "<p>Contacter nous grâce à notre <a href=\"https://evosupp.com/pages/contact\" title=\"https://evosupp.com/pages/contact\">formulaire de contact</a>.</p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
-        "collapsible_tab_innhiz": {
-          "type": "collapsible_tab",
+        "content_group_pGULr3": {
+          "type": "content_group",
           "settings": {
-            "heading": "Collapsible row",
-            "open": false,
-            "content": "",
-            "page": "",
-            "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "heading": "",
+            "text": "",
+            "heading_bg": "rgba(0,0,0,0)",
+            "heading_text": "#1a1c1d"
           }
         }
       },
@@ -212,7 +210,7 @@
         "collapsible_tab_PJAB4Y",
         "content_group_ewbJhE",
         "collapsible_tab_Cb6dHb",
-        "collapsible_tab_innhiz"
+        "content_group_pGULr3"
       ],
       "name": "Collapsible content",
       "settings": {
