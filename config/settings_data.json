@@ -75,6 +75,7 @@
     "search_product_collection": "all",
     "search_product_collection_limit": 3,
     "email_terms_conditions_enable": true,
+    "favicon": "shopify://shop_images/favicon.svg",
     "search_product_list": [],
     "content_for_index": [],
     "blocks": {
