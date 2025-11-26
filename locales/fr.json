@@ -473,5 +473,10 @@
     "discount_code_error": "Le code de réduction ne peut pas être appliqué à votre panier",
     "discounts": "Réductions",
     "apply": "Appliquer"
+  },
+  "shopify": {
+    "links": {
+      "powered_by_shopify": " "
+    }
   }
 }
