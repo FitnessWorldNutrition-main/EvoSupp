@@ -113,12 +113,23 @@
         "collapsible_tab_EEfYGG": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Puis-je retourner un article ?",
             "open": false,
-            "content": "",
+            "content": "<p>Oui. Vous disposez d’un délai de 14 jours après réception de votre commande pour nous retourner un produit, à condition qu’il soit intact, non utilisé et conservé dans son emballage d’origine.</p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
+          }
+        },
+        "collapsible_tab_C6m6Vf": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Comment obtenir un remboursement ?",
+            "open": false,
+            "content": "<p>Pour demander un remboursement, il vous suffit de nous contacter en indiquant votre numéro de commande. Une fois votre produit retourné, reçu et contrôlé, le remboursement sera traité dans les jours qui suivent.</p>",
+            "page": "",
+            "custom_liquid": "",
+            "icon_color": "#ff6b00"
           }
         },
         "content_group_etepP6": {
@@ -133,20 +144,51 @@
         "collapsible_tab_Hg9xBG": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Mon colis est en retard ou introuvable, que dois-je faire ?",
+            "heading": "Mon colis est en retard ou perdu, que dois-je faire ?",
             "open": false,
             "content": "<p>Si vous rencontrez un retard de livraison ou pensez que votre colis a été perdu, contactez-nous dès que possible. Nous nous chargerons de vérifier la situation auprès du transporteur et ferons le nécessaire pour résoudre le problème dans les meilleurs délais.</p>",
             "page": "",
             "custom_liquid": "",
-            "icon_color": "#1a1c1d"
+            "icon_color": "#ff6b00"
           }
         },
         "collapsible_tab_PJAB4Y": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Comment obtenir un remboursement ?",
+            "heading": "J’ai reçu un produit endommagé ou qui ne correspond pas à ma commande",
             "open": false,
-            "content": "<p>Pour demander un remboursement, il vous suffit de nous contacter en indiquant votre numéro de commande. Une fois votre produit retourné, reçu et contrôlé, le remboursement sera traité dans les jours qui suivent.</p>",
+            "content": "<p>Si votre colis arrive endommagé ou si un article reçu ne correspond pas à votre commande, veuillez d’abord le signaler au transporteur au moment de la livraison en mentionnant des réserves précises sur le bordereau de réception, puis en vérifiant le contenu du colis.</p><p>Ensuite, contactez-nous via notre formulaire de contact en indiquant votre numéro de commande et en joignant des photos du colis ainsi que des produits concernés. Nous reviendrons vers vous rapidement afin de trouver la solution la plus adaptée.</p>",
+            "page": "",
+            "custom_liquid": "",
+            "icon_color": "#ff6b00"
+          }
+        },
+        "content_group_ewbJhE": {
+          "type": "content_group",
+          "settings": {
+            "heading": "NOUS CONTACTER",
+            "text": "",
+            "heading_bg": "#ffefdd",
+            "heading_text": "#ff6b00"
+          }
+        },
+        "collapsible_tab_Cb6dHb": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Comment nous contacter ?",
+            "open": false,
+            "content": "<p>Vous pouvez nous contacter grâce à notre <a href=\"https://www.fitness-world-nutrition.com/pages/contact\" title=\"Contact\">formulaire de contact</a>.</p>",
+            "page": "",
+            "custom_liquid": "",
+            "icon_color": "#1a1c1d"
+          }
+        },
+        "collapsible_tab_innhiz": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Collapsible row",
+            "open": false,
+            "content": "",
             "page": "",
             "custom_liquid": "",
             "icon_color": "#1a1c1d"
@@ -164,9 +206,13 @@
         "collapsible_tab_7eLUnc",
         "content_group_TXtGG9",
         "collapsible_tab_EEfYGG",
+        "collapsible_tab_C6m6Vf",
         "content_group_etepP6",
         "collapsible_tab_Hg9xBG",
-        "collapsible_tab_PJAB4Y"
+        "collapsible_tab_PJAB4Y",
+        "content_group_ewbJhE",
+        "collapsible_tab_Cb6dHb",
+        "collapsible_tab_innhiz"
       ],
       "name": "Collapsible content",
       "settings": {
