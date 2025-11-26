@@ -245,7 +245,7 @@
           "type": "media",
           "settings": {
             "image": "shopify://shop_images/evosupp_whey.webp",
-            "slide_link": "",
+            "slide_link": "shopify://collections/whey",
             "use_video": false,
             "video_autoplay": true,
             "column": 2,
@@ -269,7 +269,7 @@
           "type": "media",
           "settings": {
             "image": "shopify://shop_images/evosupp_preworkout.webp",
-            "slide_link": "",
+            "slide_link": "shopify://collections/pre-workout",
             "use_video": false,
             "video_autoplay": true,
             "column": 2,
@@ -316,7 +316,7 @@
           "type": "media",
           "settings": {
             "image": "shopify://shop_images/evosupp_snack.webp",
-            "slide_link": "",
+            "slide_link": "shopify://collections/snack-proteine",
             "use_video": false,
             "video_autoplay": true,
             "column": 1,
