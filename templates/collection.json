@@ -95,7 +95,7 @@
             "summary_padding": 0,
             "summary_title_font_size": 24,
             "summary_list_font_size": 15,
-            "tab_label": "",
+            "tab_label": "Sommaire",
             "icon": "none",
             "text": "{{ collection.description }}",
             "text_columns": "1",
