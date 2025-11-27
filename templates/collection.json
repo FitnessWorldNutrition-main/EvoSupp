@@ -97,7 +97,7 @@
             "summary_list_font_size": 15,
             "tab_label": "",
             "icon": "none",
-            "text": "<p></p><h2>test</h2><p>Le bisglycinate de magnésium s’impose aujourd’hui comme l’une des formes les plus recherchées et recommandées en supplémentation de magnésium. S’il est devenu un incontournable, c’est parce qu’il associe excellente biodisponibilité et qu’il se digère mieux que les formes de magnésium plus classique comme le citrate de magnésium. Contrairement à d'autres formes de magnésium souvent mal absorbées ou sources d’inconfort intestinal, le bisglycinate se distingue par sa capacité à être bien assimilé par l’organisme.Magnésium bisglycinate c'est quoi ?Le magnésium bisglycinate (aussi appelé bisglycinate de magnésium) est une forme chélatée, c’est-à-dire que le magnésium est lié à deux molécules de glycine, un acide aminé naturellement présent dans le corps humain. Cette liaison crée une structure stable et bien tolérée par le système digestif.Concrètement, cette forme \"bisglycinate\" permet au magnésium d’être mieux transporté à travers la paroi intestinale, grâce à la glycine. Cela se traduit par une meilleure biodisponibilité (absorption optimisée) et moins d’effets secondaires digestifs que d’autres formes plus courantes.Pourquoi prendre du magnésium ?Le magnésium est un minéral essentiel que l’on retrouve naturellement dans l’organisme, principalement dans les os (environ 60 %), mais aussi dans les muscles (environ 30 %) et, dans une moindre mesure, dans le sang et les tissus mous. Puisque notre corps ne sait pas le</p>",
+            "text": "{{ collection.description }}",
             "text_columns": "1",
             "page": "",
             "custom_liquid": ""
