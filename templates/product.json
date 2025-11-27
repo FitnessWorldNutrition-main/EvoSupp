@@ -86,9 +86,9 @@
         "coupon_code_dhiG7D": {
           "type": "coupon_code",
           "settings": {
-            "icon": "ruler",
+            "icon": "lightning_bolt",
             "has_background": true,
-            "text": "<p>Advertise your coupon code here.</p>",
+            "text": "<p>-10% sur votre commande avec le code</p>",
             "coupon_text": "VISION10",
             "copy_text": "Copier le code",
             "coupon_box_bg_color": "#ffefdd",
