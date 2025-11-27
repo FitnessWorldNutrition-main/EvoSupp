@@ -152,7 +152,7 @@
             "position": "4",
             "limit_columns": false,
             "max_columns": "4",
-            "promo_1_image": "shopify://shop_images/promo.webp",
+            "promo_1_image": "shopify://shop_images/promo_1.webp",
             "promo_1_heading": "",
             "promo_1_content": "",
             "promo_1_link": "",
