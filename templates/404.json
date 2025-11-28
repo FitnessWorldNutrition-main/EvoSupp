@@ -1,1 +1,76 @@
-{"sections":{"main":{"type":"main-404","settings":{}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "disabled": true,
+      "settings": {}
+    },
+    "slideshow_efp6hf": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_6NxUiC": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Exercice-jambes-salle-et-maison.webp",
+            "slide_link": "",
+            "video_background": false,
+            "badge_text": "",
+            "subheading": "",
+            "heading": "PAGE 404",
+            "heading_size": "h1",
+            "content": "La page que vous recherchez n'existe pas. Vous avez peut-être mal tapé l'adresse ou la page a peut-être été déplacée.",
+            "description_size": "medium",
+            "content_position": "middle-center",
+            "text_alignment": "center",
+            "content_size": "medium",
+            "color_slidebg": "transparent",
+            "color_slidebg_opacity": 28,
+            "color_slidebg_blur": 15,
+            "color_text": "#ffffff",
+            "color_badge_bg": "#3f72e5",
+            "color_badge_text": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 100,
+            "overlay_gradient": "linear-gradient(180deg, rgba(6, 0, 0, 0.1), rgba(0, 0, 0, 0.4) 100%)",
+            "button_1_text": "CONTINUER MES ACHATS",
+            "button_1_color": "accent",
+            "button_1_link": "",
+            "use_text_button_1": false,
+            "button_2_text": "",
+            "button_2_color": "white",
+            "button_2_link": "",
+            "use_text_button_2": false
+          }
+        }
+      },
+      "block_order": [
+        "slide_6NxUiC"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "desktop_height": "desktop-height-650",
+        "mobile_height": "mobile-height-500",
+        "full_width": true,
+        "autoplay": false,
+        "autoplay_length": 5,
+        "transition": "zoom",
+        "controls": "arrows-with-numbers",
+        "disable_top_spacing": true,
+        "disable_bottom_spacing": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_efp6hf"
+  ]
+}
