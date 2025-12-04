@@ -76,7 +76,7 @@
     "cart_drawer_cart_button": false,
     "free_shipping_minimum": "90",
     "search_product_heading": "Meilleures ventes",
-    "search_product_collection": "all",
+    "search_product_collection": "essential-supp",
     "search_product_collection_limit": 3,
     "currency_code_enabled": false,
     "email_terms_conditions_enable": true,
