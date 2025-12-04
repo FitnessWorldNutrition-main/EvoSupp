@@ -38,9 +38,9 @@
   {%- when 'separator' -%}
     <hr class="product-information--separator" {{ block.shopify_attributes }}/>
   {%- when 'text' -%}
-    <p class="product--text {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+    <div class="product--text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
       {{- block.settings.text -}}
-    </p>
+    </div>
   {%- when 'custom_liquid' -%}
     {{ block.settings.custom_liquid }}
   {%- when 'title' -%}
