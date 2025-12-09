@@ -359,26 +359,58 @@
       opacity: 1; }
   .product-card--add-to-cart-button {
     font-size: 0.8125rem;
-    margin-top: 15px;
-    width: 100%;
-    height: 44px;
-    border-radius: calc(var(--block-border-radius, 16px) / 2); }
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--cart-button-bg, #000);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    padding: 0;
+    opacity: 0;
+    transform: scale(0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+    @media only screen and (min-width: 768px) {
+      .product-card--add-to-cart-button {
+        width: 52px;
+        height: 52px; } }
+    .product-card--add-to-cart-button:hover {
+      transform: scale(0.9);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
     .product-card--add-to-cart-button-wrapper {
-      margin-top: auto; }
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 30; }
+      @media only screen and (min-width: 768px) {
+        .product-card--add-to-cart-button-wrapper {
+          top: 15px;
+          right: 15px; } }
     .product-card--add-to-cart-button .spinner {
       position: absolute;
       top: 50%;
       left: 50%;
       z-index: 20;
       opacity: 0;
-      width: 34px;
-      height: 34px;
-      margin: -17px 0 0 -17px;
-      padding: 10px; }
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0 -12px;
+      padding: 0; }
+    .product-card--add-to-cart-button .product-card--cart-icon {
+      width: 24px;
+      height: 20px;
+      transition: opacity 0.25s ease; }
     .product-card--add-to-cart-button.loading .spinner {
       opacity: 1; }
-    .product-card--add-to-cart-button.loading .product-card--add-to-cart-text {
+    .product-card--add-to-cart-button.loading .product-card--cart-icon {
       opacity: 0; }
+  .product-card:hover .product-card--add-to-cart-button {
+    opacity: 1;
+    transform: scale(1); }
   .product-card .product-card-swatches {
     line-height: 0;
     position: absolute;

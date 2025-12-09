@@ -712,6 +712,12 @@
         "default": false
       },
       {
+        "type": "color",
+        "id": "quick_add_button_bg",
+        "label": "Quick add button background color",
+        "default": "#000000"
+      },
+      {
         "type": "checkbox",
         "id": "show_products_vendor",
         "label": "Show vendor",
