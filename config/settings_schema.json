@@ -718,6 +718,12 @@
         "default": "#000000"
       },
       {
+        "type": "color",
+        "id": "quick_add_button_icon_color",
+        "label": "Quick add button icon color",
+        "default": "#ffffff"
+      },
+      {
         "type": "checkbox",
         "id": "show_products_vendor",
         "label": "Show vendor",

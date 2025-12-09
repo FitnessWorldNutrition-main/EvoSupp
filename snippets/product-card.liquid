@@ -92,7 +92,7 @@
 				{%- endif -%}
 				{%- assign tabs_produits_incompatibles = tabs_produits_incompatibles | append: produit.id -%}
 			{%- endfor -%}
-			<div class="product-card--add-to-cart-button-wrapper" style="--cart-button-bg: {{ settings.quick_add_button_bg }};">
+			<div class="product-card--add-to-cart-button-wrapper" style="--cart-button-bg: {{ settings.quick_add_button_bg }}; --cart-icon-color: {{ settings.quick_add_button_icon_color }};">
 				<{{ button_tag }} class="product-card--add-to-cart-button{% if is_purchasable %} product-card--add-to-cart-button-simple{% endif %}" data-product-id="{{ product_card_product.selected_or_first_available_variant.id }}" data-product-handle="{{ product_card_product.handle }}" {% if product_card_product.metafields.custom.max_quantity.value != blank %}data-max-quantity="{{ product_card_product.metafields.custom.max_quantity.value }}"{% else %}data-max-quantity="none"{% endif %} {% if tabs_produits_incompatibles != blank %}data-incompatible-products="{{ tabs_produits_incompatibles }}"{% endif %} tabindex="-1" {% if product_card_product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
 					{% render 'svg-icons' with 'thb-loading' %}
 					<svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="product-card--cart-icon">
@@ -147,7 +147,7 @@
 			</quick-view>
 		</a>
 		{%- if settings.enable_quick_add -%}
-		<div class="product-card--add-to-cart-button-wrapper" style="--cart-button-bg: {{ settings.quick_add_button_bg }};">
+		<div class="product-card--add-to-cart-button-wrapper" style="--cart-button-bg: {{ settings.quick_add_button_bg }}; --cart-icon-color: {{ settings.quick_add_button_icon_color }};">
 			<quick-view class="product-card--add-to-cart-button" data-product-handle="" tabindex="-1">
 				{% render 'svg-icons' with 'thb-loading' %}
 				<svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="product-card--cart-icon">
