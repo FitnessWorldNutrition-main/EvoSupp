@@ -88,7 +88,7 @@
           "settings": {
             "icon": "lightning_bolt",
             "has_background": true,
-            "text": "<p>-20% sur votre commande avec le code</p>",
+            "text": "<p>-20% sur ta commande avec le code</p>",
             "coupon_text": "EVO20",
             "copy_text": "Copier le code",
             "coupon_box_bg_color": "#ffefdd",
