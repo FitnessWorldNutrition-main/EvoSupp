@@ -24,7 +24,7 @@
           "type": "text",
           "disabled": true,
           "settings": {
-            "text": "{{ product.vendor }}",
+            "text": "<p>{{ product.vendor }}</p>",
             "text_style": "style_vendor"
           }
         },
@@ -88,8 +88,8 @@
           "settings": {
             "icon": "lightning_bolt",
             "has_background": true,
-            "text": "<p>-10% sur votre commande avec le code</p>",
-            "coupon_text": "VISION10",
+            "text": "<p>-20% sur votre commande avec le code</p>",
+            "coupon_text": "EVO20",
             "copy_text": "Copier le code",
             "coupon_box_bg_color": "#ffefdd",
             "coupon_box_text_color": "#000000",
