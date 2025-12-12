@@ -516,56 +516,56 @@
     "e64d388d-d7ce-40d4-9265-98b1b32fb9de": {
       "type": "logo-list",
       "blocks": {
-        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-1": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/Capture_d_ecran_2025-08-11_a_16.18.06-removebg-preview.png",
-            "link": ""
-          }
-        },
-        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-2": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/4281eace-cadf-4729-afd4-e7acba9b4e1c.png",
-            "link": ""
-          }
-        },
-        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-3": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/Foodspring_Logo-edited-380x250.png",
-            "link": ""
-          }
-        },
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-4": {
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/58c8c819-7b39-4ecd-b458-e22e44db6c95.png",
-            "link": ""
+            "link": "shopify://collections/essential-supp"
           }
         },
-        "0b1d878e-ab59-4405-b5bd-9bd8556dde4c": {
+        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-1": {
           "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/INLEAD-Logo-NEU-schwarzUthW4hVhUKKbr.png",
-            "link": ""
+            "image": "shopify://shop_images/Capture_d_ecran_2025-08-11_a_16.18.06-removebg-preview.png",
+            "link": "shopify://collections/per4m"
           }
         },
         "logo_ceRVJD": {
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/JP_trainedbyjp_logo_black_1_1200x1200_06c742d6-77a2-499a-8688-45edd9c4240d.webp",
-            "link": ""
+            "link": "shopify://collections/tbjp"
+          }
+        },
+        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/4281eace-cadf-4729-afd4-e7acba9b4e1c.png",
+            "link": "shopify://collections/lifepro-nutrition"
+          }
+        },
+        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/YAMAMOTO_idE0NTGdeA_1.svg",
+            "link": "shopify://collections/yamamoto-nutrition"
+          }
+        },
+        "0b1d878e-ab59-4405-b5bd-9bd8556dde4c": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/INLEAD-Logo-NEU-schwarzUthW4hVhUKKbr.png",
+            "link": "shopify://collections/inlead"
           }
         }
       },
       "block_order": [
+        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-4",
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-1",
+        "logo_ceRVJD",
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-2",
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-3",
-        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-4",
-        "0b1d878e-ab59-4405-b5bd-9bd8556dde4c",
-        "logo_ceRVJD"
+        "0b1d878e-ab59-4405-b5bd-9bd8556dde4c"
       ],
       "settings": {
         "heading": "TOP |MARQUES|",
