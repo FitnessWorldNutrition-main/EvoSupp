@@ -45,8 +45,8 @@
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
-        "heading": "You may also like",
-        "description": "<p>Describe your featured collection here</p>",
+        "heading": "Vous allez aussi aimer",
+        "description": "",
         "mobile_swipe": true,
         "product_limit": 4,
         "columns_desktop": 4,
