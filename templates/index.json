@@ -72,7 +72,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/banniere_evosupp.webp",
-            "slide_link": "",
+            "slide_link": "shopify://collections/nouveautes",
             "video_background": false,
             "badge_text": "",
             "subheading": "LE MEILLEUR DES MARQUES",
@@ -94,7 +94,7 @@
             "overlay_gradient": "",
             "button_1_text": "JE DÉCOUVRE",
             "button_1_color": "regular",
-            "button_1_link": "",
+            "button_1_link": "shopify://collections/nouveautes",
             "use_text_button_1": false,
             "button_2_text": "",
             "button_2_color": "regular",
