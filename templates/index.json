@@ -173,9 +173,9 @@
           "settings": {
             "collection": "meilleures-ventes",
             "enable_promotion": true,
-            "image": "shopify://shop_images/Design_sans_titre_16.png",
-            "title": "PROMO",
-            "text": "-20% sur ta commande avec le code EVO20",
+            "image": "shopify://shop_images/promo20.webp",
+            "title": "",
+            "text": "",
             "link_label": "",
             "content_position": "bottom-left",
             "text_alignment": "left",
