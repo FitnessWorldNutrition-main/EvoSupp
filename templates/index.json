@@ -72,7 +72,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/banniere_evosupp.webp",
-            "slide_link": "shopify://collections",
+            "slide_link": "",
             "video_background": false,
             "badge_text": "",
             "subheading": "LE MEILLEUR DES MARQUES",
