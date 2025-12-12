@@ -272,7 +272,6 @@
     },
     "product-recommendations": {
       "type": "product-recommendations",
-      "disabled": true,
       "settings": {
         "heading": "VOUS AIMEREZ AUSSI",
         "description": "",
