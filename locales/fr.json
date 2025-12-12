@@ -125,7 +125,7 @@
       "maximum_quantity": "Quantité maximale atteinte",
       "produits_incompatibles": "Produit incompatible dans le panier",
       "price": {
-        "from_price_html": "Du {{ price }}",
+        "from_price_html": "{{ price }}",
         "regular_price": "Prix habituel",
         "sale_price": "Prix soldé",
         "unit_price": "Prix unitaire"
