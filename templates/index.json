@@ -630,6 +630,7 @@
     },
     "featured_blog_wyGHdq": {
       "type": "featured-blog",
+      "disabled": true,
       "settings": {
         "heading": "",
         "marker_style": "style1",
