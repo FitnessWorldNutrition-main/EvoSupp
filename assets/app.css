@@ -2674,6 +2674,9 @@ h6,
   cursor: default !important;
   animation: none !important;
   transition: none !important;
+}
+
+.mega-menu-columns__heading:after{
   background: none !important;
 }
 .thb-full-menu {
