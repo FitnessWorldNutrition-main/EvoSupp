@@ -2693,7 +2693,7 @@ h6,
       transform-origin: left center;
       background: var(--color-header-links-hover, --color-accent); }
     .thb-full-menu--link:hover, .thb-full-menu--link:focus {
-      color: var(--color-header-links-hover, --color-accent2); }
+      color: none; text-decoration: none; }
       .thb-full-menu--link:hover:after, .thb-full-menu--link:focus:after {
         transform: scale(1, 1); }
       .thb-full-menu--link:hover svg path, .thb-full-menu--link:focus svg path {
