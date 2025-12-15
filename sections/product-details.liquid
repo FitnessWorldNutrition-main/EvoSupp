@@ -67,7 +67,7 @@
 							{%- when 'description' -%}
 								{%- if block.settings.show_summary -%}
 									<div class="description-with-summary">
-										<div class="description-summary" id="description-summary-{{ block.id }}">
+										<div class="description-summary" id="description-summary-{{ block.id }}" style="scrollbar-width: none;">
 											<style>
 												.description-summary-{{ block.id }} {
 													background-color: {{ block.settings.summary_background_color | default: 'transparent' }};
