@@ -280,7 +280,7 @@
           {{ product.metafields.woo.quantite }} {{ product.metafields.woo['type-quantite'] }}
         {% endif %}
       </label>
-      <quantity-selector class="quantity">
+      <quantity-selector class="quantity"  style="border: 1px solid #d3d3d3 !important; padding: 12px 17px !important; height: 50px !important; border-radius: 6px !important; background: transparent !important;">
         <button class="minus" type="button" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}">
           {% render 'svg-icons' with 'minus' %}
         </button>
@@ -301,7 +301,6 @@
           step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
           form="{{ product_form_id }}"
           aria-label="{{ 'products.product.quantity.input_label' | t: product: product.title | escape }}"
-          style="border: 1px solid #d3d3d3 !important; padding: 12px 17px !important; height: 50px !important; border-radius: 6px !important; background: transparent !important;"
         >
         <button class="plus" type="button" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | escape }}">{% render 'svg-icons' with 'plus' %}</button>
       </quantity-selector>
