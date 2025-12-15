@@ -1435,7 +1435,7 @@
 
 .product-add-to-cart-sticky {
   position: fixed;
-  bottom: 15px;
+  bottom: 80px;
   right: 15px;
   width: calc(100% - 30px);
   max-width: 420px;
@@ -1447,7 +1447,7 @@
     transform: translateX(0%); }
   @media only screen and (min-width: 768px) {
     .product-add-to-cart-sticky {
-      bottom: 30px;
+      bottom: 80px;
       right: 30px; } }
   .product-add-to-cart-sticky--image {
     width: 48px;
