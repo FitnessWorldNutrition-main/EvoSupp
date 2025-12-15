@@ -2671,6 +2671,9 @@ h6,
 .thb-full-menu .mega-menu-columns__heading:hover{
   text-decoration: none !important;
   color: var(--color-header-links, --color-accent) !important;
+  cursor: none !important;
+  animation: none !important;
+  transition: none !important;
 }
 .thb-full-menu {
   margin: 0;
