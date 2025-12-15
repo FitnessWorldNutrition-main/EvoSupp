@@ -37,6 +37,9 @@
     },
     "main-cart": {
       "type": "main-cart",
+      "custom_css": [
+        ".cart__dynamic-checkout-buttons{display: none;}"
+      ],
       "settings": {
         "cart_notes_enable": false,
         "cart_add_discounts": true
