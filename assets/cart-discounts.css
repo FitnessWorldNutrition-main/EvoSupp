@@ -8,7 +8,7 @@
     display: flex;
     gap: 5px; }
   .cart-discounts--input {
-    border-color: #D3D3D3;
+    border-color: #D3D3D3 !important;
     flex: 1; }
   .cart-discounts--row {
     display: flex;
