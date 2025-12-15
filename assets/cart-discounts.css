@@ -11,16 +11,35 @@
     flex: 1; }
   .cart-discounts--row {
     display: flex;
-    gap: 10px; }
+    gap: 10px;
+    align-items: center; }
     .cart-discounts--row .price {
       margin-left: auto; }
+    .cart-discounts--row > div {
+      display: inline-flex;
+      align-items: center; }
+  .cart-discounts--name {
+    display: inline-block;
+    background-color: #FF6B35;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.5px; }
   .cart-discounts--remove {
     margin-left: 7px;
-    padding: 2px; }
+    padding: 2px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    line-height: 1; }
     .cart-discounts--remove svg {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       pointer-events: none;
-      --color-body: #E93636; }
+      --color-body: #666666; }
+      .cart-discounts--remove:hover svg {
+        --color-body: #E93636; }
   .cart-discounts--error {
     margin-bottom: 10px; }
