@@ -97,15 +97,6 @@
     "header": {
       "type": "header",
       "blocks": {
-        "menu_badge": {
-          "type": "menu_badge",
-          "settings": {
-            "badge_position": "1",
-            "text": "🔥",
-            "color_bg": "#fffaf5",
-            "color_text": "#252f35"
-          }
-        },
         "megamenu_n9Rmye": {
           "type": "megamenu",
           "settings": {
@@ -221,7 +212,6 @@
         }
       },
       "block_order": [
-        "menu_badge",
         "megamenu_n9Rmye",
         "megamenu_trFhRq",
         "megamenu_B637Ak",
