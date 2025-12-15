@@ -16,6 +16,7 @@
 				id="Option-{{ section.id }}-{{ forloop.index0 }}{{ appended }}"
 				name="options[{{ option.name | escape | append: appended }}]"
 				form="{{ product_form_id }}"
+				style="border: 1px solid #d3d3d3 !important; padding: 12px 17px !important; height: 50px !important; border-radius: 6px !important; background: transparent !important;"
 			>
 		    {%- for value in option.values -%}
 		      <option
