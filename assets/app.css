@@ -2668,9 +2668,9 @@ h6,
     .full-menu {
       display: inline-flex; } }
 
-.mega-menu-columns > .thb-full-menu--link:hover{
+.thb-full-menu .mega-menu-columns__heading:hover{
   text-decoration: none !important;
-  color: var(--color-header-links, --color-accent);
+  color: var(--color-header-links, --color-accent) !important;
 }
 .thb-full-menu {
   margin: 0;
