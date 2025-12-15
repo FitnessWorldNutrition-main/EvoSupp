@@ -93,20 +93,23 @@
 						<custom-select class="custom-select" data-auto-close="true">
 							{%- liquid
 								assign sort_by = results.sort_by | default: results.default_sort_by
+								assign excluded_sorts = 'best-selling,created-ascending,created-descending'
 								for option in results.sort_options
-									if option.value == sort_by and option.value != 'best-selling'
-										assign sort_by_name = option.name
-									endif
+									unless excluded_sorts contains option.value
+										if option.value == sort_by
+											assign sort_by_name = option.name
+										endif
+									endunless
 								endfor
 								
-								# If best-selling is selected, use the first available option instead
-								if sort_by == 'best-selling'
+								# If an excluded sort is selected, use the first available option instead
+								if excluded_sorts contains sort_by
 									for option in results.sort_options
-										if option.value != 'best-selling'
+										unless excluded_sorts contains option.value
 											assign sort_by_name = option.name
 											assign sort_by = option.value
 											break
-										endif
+										endunless
 									endfor
 								endif
 							-%}
@@ -115,7 +118,7 @@
 								<scroll-shadow>
 									<ul>
 										{%- for option in results.sort_options -%}
-											{%- unless option.value == 'best-selling' -%}
+											{%- unless option.value == 'best-selling' or option.value == 'created-ascending' or option.value == 'created-descending' -%}
 												<li class="custom-select--item" tabindex="-1">
 													<button class="{% if option.value == sort_by %}custom-select--item-active{% endif %}" {% if option.value == sort_by %} aria-current="true"{% endif %} data-value="{{ option.value | escape }}">
 														{{ option.name | escape }}
