@@ -346,7 +346,7 @@
   width: 100%;
   align-items: center;
   font-weight: var(--font-body-medium-weight, 500);
-  font-size: 0.8125rem;
+  font-size: 1rem;
   margin-bottom: 9px; }
   .form__label__value {
     font-weight: 400;
