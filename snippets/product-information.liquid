@@ -274,7 +274,12 @@
       id="quantity-{{ section.id }}"
       {{ block.shopify_attributes }}
     >
-      <label class="form__label quantity__label">{{ 'products.product.quantity.label' | t }}</label>
+      <label class="form__label quantity__label">
+        {{ 'products.product.quantity.label' | t }}:
+        {% if product.metafields.woo.quantite %}
+          {{ product.metafields.woo.quantite }} {{ product.metafields.woo['type-quantite'] }}
+        {% endif %}
+      </label>
       <quantity-selector class="quantity">
         <button class="minus" type="button" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}">
           {% render 'svg-icons' with 'minus' %}
