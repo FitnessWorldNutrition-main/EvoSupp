@@ -847,6 +847,11 @@
   .thb-product-detail .product-short-description video {
     max-width: 100%; }
 
+.description-summary {
+  scrollbar-width: none; }
+  .description-summary::-webkit-scrollbar {
+    display: none; }
+
 .thb-product-detail .quantity {
   margin-bottom: 30px; }
 
