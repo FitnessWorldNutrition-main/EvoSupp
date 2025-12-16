@@ -2676,6 +2676,14 @@ h6,
   transition: none !important;
 }
 
+.thb-full-menu .mega-menu-columns__heading:focus{
+  text-decoration: none !important;
+  color: var(--color-header-links, --color-accent) !important;
+  cursor: default !important;
+  animation: none !important;
+  transition: none !important;
+}
+
 .mega-menu-columns__heading:after{
   background: none !important;
 }
