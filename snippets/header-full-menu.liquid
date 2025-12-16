@@ -12,6 +12,7 @@
 				assign has_sub_menu = false
 				assign has_mega_menu = false
 				assign has_menu_badge = false
+				assign has_menu_color = false
 				assign mega_menu_block_index = false
 				assign mega_menu_block_index_sidebar = false
 
@@ -20,6 +21,9 @@
 				
 				assign menu_badge_index = false
 				assign menu_badge_blocks = blocks | where: "type", "menu_badge"
+				
+				assign menu_color_index = false
+				assign menu_color_blocks = blocks | where: "type", "menu_color"
 
 				if link.links.size > 0
 					assign has_sub_menu = true
@@ -38,6 +42,14 @@
 						assign menu_badge_index = forloop.index0
 					endif
 				endfor
+				
+				for block in menu_color_blocks
+					assign color_position = block.settings.menu_position | plus: 0
+		    	if color_position == parent_index
+						assign has_menu_color = true
+						assign menu_color_index = forloop.index0
+					endif
+				endfor
 
 				for block in mega_menu_blocks_sidebar
 					assign position_sidebar = block.settings.position | plus: 0
@@ -51,7 +63,13 @@
 					assign menu_has_mega_menu = true
 				endif
 			-%}
-		  <li role="none" class="{% if has_sub_menu or has_mega_menu %}menu-item-has-children{% endif %}{% if has_mega_menu %} menu-item-has-megamenu{% endif %}{% if link.active %} active{% endif %}" {% if has_sub_menu %}data-item-title="{{ link.title | escape }}"{% endif %}>
+			{%- capture menu_item_style -%}
+				{%- if has_menu_color -%}
+					{%- assign menu_color_block = menu_color_blocks[menu_color_index] -%}
+					--menu-item-color: {{ menu_color_block.settings.menu_item_color }};--menu-item-hover-color: {{ menu_color_block.settings.menu_item_hover_color }};
+				{%- endif -%}
+			{%- endcapture -%}
+		  <li role="none" class="{% if has_sub_menu or has_mega_menu %}menu-item-has-children{% endif %}{% if has_mega_menu %} menu-item-has-megamenu{% endif %}{% if link.active %} active{% endif %}" {% if has_sub_menu %}data-item-title="{{ link.title | escape }}"{% endif %}{% if has_menu_color %} style="{{ menu_item_style | strip_newlines }}"{% endif %}>
 		    <a role="menuitem" class="thb-full-menu--link" href="{{ link.url }}"{%- if link.active %} aria-current="page"{% endif -%}>
 					{{- link.title -}}
 					{%- if has_sub_menu or has_mega_menu -%}{%- render 'svg-icons' with 'thb-dropdown-bottom' -%}{%- endif -%}

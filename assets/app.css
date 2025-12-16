@@ -2724,6 +2724,19 @@ h6,
     .thb-full-menu > li > a {
       margin: 10px 0;
       font-weight: var(--font-body-medium-weight, 500); }
+    /* Custom color per menu item - only for top-level items, not mega menu */
+    .thb-full-menu > li[style*="--menu-item-color"] > a.thb-full-menu--link {
+      color: var(--menu-item-color); }
+    .thb-full-menu > li[style*="--menu-item-color"] > a.thb-full-menu--link:after {
+      background: var(--menu-item-hover-color, var(--menu-item-color)); }
+    .thb-full-menu > li[style*="--menu-item-color"] > a.thb-full-menu--link:hover,
+    .thb-full-menu > li[style*="--menu-item-color"] > a.thb-full-menu--link:focus {
+      color: var(--menu-item-hover-color, var(--menu-item-color)); }
+    .thb-full-menu > li[style*="--menu-item-color"] > a.thb-full-menu--link svg path {
+      stroke: var(--menu-item-color); }
+    .thb-full-menu > li[style*="--menu-item-color"] > a.thb-full-menu--link:hover svg path,
+    .thb-full-menu > li[style*="--menu-item-color"] > a.thb-full-menu--link:focus svg path {
+      stroke: var(--menu-item-hover-color, var(--menu-item-color)); }
   .thb-full-menu li.menu-item-has-children {
     position: relative;
     z-index: 1; }
