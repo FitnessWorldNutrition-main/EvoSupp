@@ -3664,6 +3664,8 @@ select {
     vertical-align: middle; }
   .price del + ins {
     margin-left: 10px; }
+  .price ins + del {
+    margin-left: 10px; }
   .price .amount {
     white-space: nowrap; }
   .price .from {
@@ -3674,7 +3676,11 @@ select {
   .price .amount {
     white-space: nowrap; }
     .price .amount.discounted {
-      color: var(--color-price-discounted, #ee3b45); }
+      color: var(--color-price-discounted, #ee3b45);
+      font-weight: 600; }
+  .price del {
+    color: rgba(var(--color-price-rgb, 0, 0, 0), 0.6);
+    font-size: 0.875em; }
   .price .unit-price {
     margin-left: 5px;
     font-size: 0.75rem;

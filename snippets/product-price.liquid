@@ -17,37 +17,38 @@
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
 	assign available = target.available | default: false
-  assign money_price = price | money
-  if settings.currency_code_enabled
-    assign money_price = price | money_with_currency
-  endif
+
+	# EVO20 discount: 20% off
+	assign evo_discount_percent = 20
+	assign evo_discounted_price = price | times: 80 | divided_by: 100
+	assign evo_original_price = price
+
+	# Format the discounted price
+	assign money_price = evo_discounted_price | money
+	if settings.currency_code_enabled
+		assign money_price = evo_discounted_price | money_with_currency
+	endif
 
 	if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
 
-	assign discounted_class = ''
-	unless product.price_varies == false and product.compare_at_price_varies
-		if compare_at_price != null and compare_at_price != 0 and price != compare_at_price
-			assign discounted_class = 'discounted'
-		endif
-	endunless
+	# Always show as discounted since EVO20 is always applied
+	assign discounted_class = 'discounted'
 -%}
-<span class="price">
-	{%- unless product.price_varies == false and product.compare_at_price_varies %}
-		{% if compare_at_price != null and compare_at_price != 0 and price != compare_at_price %}
-			<del>
-				<span class="amount">
-					{% if settings.currency_code_enabled %}
-						{{ compare_at_price | money_with_currency }}
-					{% else %}
-						{{ compare_at_price | money }}
-					{% endif %}
-				</span>
-			</del>
-		{% endif %}
-	{%- endunless -%}
+<span class="price evo-discount-price">
+	{%- comment -%} Discounted price on the left {%- endcomment -%}
 	<ins><span class="amount {{ discounted_class }}">{{ money_price }}</span></ins>
+	{%- comment -%} Original price as strikethrough (prix barré) on the right {%- endcomment -%}
+	<del>
+		<span class="amount">
+			{% if settings.currency_code_enabled %}
+				{{ evo_original_price | money_with_currency }}
+			{% else %}
+				{{ evo_original_price | money }}
+			{% endif %}
+		</span>
+	</del>
 	<small class="unit-price {% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
 		<span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
     <span class="unit-price-separator">/</span>
@@ -60,20 +61,17 @@
 	</small>
 	{%- if show_badges -%}
 		<span class="badges">
-			{%- if compare_at_price > price %}
-			{%- if settings.sale_badge_type == 'save_amount' -%}
-				{%- capture saved_amount -%}{{ compare_at_price | minus: price | money }}{%- endcapture -%}
-			{%- elsif settings.sale_badge_type == 'save_percentage' -%}
-				{%- capture saved_amount -%}{{ compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round }}%{%- endcapture -%}
-			{%- endif -%}
+			{%- comment -%} EVO20 discount badge - always show 20% off {%- endcomment -%}
+			{%- assign evo_saved_amount = evo_original_price | minus: evo_discounted_price | money -%}
 			<span class="badge onsale">
 				{%- if settings.sale_badge_type == 'sale' -%}
 				{{ 'products.product.on_sale' | t }}
+				{%- elsif settings.sale_badge_type == 'save_amount' -%}
+				{{ 'products.product.save_html' | t: saved_amount: evo_saved_amount }}
 				{%- else -%}
-				{{ 'products.product.save_html' | t: saved_amount: saved_amount }}
+				{{ 'products.product.save_html' | t: saved_amount: '20%' }}
 				{%- endif -%}
 			</span>
-			{% endif %}
 			{%- if available == false -%}
 		  <span class="badge out-of-stock">
 		    {{ 'products.product.sold_out' | t }}
