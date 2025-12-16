@@ -33,7 +33,7 @@
         "template--17918041129242__a7802e0a-30f4-4485-bf29-8868a637ca3e-1676376543ba0db665-0": {
           "type": "promotion",
           "settings": {
-            "title": "LIVRAISON  EN 24/48H",
+            "title": "LIVRAISON  EN 24/48H*",
             "button_text": "",
             "button_link": "",
             "block_link": ""
@@ -656,7 +656,7 @@
           "type": "icon",
           "settings": {
             "icon": "truck",
-            "heading": "LIVRAISON EXPRESS 24/48H",
+            "heading": "LIVRAISON EXPRESS 24/48H*",
             "text": "<p>Commandez aujourd’hui, recevez votre colis sous 24 à 48h (jours ouvrés).</p>"
           }
         },
