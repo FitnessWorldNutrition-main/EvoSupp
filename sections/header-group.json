@@ -198,6 +198,26 @@
             "promo_4_link": ""
           }
         },
+        "megamenu_qk3TyC": {
+          "type": "megamenu",
+          "settings": {
+            "position": "1",
+            "limit_columns": false,
+            "max_columns": "4",
+            "promo_1_heading": "Promotion heading",
+            "promo_1_content": "",
+            "promo_1_link": "",
+            "promo_2_heading": "Promotion heading",
+            "promo_2_content": "",
+            "promo_2_link": "",
+            "promo_3_heading": "Promotion heading",
+            "promo_3_content": "",
+            "promo_3_link": "",
+            "promo_4_heading": "Promotion heading",
+            "promo_4_content": "",
+            "promo_4_link": ""
+          }
+        },
         "secondary_nav_yYbJbx": {
           "type": "secondary_nav",
           "settings": {
@@ -217,6 +237,7 @@
         "megamenu_B637Ak",
         "megamenu_DCtjBY",
         "megamenu_wKByTE",
+        "megamenu_qk3TyC",
         "secondary_nav_yYbJbx",
         "mobile_secondary_menu_AjC9EX"
       ],
