@@ -3676,7 +3676,7 @@ select {
   .price .amount {
     white-space: nowrap; }
     .price .amount.discounted {
-      color: var(--color-price-discounted, #ee3b45);
+      color: var(--color-price-discounted, #f67200);
       font-weight: 600; }
   .price del {
     color: rgba(var(--color-price-rgb, 0, 0, 0), 0.6);

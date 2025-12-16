@@ -41,7 +41,7 @@
 	<ins><span class="amount {{ discounted_class }}">{{ money_price }}</span></ins>
 	{%- comment -%} Original price as strikethrough (prix barré) on the right {%- endcomment -%}
 	<del>
-		<span class="amount">
+		<span>
 			{% if settings.currency_code_enabled %}
 				{{ evo_original_price | money_with_currency }}
 			{% else %}
