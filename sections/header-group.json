@@ -97,6 +97,14 @@
     "header": {
       "type": "header",
       "blocks": {
+        "menu_color_ngweyT": {
+          "type": "menu_color",
+          "settings": {
+            "menu_position": "1",
+            "menu_item_color": "#f67200",
+            "menu_item_hover_color": "#f67200"
+          }
+        },
         "megamenu_n9Rmye": {
           "type": "megamenu",
           "settings": {
@@ -213,6 +221,7 @@
         }
       },
       "block_order": [
+        "menu_color_ngweyT",
         "megamenu_n9Rmye",
         "megamenu_trFhRq",
         "megamenu_B637Ak",
