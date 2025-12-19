@@ -63,7 +63,7 @@
 <span class="price{% if discount_applied %} evo-discount-price{% endif %}">
 	{%- if discount_applied -%}
 		{%- comment -%} Discounted price on the left {%- endcomment -%}
-		<ins><span class="amount {{ discounted_class }}">{{ money_price }}</span></ins>
+		
 		{%- comment -%} Original price as strikethrough (prix barré) on the right {%- endcomment -%}
 		<del>
 			<span>
@@ -74,6 +74,7 @@
 				{% endif %}
 			</span>
 		</del>
+		<ins><span class="amount {{ discounted_class }}">{{ money_price }}</span></ins>
 	{%- else -%}
 		{%- comment -%} Normal price display when no discount applied {%- endcomment -%}
 		<ins><span class="amount">{{ money_price }}</span></ins>
