@@ -2,6 +2,8 @@
 {%- liquid
 	assign column_spacing = section.settings.column_spacing
 	assign mobile_swipe = section.settings.mobile_swipe
+	assign mobile_autoplay = section.settings.mobile_autoplay
+	assign autoplay_delay = section.settings.autoplay_delay | default: 3000
 	assign image_ratio = section.settings.image_ratio
 
 	assign color_bg = section.settings.color_bg
@@ -11,7 +13,12 @@
 	assign disable_top_spacing = section.settings.disable_top_spacing
 	assign disable_bottom_spacing = section.settings.disable_bottom_spacing
 -%}
-<div class="promotion-blocks{% if mobile_swipe %} swipe-on-mobile{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --color-text: {{ color_text }}; --color-accent: {{ color_link }}; --column-size: {{ section.blocks.size }};">
+
+{%- if mobile_swipe and mobile_autoplay -%}
+	<script src="{{ 'promotion-blocks.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+<promotion-blocks class="promotion-blocks{% if mobile_swipe %} swipe-on-mobile{% endif %} section-spacing{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" style="--color-bg: {{ color_bg }}; --color-text: {{ color_text }}; --color-accent: {{ color_link }}; --column-size: {{ section.blocks.size }};" data-autoplay-delay="{{ autoplay_delay }}">
 	<div class="promotion-blocks--inner column-spacing--{{ column_spacing }}">
 		{%- for block in section.blocks -%}
 			{%- liquid
@@ -42,7 +49,7 @@
 			</div>
 		{%- endfor -%}
 	</div>
-</div>
+</promotion-blocks>
 
 {% schema %}
   {
@@ -54,6 +61,24 @@
 	      "id": "mobile_swipe",
 	      "default": false,
 	      "label": "Enable swipe on mobile"
+	    },
+		{
+	      "type": "checkbox",
+	      "id": "mobile_autoplay",
+	      "default": false,
+	      "label": "Enable auto-play on mobile",
+	      "info": "Automatically scroll through items on mobile (requires 'Enable swipe on mobile' to be enabled)"
+	    },
+		{
+	      "type": "range",
+	      "id": "autoplay_delay",
+	      "min": 2000,
+	      "max": 10000,
+	      "step": 1000,
+	      "unit": "ms",
+	      "default": 3000,
+	      "label": "Auto-play delay",
+	      "info": "Time between slides in milliseconds"
 	    },
 			{
 	      "type": "select",
