@@ -43,7 +43,7 @@
     text-align: center;
   }
   .promotion-blocks--text{
-    padding: 0;
+    padding: 0 !important;
   }
   .promotion-blocks--text > .h6{
     margin-bottom: 0;
