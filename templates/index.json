@@ -55,7 +55,7 @@
         "dc5645bd-875e-4093-a4d7-197e44af0a7e"
       ],
       "settings": {
-        "mobile_swipe": true,
+        "mobile_swipe": false,
         "image_ratio": "square",
         "column_spacing": "small",
         "color_bg": "#fceddd",
