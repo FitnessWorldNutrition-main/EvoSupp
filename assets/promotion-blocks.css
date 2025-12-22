@@ -38,6 +38,15 @@
   padding: 10px;
   position: relative; }
 
+@media only screen and (max-width: 767px) {
+  .promotion-blocks--item {
+    text-align: center;
+  }
+  .promotion-blocks--item > .h6{
+    margin-bottom: 0;
+  }
+}
+
 .promotion-blocks--link {
   position: absolute;
   top: 0;
