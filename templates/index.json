@@ -84,6 +84,8 @@
             "content": "",
             "description_size": "medium",
             "content_position": "middle-left",
+            "mobile_content_position": "top-center",
+            "desktop_content_position": "top-center",
             "text_alignment": "left",
             "content_size": "medium",
             "color_slidebg": "rgba(0,0,0,0)",
