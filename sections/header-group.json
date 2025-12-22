@@ -249,6 +249,7 @@
     },
     "header-mobile-navigation": {
       "type": "header-mobile-navigation",
+      "disabled": true,
       "settings": {
         "mobile_nav": "main-menu",
         "color_links": "#000000",
