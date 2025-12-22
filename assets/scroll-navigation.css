@@ -124,9 +124,25 @@
   }
 }
 
-/* Mobile: Hide arrows since we have swipe */
+/* Mobile: Show arrows on mobile too */
 @media only screen and (max-width: 767px) {
   .scroll-nav-arrows {
-    display: none !important;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin: 0;
+  }
+  
+  .scroll-nav-arrow {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  
+  .scroll-nav-arrow svg {
+    width: 18px;
+    height: 18px;
   }
 }
