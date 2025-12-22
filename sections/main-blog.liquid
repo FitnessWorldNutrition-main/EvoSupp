@@ -1,6 +1,8 @@
 {{- 'blog.css' | asset_url | stylesheet_tag -}}
+{{- 'scroll-navigation.css' | asset_url | stylesheet_tag -}}
 {%- liquid
 	assign blog_layout = section.settings.blog_layout
+	assign mobile_swipe = section.settings.mobile_swipe
 	assign show_date = section.settings.show_date
 	assign show_excerpt = section.settings.show_excerpt
 	assign image_ratio = section.settings.image_ratio
@@ -19,27 +21,41 @@
 <div class="section-spacing-bottom">
 	<div class="row no-padding">
 		<div class="small-12 columns">
-			<div class="row articles">
-				{%- for article in blog.articles -%}
-					{%- liquid
-						case blog_layout
-							assign grid_item_width = ''
-							when 'style1'
-								assign grid_item_width = 'small-12 medium-6'
-							when 'style2'
-								assign grid_item_width = 'small-12 medium-4'
-							when 'style3'
-								assign class_1 = 'small-12 medium-4'
-								assign class_2 = 'small-12 medium-6'
-								capture grid_item_width
-									cycle class_1, class_1, class_1, class_2, class_2, class_1, class_1, class_1
-								endcapture
-						endcase
-					-%}
-					<div class="{{ grid_item_width }} columns">
-						{% render 'blog-post', article: article, show_date: show_date, show_excerpt: show_excerpt, image_ratio: image_ratio, show_read_more: show_read_more %}
+			<div class="blog-posts{% if mobile_swipe %} swipe-on-mobile{% endif %}">
+				<div data-scroll-nav>
+					<div class="row articles" data-scroll-container>
+						{%- for article in blog.articles -%}
+							{%- liquid
+								case blog_layout
+									assign grid_item_width = ''
+									when 'style1'
+										assign grid_item_width = 'small-12 medium-6'
+									when 'style2'
+										assign grid_item_width = 'small-12 medium-4'
+									when 'style3'
+										assign class_1 = 'small-12 medium-4'
+										assign class_2 = 'small-12 medium-6'
+										capture grid_item_width
+											cycle class_1, class_1, class_1, class_2, class_2, class_1, class_1, class_1
+										endcapture
+								endcase
+							-%}
+							<div class="{{ grid_item_width }} columns">
+								{% render 'blog-post', article: article, show_date: show_date, show_excerpt: show_excerpt, image_ratio: image_ratio, show_read_more: show_read_more %}
+							</div>
+						{%- endfor -%}
 					</div>
-				{%- endfor -%}
+					{%- if mobile_swipe and blog.articles.size > 2 -%}
+						<div class="scroll-nav-arrows">
+							<button class="scroll-nav-arrow scroll-nav-prev" aria-label="Previous" data-scroll-prev>
+								{% render 'svg-icons' with 'carousel-prev' %}
+							</button>
+							<button class="scroll-nav-arrow scroll-nav-next" aria-label="Next" data-scroll-next>
+								{% render 'svg-icons' with 'carousel-next' %}
+							</button>
+						</div>
+					{%- endif -%}
+				</div>
 				<div class="small-12 columns">
 					{%- render 'pagination', paginate: paginate, pagination_type: 'paginated' -%}
 				</div>
@@ -47,6 +63,7 @@
 		</div>
 	</div>
 </div>
+<script src="{{ 'scroll-navigation.js' | asset_url }}" defer></script>
 {%- endpaginate -%}
 
 {% schema %}
@@ -54,17 +71,23 @@
 		"name": "Blog posts",
 	  "class": "blog-section",
     "settings": [
-			{
-				"type": "select",
-				"id": "blog_layout",
-				"label": "Layout",
-				"default": "style3",
-				"options": [
-					{ "value": "style1", "label": "2 columns" },
-					{ "value": "style2", "label": "3 columns" },
-					{ "value": "style3", "label": "3 - 2 - 3 columns" }
-				]
-			},
+		{
+			"type": "select",
+			"id": "blog_layout",
+			"label": "Layout",
+			"default": "style3",
+			"options": [
+				{ "value": "style1", "label": "2 columns" },
+				{ "value": "style2", "label": "3 columns" },
+				{ "value": "style3", "label": "3 - 2 - 3 columns" }
+			]
+		},
+		{
+			"type": "checkbox",
+			"id": "mobile_swipe",
+			"default": true,
+			"label": "Enable swipe on mobile"
+		},
 			{
         "type": "select",
         "id": "image_ratio",

@@ -36,11 +36,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
   color: var(--color-body, #2c2d2e);
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .scroll-nav-arrow:hover:not(.disabled) {
-  opacity: 1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transform: scale(1.05);
 }
