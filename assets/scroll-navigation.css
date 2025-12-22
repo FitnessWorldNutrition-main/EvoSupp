@@ -1,0 +1,94 @@
+/* Scroll Navigation Arrows */
+[data-scroll-nav] {
+  position: relative;
+}
+
+.scroll-nav-arrows {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media only screen and (min-width: 768px) {
+  .scroll-nav-arrows {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+}
+
+.scroll-nav-arrow {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-body-bg, #ffffff);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--color-body, #2c2d2e);
+  opacity: 0.9;
+}
+
+.scroll-nav-arrow:hover:not(.disabled) {
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+.scroll-nav-arrow.disabled,
+.scroll-nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.scroll-nav-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Position arrows properly for logo list */
+.logo-list--wrapper {
+  position: relative;
+}
+
+.logo-list--wrapper .scroll-nav-arrows {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Position arrows for blog posts */
+.blog-posts [data-scroll-nav] {
+  position: relative;
+}
+
+.blog-posts .scroll-nav-arrows {
+  top: 40%;
+}
+
+/* Position arrows for product recommendations */
+.product-recommendations [data-scroll-nav] {
+  position: relative;
+}
+
+.product-recommendations .scroll-nav-arrows {
+  top: 40%;
+}
+
+/* Mobile: Hide arrows since we have swipe */
+@media only screen and (max-width: 767px) {
+  .scroll-nav-arrows {
+    display: none !important;
+  }
+}

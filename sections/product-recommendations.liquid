@@ -1,4 +1,5 @@
 {{- 'product-grid.css' | asset_url | stylesheet_tag -}}
+{{- 'scroll-navigation.css' | asset_url | stylesheet_tag -}}
 {%- liquid
 	assign section_heading = section.settings.heading
 	assign section_description = section.settings.description
@@ -32,17 +33,30 @@
 		<product-recommendations class="product-recommendations{% if mobile_swipe %} swipe-on-mobile{% endif %} section-spacing-padding{% if disable_top_spacing %} section-spacing--disable-top{% endif %}{% if disable_bottom_spacing %} section-spacing--disable-bottom{% endif %}" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product_id }}&limit={{ product_limit }}">
 			{% if recommendations.performed and recommendations.products_count > 0 %}
 				{% render 'section-header', section_heading: section_heading, section_description: section_description %}
-				<ul class="products row no-padding">
-					{% for recommendation in recommendations.products %}
-						<li class="{{ columns_class }} columns">
-							{% render 'product-card', product_card_product: recommendation %}
-						</li>
-					{% endfor %}
-				</ul>
+				<div data-scroll-nav>
+					<ul class="products row no-padding" data-scroll-container>
+						{% for recommendation in recommendations.products %}
+							<li class="{{ columns_class }} columns">
+								{% render 'product-card', product_card_product: recommendation %}
+							</li>
+						{% endfor %}
+					</ul>
+					{%- if mobile_swipe and recommendations.products_count > columns_desktop -%}
+						<div class="scroll-nav-arrows">
+							<button class="scroll-nav-arrow scroll-nav-prev" aria-label="Previous" data-scroll-prev>
+								{% render 'svg-icons' with 'carousel-prev' %}
+							</button>
+							<button class="scroll-nav-arrow scroll-nav-next" aria-label="Next" data-scroll-next>
+								{% render 'svg-icons' with 'carousel-next' %}
+							</button>
+						</div>
+					{%- endif -%}
+				</div>
 			{% endif %}
 		</product-recommendations>
 	</div>
 </div>
+<script src="{{ 'scroll-navigation.js' | asset_url }}" defer></script>
 {% schema %}
 	{
 		"name": "Product recommendations",
