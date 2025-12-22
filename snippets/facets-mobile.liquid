@@ -216,11 +216,13 @@
 							<label for="SortByMobile" class="visually-hidden">{{ 'products.facets.sort_by_label' | t }}</label>
 							<div class="select">
 								{%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
-								<select name="sort_by" class="facet-filters__sort select__select caption-large" id="SortByMobile" aria-describedby="a11y-refresh-page-message">
-									{%- for option in results.sort_options -%}
+							<select name="sort_by" class="facet-filters__sort select__select caption-large" id="SortByMobile" aria-describedby="a11y-refresh-page-message">
+								{%- for option in results.sort_options -%}
+									{%- unless option.value == 'best-selling' or option.value == 'created-ascending' or option.value == 'created-descending' -%}
 										<option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected="selected"{% endif %}>{{ option.name | escape }}</option>
-									{%- endfor -%}
-								</select>
+									{%- endunless -%}
+								{%- endfor -%}
+							</select>
 								<div class="select-arrow" style="transform: rotateX(180deg);">{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</div>
 							</div>
 						</div>
