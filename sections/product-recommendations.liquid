@@ -41,7 +41,7 @@
 							</li>
 						{% endfor %}
 					</ul>
-					{%- if recommendations.products_count > columns_desktop -%}
+					{%- if recommendations.products_count > 2 -%}
 						<div class="flickity-nav flickity-prev" tabindex="0" data-scroll-prev>
 							{% render 'svg-icons' with 'carousel-prev' %}
 						</div>
