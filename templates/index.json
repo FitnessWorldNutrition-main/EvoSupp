@@ -55,7 +55,7 @@
         "dc5645bd-875e-4093-a4d7-197e44af0a7e"
       ],
       "settings": {
-        "mobile_swipe": false,
+        "mobile_swipe": true,
         "image_ratio": "square",
         "column_spacing": "small",
         "color_bg": "#fceddd",
@@ -697,7 +697,7 @@
         "icon_position": "top",
         "icon_size": "medium",
         "heading_size": "medium",
-        "mobile_swipe": true,
+        "mobile_swipe": false,
         "color_bg": "#f2f2f2",
         "color_heading": "#000000",
         "color_text": "#000000",
