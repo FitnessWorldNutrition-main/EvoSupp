@@ -4113,9 +4113,9 @@ https://flickity.metafizzy.co
     .flickity-enabled .flickity-nav {
       display: flex; } }
   .flickity-nav.flickity-prev {
-    left: -21px; }
+    left: 0px; }
   .flickity-nav.flickity-next {
-    right: -21px; }
+    right: 0px; }
   .flickity-nav:focus-visible {
     opacity: 1; }
   .flickity-nav:hover svg {
