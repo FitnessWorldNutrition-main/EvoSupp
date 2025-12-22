@@ -60,7 +60,11 @@
 					assign mobile_content_position = block.settings.mobile_content_position
 					assign desktop_content_position = block.settings.desktop_content_position
 					assign text_alignment = block.settings.text_alignment
+					assign mobile_text_alignment = block.settings.mobile_text_alignment
+					assign desktop_text_alignment = block.settings.desktop_text_alignment
 					assign content_size = block.settings.content_size
+					assign mobile_content_size = block.settings.mobile_content_size
+					assign desktop_content_size = block.settings.desktop_content_size
 					assign color_text = block.settings.color_text
 
 					assign color_slidebg = block.settings.color_slidebg
@@ -91,7 +95,7 @@
 						assign priority = 'high'
 					endif
 				-%}
-				<div class="slideshow__slide carousel__slide {{ mobile_height }} {{ desktop_height }} text-{{ text_alignment }} content-size-{{ content_size }}" style="--color-text: {{ color_text }}; --overlay-color-rgb: {{ overlay_color.rgb | replace: ' ' , ',' }}; --overlay-opacity: {{ overlay_opacity | divided_by: 100.0 }}; --color-slidebg-rgb: {{ color_slidebg.rgb | replace: ' ' , ',' }}; --color-slidebg-opacity: {{ color_slidebg_opacity | divided_by: 100.0 }}; --bg-blur: {{ color_slidebg_blur | append: 'px' }} " {{ block.shopify_attributes }}>
+				<div class="slideshow__slide carousel__slide {{ mobile_height }} {{ desktop_height }} text-{{ text_alignment }} mobile-text-{{ mobile_text_alignment }} desktop-text-{{ desktop_text_alignment }} content-size-{{ content_size }} mobile-content-size-{{ mobile_content_size }} desktop-content-size-{{ desktop_content_size }}" style="--color-text: {{ color_text }}; --overlay-color-rgb: {{ overlay_color.rgb | replace: ' ' , ',' }}; --overlay-opacity: {{ overlay_opacity | divided_by: 100.0 }}; --color-slidebg-rgb: {{ color_slidebg.rgb | replace: ' ' , ',' }}; --color-slidebg-opacity: {{ color_slidebg_opacity | divided_by: 100.0 }}; --bg-blur: {{ color_slidebg_blur | append: 'px' }} " {{ block.shopify_attributes }}>
 					<div class="slideshow__slide-bg">
 						{%- if block.settings.image -%}
 							{%- liquid
@@ -538,46 +542,132 @@
 					"default": "middle-left",
 					"info": "Content position on desktop devices"
 				},
-					{
-						"type": "select",
-						"id": "text_alignment",
-						"options": [
-							{
-								"value": "left",
-								"label": "Left"
-							},
-							{
-								"value": "center",
-								"label": "Center"
-							},
-							{
-								"value": "right",
-								"label": "Right"
-							}
-						],
-						"default": "center",
-						"label": "Content alignment"
-					},
-					{
-						"type": "select",
-						"id": "content_size",
-						"options": [
-							{
-								"value": "small",
-								"label": "Small"
-							},
-							{
-								"value": "medium",
-								"label": "Medium"
-							},
-							{
-								"value": "large",
-								"label": "Large"
-							}
-						],
-						"default": "medium",
-						"label": "Content width"
-					},
+				{
+					"type": "select",
+					"id": "text_alignment",
+					"options": [
+						{
+							"value": "left",
+							"label": "Left"
+						},
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "right",
+							"label": "Right"
+						}
+					],
+					"default": "center",
+					"label": "Content alignment",
+					"info": "Default alignment for both mobile and desktop"
+				},
+				{
+					"type": "select",
+					"id": "mobile_text_alignment",
+					"options": [
+						{
+							"value": "left",
+							"label": "Left"
+						},
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "right",
+							"label": "Right"
+						}
+					],
+					"default": "center",
+					"label": "Mobile content alignment",
+					"info": "Content alignment on mobile devices"
+				},
+				{
+					"type": "select",
+					"id": "desktop_text_alignment",
+					"options": [
+						{
+							"value": "left",
+							"label": "Left"
+						},
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "right",
+							"label": "Right"
+						}
+					],
+					"default": "left",
+					"label": "Desktop content alignment",
+					"info": "Content alignment on desktop devices"
+				},
+				{
+					"type": "select",
+					"id": "content_size",
+					"options": [
+						{
+							"value": "small",
+							"label": "Small"
+						},
+						{
+							"value": "medium",
+							"label": "Medium"
+						},
+						{
+							"value": "large",
+							"label": "Large"
+						}
+					],
+					"default": "medium",
+					"label": "Content width",
+					"info": "Default width for both mobile and desktop"
+				},
+				{
+					"type": "select",
+					"id": "mobile_content_size",
+					"options": [
+						{
+							"value": "small",
+							"label": "Small"
+						},
+						{
+							"value": "medium",
+							"label": "Medium"
+						},
+						{
+							"value": "large",
+							"label": "Large"
+						}
+					],
+					"default": "medium",
+					"label": "Mobile content width",
+					"info": "Content width on mobile devices"
+				},
+				{
+					"type": "select",
+					"id": "desktop_content_size",
+					"options": [
+						{
+							"value": "small",
+							"label": "Small"
+						},
+						{
+							"value": "medium",
+							"label": "Medium"
+						},
+						{
+							"value": "large",
+							"label": "Large"
+						}
+					],
+					"default": "medium",
+					"label": "Desktop content width",
+					"info": "Content width on desktop devices"
+				},
 					{
 			      "type": "header",
 			      "content": "Colors"
