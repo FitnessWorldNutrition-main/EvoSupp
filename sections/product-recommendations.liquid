@@ -41,14 +41,14 @@
 							</li>
 						{% endfor %}
 					</ul>
-					<div class="scroll-nav-arrows">
-						<button class="scroll-nav-arrow scroll-nav-prev" aria-label="Previous" data-scroll-prev>
+					{%- if recommendations.products_count > columns_desktop -%}
+						<div class="flickity-nav flickity-prev" tabindex="0" data-scroll-prev>
 							{% render 'svg-icons' with 'carousel-prev' %}
-						</button>
-						<button class="scroll-nav-arrow scroll-nav-next" aria-label="Next" data-scroll-next>
+						</div>
+						<div class="flickity-nav flickity-next" tabindex="0" data-scroll-next>
 							{% render 'svg-icons' with 'carousel-next' %}
-						</button>
-					</div>
+						</div>
+					{%- endif -%}
 				</div>
 			{% endif %}
 		</product-recommendations>
