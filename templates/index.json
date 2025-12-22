@@ -57,7 +57,7 @@
       "settings": {
         "mobile_swipe": true,
         "mobile_autoplay": true,
-        "autoplay_delay": 3000,
+        "autoplay_delay": 2000,
         "image_ratio": "square",
         "column_spacing": "small",
         "color_bg": "#fceddd",
