@@ -110,6 +110,20 @@
             "product_list_limit": 3
           }
         },
+        "collapsible_tab_GK3Dxc": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Recommandations",
+            "open": false,
+            "content": "",
+            "page": "",
+            "custom_liquid": "",
+            "variant_metafield_namespace": "",
+            "variant_metafield_key": "",
+            "product_metafield_namespace": "woo",
+            "product_metafield_key": "recommendations"
+          }
+        },
         "386f7e4a-6127-4141-928b-9cb4614ee18c": {
           "type": "collapsible_tab",
           "settings": {
@@ -152,20 +166,6 @@
             "product_metafield_key": ""
           }
         },
-        "collapsible_tab_GK3Dxc": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Recommandations",
-            "open": false,
-            "content": "",
-            "page": "",
-            "custom_liquid": "",
-            "variant_metafield_namespace": "",
-            "variant_metafield_key": "",
-            "product_metafield_namespace": "woo",
-            "product_metafield_key": "recommendations"
-          }
-        },
         "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7": {
           "type": "info_box",
           "settings": {
@@ -188,10 +188,10 @@
         "coupon_code_dhiG7D",
         "buy_buttons",
         "fc6da228-45eb-4a6e-aa68-d6ec477bec34",
+        "collapsible_tab_GK3Dxc",
         "386f7e4a-6127-4141-928b-9cb4614ee18c",
         "d56924f2-0137-4e3b-8c33-49b1f28391c6",
         "collapsible_tab_VD9Y6t",
-        "collapsible_tab_GK3Dxc",
         "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7"
       ],
       "settings": {
