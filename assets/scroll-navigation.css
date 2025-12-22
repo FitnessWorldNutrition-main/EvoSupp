@@ -128,6 +128,9 @@
   .blog-posts > div > .flickity-nav {
     display: none;
   }
+  .product-recommendations > [data-scroll-nav] > .flickity-nav {
+    display: none;
+  }
 
 }
 
