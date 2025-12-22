@@ -146,8 +146,12 @@
         transform: rotateZ(180deg);
         margin-right: 0;
         margin-left: 10px; }
-  .mobile-menu .mega-menu-promotion { display: none;
+  .mobile-menu .mega-menu-promotion {
     padding: 15px 0; }
+  .mobile-menu-drawer--inner .mega-menu-promotions{
+    display: none !important;
+  }
+    
   .mobile-menu .sub-menu {
     width: 100%;
     min-height: 100%;
