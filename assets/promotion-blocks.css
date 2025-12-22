@@ -42,7 +42,10 @@
   .promotion-blocks--item {
     text-align: center;
   }
-  .promotion-blocks--item > .h6{
+  .promotion-blocks--text{
+    padding: 0;
+  }
+  .promotion-blocks--text > .h6{
     margin-bottom: 0;
   }
 }
