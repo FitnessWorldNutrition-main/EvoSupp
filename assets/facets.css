@@ -257,7 +257,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: column;
+  flex-direction: column !important;
   width: 100%; }
   .facets__mobile_form .thb-filter-sort .thb-filter-title {
     margin: 0; }
