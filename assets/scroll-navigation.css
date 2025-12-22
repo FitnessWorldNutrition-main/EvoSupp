@@ -95,36 +95,12 @@
 /* Position arrows for product recommendations */
 .product-recommendations [data-scroll-nav] {
   position: relative;
-  min-height: 300px;
 }
 
 .product-recommendations .scroll-nav-arrows {
   top: 30%;
 }
 
-/* Enable scrolling for product recommendations on desktop */
-@media only screen and (min-width: 768px) {
-  .product-recommendations.swipe-on-mobile [data-scroll-container] {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc(25% - 10px);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    gap: 15px;
-    padding-bottom: 10px;
-  }
-  
-  .product-recommendations.swipe-on-mobile [data-scroll-container]::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .product-recommendations.swipe-on-mobile [data-scroll-container] .columns {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-    width: 100%;
-  }
-}
 
 /* Collection tabs */
 .collection-tabs [data-scroll-nav] {
