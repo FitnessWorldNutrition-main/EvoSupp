@@ -4096,7 +4096,7 @@ https://flickity.metafizzy.co
 .flickity-nav {
   background: var(--color-drawer-bg, #fff);
   border-radius: 50%;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
