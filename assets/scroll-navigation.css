@@ -4,32 +4,6 @@
   overflow: visible !important;
 }
 
-/* Flickity Navigation Arrows */
-[data-scroll-nav] .flickity-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 999;
-  display: none;
-}
-
-[data-scroll-nav] .flickity-prev {
-  left: 15px;
-}
-
-[data-scroll-nav] .flickity-next {
-  right: 15px;
-}
-
-@media only screen and (min-width: 768px) {
-  [data-scroll-nav] .flickity-nav {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* Legacy scroll-nav-arrows support */
 .scroll-nav-arrows {
   display: none;
   position: absolute;
@@ -52,62 +26,6 @@
   }
 }
 
-/* Flickity navigation button styles */
-.flickity-nav {
-  pointer-events: all;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  min-height: 50px;
-  border-radius: 50%;
-  border: 2px solid rgba(0, 0, 0, 0.08);
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: #2c2d2e;
-  opacity: 1 !important;
-  position: relative;
-  z-index: 1000;
-  flex-shrink: 0;
-}
-
-.flickity-nav:hover:not(.disabled) {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-50%) scale(1.1);
-  border-color: rgba(0, 0, 0, 0.12);
-}
-
-.flickity-prev:hover:not(.disabled) {
-  transform: translateY(-50%) scale(1.1);
-}
-
-.flickity-next:hover:not(.disabled) {
-  transform: translateY(-50%) scale(1.1);
-}
-
-.flickity-nav:active:not(.disabled) {
-  transform: translateY(-50%) scale(0.95);
-}
-
-.flickity-nav.disabled,
-.flickity-nav:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.flickity-nav svg {
-  width: 22px;
-  height: 22px;
-  fill: currentColor;
-  display: block;
-}
-
-/* Legacy scroll-nav-arrow styles */
 .scroll-nav-arrow {
   pointer-events: all;
   display: flex !important;
@@ -208,31 +126,6 @@
 
 /* Mobile: Show arrows on mobile too */
 @media only screen and (max-width: 767px) {
-  [data-scroll-nav] .flickity-nav {
-    display: flex !important;
-  }
-  
-  [data-scroll-nav] .flickity-prev {
-    left: 10px;
-  }
-  
-  [data-scroll-nav] .flickity-next {
-    right: 10px;
-  }
-  
-  .flickity-nav {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-  }
-  
-  .flickity-nav svg {
-    width: 18px;
-    height: 18px;
-  }
-  
-  /* Legacy scroll-nav-arrows */
   .scroll-nav-arrows {
     display: flex !important;
     justify-content: space-between;
