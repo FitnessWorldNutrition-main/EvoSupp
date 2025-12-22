@@ -75,10 +75,15 @@ if (!customElements.get('promotion-blocks')) {
       const item = this.items[this.currentIndex];
       
       if (item) {
-        item.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
+        // Calculate the scroll position relative to the container
+        const containerRect = this.inner.getBoundingClientRect();
+        const itemRect = item.getBoundingClientRect();
+        const scrollLeft = this.inner.scrollLeft + (itemRect.left - containerRect.left) - (containerRect.width - itemRect.width) / 2;
+        
+        // Scroll the container only, not the entire page
+        this.inner.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
         });
       }
     }
