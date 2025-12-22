@@ -183,7 +183,7 @@
   /* Show arrows for product recommendations on mobile */
   .product-recommendations [data-scroll-nav] .flickity-nav {
     display: flex !important;
-    top: 40%;
+    top: 30%;
     cursor: pointer;
     pointer-events: all;
     z-index: 999;

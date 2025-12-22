@@ -54,7 +54,85 @@
 		</product-recommendations>
 	</div>
 </div>
-<script src="{{ 'scroll-navigation.js' | asset_url }}" defer></script>
+<script>
+  // Initialize scroll navigation for product recommendations
+  (function() {
+    function initScrollNav() {
+      const wrapper = document.querySelector('.product-recommendations [data-scroll-nav]');
+      if (!wrapper) return;
+      
+      const container = wrapper.querySelector('[data-scroll-container]');
+      const prevBtn = wrapper.querySelector('[data-scroll-prev]');
+      const nextBtn = wrapper.querySelector('[data-scroll-next]');
+      
+      if (!container || !prevBtn || !nextBtn) return;
+      
+      function getScrollAmount() {
+        // Scroll by one product width
+        const firstItem = container.querySelector('.columns');
+        if (firstItem) {
+          return firstItem.offsetWidth;
+        }
+        return container.offsetWidth / 2;
+      }
+      
+      function updateButtons() {
+        const isAtStart = container.scrollLeft <= 0;
+        const isAtEnd = container.scrollLeft >= container.scrollWidth - container.offsetWidth - 10;
+        
+        prevBtn.classList.toggle('disabled', isAtStart);
+        nextBtn.classList.toggle('disabled', isAtEnd);
+      }
+      
+      function scrollPrev(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        container.scrollBy({
+          left: -getScrollAmount(),
+          behavior: 'smooth'
+        });
+      }
+      
+      function scrollNext(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        container.scrollBy({
+          left: getScrollAmount(),
+          behavior: 'smooth'
+        });
+      }
+      
+      prevBtn.addEventListener('click', scrollPrev);
+      nextBtn.addEventListener('click', scrollNext);
+      container.addEventListener('scroll', updateButtons, { passive: true });
+      
+      updateButtons();
+    }
+    
+    // Try to initialize immediately
+    if (document.readyState === 'complete') {
+      setTimeout(initScrollNav, 100);
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initScrollNav, 100);
+      });
+    }
+    
+    // Also listen for content being loaded dynamically
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+          setTimeout(initScrollNav, 100);
+        }
+      });
+    });
+    
+    const targetNode = document.querySelector('.product-recommendations');
+    if (targetNode) {
+      observer.observe(targetNode, { childList: true, subtree: true });
+    }
+  })();
+</script>
 {% schema %}
 	{
 		"name": "Product recommendations",
