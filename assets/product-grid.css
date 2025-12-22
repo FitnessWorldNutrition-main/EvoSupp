@@ -101,9 +101,9 @@
       .product-card-spacing-medium .products.row + .pagination {
         margin-top: 10px; } }
   .product-card-spacing-medium .products.row .flickity-nav.flickity-prev {
-    left: -11px; }
+    left: 0px; }
   .product-card-spacing-medium .products.row .flickity-nav.flickity-next {
-    right: -11px; }
+    right: 0px; }
   @media only screen and (min-width: 768px) {
     .product-card-spacing-large .products.row {
       margin: 0 -15px; }
