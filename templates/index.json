@@ -705,7 +705,7 @@
         "icon_position": "top",
         "icon_size": "medium",
         "heading_size": "medium",
-        "mobile_swipe": false,
+        "mobile_layout": "grid-2x2",
         "color_bg": "#f2f2f2",
         "color_heading": "#000000",
         "color_text": "#000000",
