@@ -72,6 +72,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/banniere_evosupp.webp",
+            "mobile_image": "shopify://shop_images/evosupp-mobile_dcfce278-c3cc-420b-b4d7-e8bfc08c6246.webp",
             "slide_link": "shopify://collections/nouveautes",
             "video_background": false,
             "badge_text": "",
