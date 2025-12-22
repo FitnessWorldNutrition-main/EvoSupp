@@ -184,6 +184,9 @@
   .product-recommendations [data-scroll-nav] .flickity-nav {
     display: flex !important;
     top: 40%;
+    cursor: pointer;
+    pointer-events: all;
+    z-index: 999;
   }
   
   .product-recommendations [data-scroll-nav] .flickity-prev {
