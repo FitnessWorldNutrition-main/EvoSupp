@@ -122,6 +122,12 @@
   .scroll-nav-arrow {
     visibility: visible !important;
   }
+  .logo-list--wrapper > .flickity-nav {
+    display: none;
+  }
+  .blog-posts > div > .flickity-nav {
+    display: none;
+  }
 }
 
 /* Mobile: Show arrows on mobile too */
