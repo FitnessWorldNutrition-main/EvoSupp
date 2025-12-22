@@ -57,6 +57,8 @@
 			{%- for block in section.blocks -%}
 				{%- liquid
 					assign content_position = block.settings.content_position
+					assign mobile_content_position = block.settings.mobile_content_position
+					assign desktop_content_position = block.settings.desktop_content_position
 					assign text_alignment = block.settings.text_alignment
 					assign content_size = block.settings.content_size
 					assign color_text = block.settings.color_text
@@ -159,7 +161,7 @@
 						</div>
 					{%- endif -%}
 					<div class="slideshow__slide-overlay" style="background: {{ block.settings.overlay_gradient }}"></div>
-					<div class="slideshow__slide-inner content-{{ content_position }} content-has-bg--{{ has_visible_bg }}">
+					<div class="slideshow__slide-inner content-{{ content_position }} mobile-content-{{ mobile_content_position }} desktop-content-{{ desktop_content_position }} content-has-bg--{{ has_visible_bg }}">
 						<div class="slideshow__slide-content">
 							{% if block.settings.badge_text != blank %}
 								<div>
@@ -482,23 +484,60 @@
 						],
 						"default": "medium"
 					},
-					{
-						"type": "select",
-						"id": "content_position",
-						"label": "Content position",
-						"options": [
-							{ "value": "top-left", "label": "Top left" },
-							{ "value": "top-center", "label": "Top center" },
-							{ "value": "top-right", "label": "Top right" },
-							{ "value": "middle-left", "label": "Middle left" },
-							{ "value": "middle-center", "label": "Middle center" },
-							{ "value": "middle-right", "label": "Middle right" },
-							{ "value": "bottom-left", "label": "Bottom left" },
-							{ "value": "bottom-center", "label": "Bottom center" },
-							{ "value": "bottom-right", "label": "Bottom right" }
-						],
-						"default": "middle-center"
-					},
+				{
+					"type": "select",
+					"id": "content_position",
+					"label": "Content position",
+					"options": [
+						{ "value": "top-left", "label": "Top left" },
+						{ "value": "top-center", "label": "Top center" },
+						{ "value": "top-right", "label": "Top right" },
+						{ "value": "middle-left", "label": "Middle left" },
+						{ "value": "middle-center", "label": "Middle center" },
+						{ "value": "middle-right", "label": "Middle right" },
+						{ "value": "bottom-left", "label": "Bottom left" },
+						{ "value": "bottom-center", "label": "Bottom center" },
+						{ "value": "bottom-right", "label": "Bottom right" }
+					],
+					"default": "middle-center",
+					"info": "Default position for both mobile and desktop (overridden by settings below if set)"
+				},
+				{
+					"type": "select",
+					"id": "mobile_content_position",
+					"label": "Mobile content position",
+					"options": [
+						{ "value": "top-left", "label": "Top left" },
+						{ "value": "top-center", "label": "Top center" },
+						{ "value": "top-right", "label": "Top right" },
+						{ "value": "middle-left", "label": "Middle left" },
+						{ "value": "middle-center", "label": "Middle center" },
+						{ "value": "middle-right", "label": "Middle right" },
+						{ "value": "bottom-left", "label": "Bottom left" },
+						{ "value": "bottom-center", "label": "Bottom center" },
+						{ "value": "bottom-right", "label": "Bottom right" }
+					],
+					"default": "bottom-center",
+					"info": "Content position on mobile devices"
+				},
+				{
+					"type": "select",
+					"id": "desktop_content_position",
+					"label": "Desktop content position",
+					"options": [
+						{ "value": "top-left", "label": "Top left" },
+						{ "value": "top-center", "label": "Top center" },
+						{ "value": "top-right", "label": "Top right" },
+						{ "value": "middle-left", "label": "Middle left" },
+						{ "value": "middle-center", "label": "Middle center" },
+						{ "value": "middle-right", "label": "Middle right" },
+						{ "value": "bottom-left", "label": "Bottom left" },
+						{ "value": "bottom-center", "label": "Bottom center" },
+						{ "value": "bottom-right", "label": "Bottom right" }
+					],
+					"default": "middle-left",
+					"info": "Content position on desktop devices"
+				},
 					{
 						"type": "select",
 						"id": "text_alignment",
