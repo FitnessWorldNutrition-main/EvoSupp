@@ -128,11 +128,7 @@
   .blog-posts > div > .flickity-nav {
     display: none;
   }
-  
-  /* Show arrows for product recommendations on desktop */
-  .product-recommendations [data-scroll-nav] .flickity-nav {
-    display: flex !important;
-  }
+
 }
 
 /* Mobile: Show arrows on mobile too */
@@ -160,13 +156,6 @@
   /* Show arrows for product recommendations on mobile */
   .product-recommendations [data-scroll-nav] .flickity-nav {
     display: flex !important;
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
   }
   
   .product-recommendations [data-scroll-nav] .flickity-prev {
@@ -177,8 +166,4 @@
     right: 10px;
   }
   
-  .product-recommendations [data-scroll-nav] .flickity-nav svg {
-    width: 18px;
-    height: 18px;
-  }
 }
