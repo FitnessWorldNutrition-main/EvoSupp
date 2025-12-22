@@ -198,7 +198,7 @@
         "enable_sticky_add_to_cart": true,
         "show_taxes_included": false,
         "thumbnail_position": "left",
-        "media_aspect_ratio": "square",
+        "media_aspect_ratio": "adapt",
         "display_captions": true,
         "hide_variants": false,
         "lightbox": true,
