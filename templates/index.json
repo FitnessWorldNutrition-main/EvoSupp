@@ -85,7 +85,7 @@
             "description_size": "medium",
             "content_position": "middle-left",
             "mobile_content_position": "top-left",
-            "desktop_content_position": "middle-left",
+            "desktop_content_position": "top-center",
             "text_alignment": "left",
             "mobile_text_alignment": "center",
             "desktop_text_alignment": "left",
@@ -525,18 +525,18 @@
     "e64d388d-d7ce-40d4-9265-98b1b32fb9de": {
       "type": "logo-list",
       "blocks": {
-        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-4": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/58c8c819-7b39-4ecd-b458-e22e44db6c95.png",
-            "link": "shopify://collections/essential-supp"
-          }
-        },
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-1": {
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/Capture_d_ecran_2025-08-11_a_16.18.06-removebg-preview.png",
             "link": "shopify://collections/per4m"
+          }
+        },
+        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/58c8c819-7b39-4ecd-b458-e22e44db6c95.png",
+            "link": "shopify://collections/essential-supp"
           }
         },
         "logo_ceRVJD": {
@@ -569,8 +569,8 @@
         }
       },
       "block_order": [
-        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-4",
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-1",
+        "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-4",
         "logo_ceRVJD",
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-2",
         "template--17918041129242__e64d388d-d7ce-40d4-9265-98b1b32fb9de-167646146150cde377-3",
@@ -705,7 +705,6 @@
         "icon_position": "top",
         "icon_size": "medium",
         "heading_size": "medium",
-        "mobile_layout": "grid-2x2",
         "color_bg": "#f2f2f2",
         "color_heading": "#000000",
         "color_text": "#000000",
