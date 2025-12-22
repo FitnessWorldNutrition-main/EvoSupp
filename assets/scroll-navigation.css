@@ -1,6 +1,7 @@
 /* Scroll Navigation Arrows */
 [data-scroll-nav] {
   position: relative;
+  overflow: visible !important;
 }
 
 .scroll-nav-arrows {
@@ -9,52 +10,66 @@
   top: 50%;
   left: 0;
   right: 0;
+  width: 100%;
   transform: translateY(-50%);
   pointer-events: none;
-  z-index: 10;
+  z-index: 999;
 }
 
 @media only screen and (min-width: 768px) {
   .scroll-nav-arrows {
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
-    padding: 0 10px;
+    align-items: center;
+    padding: 0 15px;
+    margin: 0;
   }
 }
 
 .scroll-nav-arrow {
   pointer-events: all;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 50%;
-  border: none;
-  background: var(--color-body-bg, #ffffff);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: all 0.3s ease;
-  color: var(--color-body, #2c2d2e);
-  opacity: 1;
+  color: #2c2d2e;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 1000;
+  flex-shrink: 0;
 }
 
 .scroll-nav-arrow:hover:not(.disabled) {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.scroll-nav-arrow:active:not(.disabled) {
+  transform: scale(0.95);
 }
 
 .scroll-nav-arrow.disabled,
 .scroll-nav-arrow:disabled {
-  opacity: 0.3;
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .scroll-nav-arrow svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   fill: currentColor;
+  display: block;
 }
 
 /* Position arrows properly for logo list */
@@ -70,19 +85,43 @@
 /* Position arrows for blog posts */
 .blog-posts [data-scroll-nav] {
   position: relative;
+  min-height: 300px;
 }
 
 .blog-posts .scroll-nav-arrows {
-  top: 40%;
+  top: 30%;
 }
 
 /* Position arrows for product recommendations */
 .product-recommendations [data-scroll-nav] {
   position: relative;
+  min-height: 300px;
 }
 
 .product-recommendations .scroll-nav-arrows {
-  top: 40%;
+  top: 30%;
+}
+
+/* Collection tabs */
+.collection-tabs [data-scroll-nav] {
+  position: relative;
+  min-height: 300px;
+}
+
+/* Ensure arrows are visible on all sections */
+@media only screen and (min-width: 768px) {
+  [data-scroll-nav] {
+    position: relative;
+  }
+  
+  .scroll-nav-arrows {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .scroll-nav-arrow {
+    visibility: visible !important;
+  }
 }
 
 /* Mobile: Hide arrows since we have swipe */

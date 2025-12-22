@@ -36,16 +36,14 @@
 		    </a>
 		  {% endfor %}
 		</div>
-		{%- if section.blocks.size > section.settings.columns -%}
-			<div class="scroll-nav-arrows">
-				<button class="scroll-nav-arrow scroll-nav-prev" aria-label="Previous" data-scroll-prev>
-					{% render 'svg-icons' with 'carousel-prev' %}
-				</button>
-				<button class="scroll-nav-arrow scroll-nav-next" aria-label="Next" data-scroll-next>
-					{% render 'svg-icons' with 'carousel-next' %}
-				</button>
-			</div>
-		{%- endif -%}
+		<div class="scroll-nav-arrows">
+			<button class="scroll-nav-arrow scroll-nav-prev" aria-label="Previous" data-scroll-prev>
+				{% render 'svg-icons' with 'carousel-prev' %}
+			</button>
+			<button class="scroll-nav-arrow scroll-nav-next" aria-label="Next" data-scroll-next>
+				{% render 'svg-icons' with 'carousel-next' %}
+			</button>
+		</div>
 	</div>
 </div>
 <script src="{{ 'scroll-navigation.js' | asset_url }}" defer></script>
