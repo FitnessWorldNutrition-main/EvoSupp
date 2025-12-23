@@ -51,6 +51,7 @@
     "quick_add_button_bg": "#f67200",
     "show_products_vendor": false,
     "show_products_subtitle": true,
+    "show_products_swatches": false,
     "color_swatches_use_variants": true,
     "show_products_rating": false,
     "show_products_rating_average": false,

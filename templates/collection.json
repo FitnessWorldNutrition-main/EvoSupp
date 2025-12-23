@@ -64,6 +64,9 @@
       "block_order": [
         "promotion_XJ4gcz"
       ],
+      "custom_css": [
+        ".facets__label {display: none;}"
+      ],
       "settings": {
         "products_per_page": 16,
         "columns_desktop": 4,
