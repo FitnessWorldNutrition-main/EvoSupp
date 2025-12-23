@@ -12,7 +12,7 @@
     "spacer_9LrAfG": {
       "type": "spacer",
       "settings": {
-        "spacer_mobile": 15,
+        "spacer_mobile": 0,
         "spacer_desktop": 0,
         "border_separator": false,
         "border_separator_full": false
