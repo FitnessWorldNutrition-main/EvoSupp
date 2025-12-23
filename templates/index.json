@@ -59,7 +59,7 @@
         "mobile_autoplay": true,
         "autoplay_delay": 2000,
         "image_ratio": "square",
-        "column_spacing": "small",
+        "column_spacing": "large",
         "color_bg": "#fceddd",
         "color_text": "#303c43",
         "color_link": "#3f72e5",
