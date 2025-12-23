@@ -17,7 +17,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "column_size": "large",
+            "column_size": "small",
             "text_alignment": "left",
             "title": "",
             "image": "shopify://shop_images/evosupp-condense2.svg",
