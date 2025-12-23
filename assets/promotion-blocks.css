@@ -59,8 +59,7 @@
   z-index: 10; }
 
 .promotion-blocks--text {
-  padding: 12px 15px;
-  display: flex;
+  text-align: center;
   flex-direction: column;
   width: 100%; }
   .promotion-blocks--text h6 {
