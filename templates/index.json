@@ -105,8 +105,8 @@
             "button_1_color": "regular",
             "button_1_link": "shopify://collections/nouveautes",
             "use_text_button_1": false,
-            "button_1_bg_color": "#ff6b00",
-            "button_1_border_color": "#ffffff",
+            "button_1_bg_color": "#f67200",
+            "button_1_border_color": "#279A4B",
             "button_1_border_width": 0,
             "button_2_text": "",
             "button_2_color": "regular",
@@ -231,6 +231,9 @@
       },
       "block_order": [
         "text_QiY7H8"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.scrolling-text--item.outline-text--false {font-size: 26px; }}"
       ],
       "name": "Scrolling text",
       "settings": {
