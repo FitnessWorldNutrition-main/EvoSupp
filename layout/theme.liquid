@@ -94,19 +94,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
 (() => {
   const CODE = "EVO20";
-  const KEY = "auto_discount_applied_" + CODE;
 
-  // prevent re-applying on every page load
-  try {
-    if (localStorage.getItem(KEY)) return;
-    localStorage.setItem(KEY, "1");
-  } catch (e) {}
+  async function applyDiscountIfCartHasItems() {
+    try {
+      const res = await fetch(window.Shopify.routes.root + "cart.js");
+      const cart = await res.json();
+      
+      if (cart.item_count > 0) {
+        await fetch(window.Shopify.routes.root + "cart/update.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ discount: CODE })
+        });
+      }
+    } catch (e) {}
+  }
 
-  fetch(window.Shopify.routes.root + "cart/update.js", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ discount: CODE })
-  }).catch(() => {});
+  setTimeout(applyDiscountIfCartHasItems, 250);
 })();
 </script>
 
