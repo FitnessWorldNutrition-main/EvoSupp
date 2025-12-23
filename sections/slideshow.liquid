@@ -187,7 +187,7 @@
 								{% if block.settings.use_text_button_1 %}
 								{% render 'text-button', url: block.settings.button_1_link, title: block.settings.button_1_text, class: block.settings.button_1_color %}
 								{% else %}
-								<a class="button {{ block.settings.button_1_color }}" href="{{ block.settings.button_1_link }}" role="button" title="{{ block.settings.button_1_text | escape }}" style="border: {{ block.settings.button_1_border_width }}px solid {{ block.settings.button_1_border_color }};">{{ block.settings.button_1_text }}</a>
+								<a class="button {{ block.settings.button_1_color }}" href="{{ block.settings.button_1_link }}" role="button" title="{{ block.settings.button_1_text | escape }}" style="background-color: {{ block.settings.button_1_bg_color }}; border: {{ block.settings.button_1_border_width }}px solid {{ block.settings.button_1_border_color }};">{{ block.settings.button_1_text }}</a>
 								{% endif %}
 							</div>
 			        {% endif %}
@@ -779,6 +779,12 @@
 					 "id": "use_text_button_1",
 					 "label": "Use text button",
 					 "default": false
+				},
+				{
+					"type": "color",
+					"id": "button_1_bg_color",
+					"label": "Background color",
+					"default": "transparent"
 				},
 				{
 					"type": "color",
