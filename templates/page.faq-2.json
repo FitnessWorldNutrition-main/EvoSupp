@@ -95,7 +95,7 @@
           "settings": {
             "heading": "Livrez-vous à l’international ?",
             "open": false,
-            "content": "<p>Oui, nos expéditions couvrent plusieurs zones : la France métropolitaine, la Corse, les pays de l’Union Européenne ainsi que certains pays hors UE tels que la Suisse, la Norvège ou encore les Émirats Arabes Unis.<br/>Les frais de livraison sont automatiquement calculés au moment de votre commande, selon votre destination.</p>",
+            "content": "<p>Oui, nos expéditions couvrent plusieurs zones : la France métropolitaine, la Corse, les pays de l’Union Européenne ainsi que certains pays hors UE tels que la Suisse et la Norvège.<br/>Les frais de livraison sont automatiquement calculés au moment de votre commande, selon votre destination.</p>",
             "page": "",
             "custom_liquid": "",
             "icon_color": "#ff6b00"
