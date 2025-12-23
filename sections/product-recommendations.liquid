@@ -55,21 +55,61 @@
 	</div>
 </div>
 <script>
-  // Initialize scroll navigation for product recommendations
+  // Initialize scroll navigation for product recommendations (Safari/iOS compatible)
   (function() {
+    var initialized = false;
+    
     function initScrollNav() {
-      const wrapper = document.querySelector('.product-recommendations [data-scroll-nav]');
-      if (!wrapper) return;
+      var wrapper = document.querySelector('.product-recommendations [data-scroll-nav]');
+      if (!wrapper || initialized) return;
       
-      const container = wrapper.querySelector('[data-scroll-container]');
-      const prevBtn = wrapper.querySelector('[data-scroll-prev]');
-      const nextBtn = wrapper.querySelector('[data-scroll-next]');
+      var container = wrapper.querySelector('[data-scroll-container]');
+      var prevBtn = wrapper.querySelector('[data-scroll-prev]');
+      var nextBtn = wrapper.querySelector('[data-scroll-next]');
       
       if (!container || !prevBtn || !nextBtn) return;
       
+      initialized = true;
+      var isScrolling = false;
+      
+      // Custom smooth scroll function for Safari/iOS compatibility
+      function smoothScrollTo(element, targetPosition, duration) {
+        if (isScrolling) return;
+        isScrolling = true;
+        
+        var startPosition = element.scrollLeft;
+        var distance = targetPosition - startPosition;
+        var startTime = performance.now();
+        
+        // Temporarily disable scroll-snap for smooth animation
+        var originalSnapType = element.style.scrollSnapType;
+        element.style.scrollSnapType = 'none';
+        
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+        
+        function animate(currentTime) {
+          var elapsed = currentTime - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          var easedProgress = easeOutCubic(progress);
+          
+          element.scrollLeft = startPosition + (distance * easedProgress);
+          
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            element.style.scrollSnapType = originalSnapType;
+            isScrolling = false;
+            updateButtons();
+          }
+        }
+        
+        requestAnimationFrame(animate);
+      }
+      
       function getScrollAmount() {
-        // Scroll by one product width
-        const firstItem = container.querySelector('.columns');
+        var firstItem = container.querySelector('.columns');
         if (firstItem) {
           return firstItem.offsetWidth;
         }
@@ -77,33 +117,62 @@
       }
       
       function updateButtons() {
-        const isAtStart = container.scrollLeft <= 0;
-        const isAtEnd = container.scrollLeft >= container.scrollWidth - container.offsetWidth - 10;
+        var isAtStart = container.scrollLeft <= 1;
+        var isAtEnd = container.scrollLeft >= container.scrollWidth - container.offsetWidth - 1;
         
         prevBtn.classList.toggle('disabled', isAtStart);
         nextBtn.classList.toggle('disabled', isAtEnd);
       }
       
       function scrollPrev(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        container.scrollBy({
-          left: -getScrollAmount(),
-          behavior: 'smooth'
-        });
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        if (isScrolling) return;
+        
+        var scrollAmount = getScrollAmount();
+        var targetPosition = Math.max(0, container.scrollLeft - scrollAmount);
+        smoothScrollTo(container, targetPosition, 400);
       }
       
       function scrollNext(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        container.scrollBy({
-          left: getScrollAmount(),
-          behavior: 'smooth'
-        });
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        if (isScrolling) return;
+        
+        var scrollAmount = getScrollAmount();
+        var maxScroll = container.scrollWidth - container.offsetWidth;
+        var targetPosition = Math.min(maxScroll, container.scrollLeft + scrollAmount);
+        smoothScrollTo(container, targetPosition, 400);
       }
       
+      // Event listeners
       prevBtn.addEventListener('click', scrollPrev);
       nextBtn.addEventListener('click', scrollNext);
+      
+      // Touch events for mobile Safari/iOS
+      var touchHandled = false;
+      prevBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        if (!touchHandled) {
+          touchHandled = true;
+          scrollPrev(e);
+          setTimeout(function() { touchHandled = false; }, 100);
+        }
+      }, { passive: false });
+      
+      nextBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        if (!touchHandled) {
+          touchHandled = true;
+          scrollNext(e);
+          setTimeout(function() { touchHandled = false; }, 100);
+        }
+      }, { passive: false });
+      
       container.addEventListener('scroll', updateButtons, { passive: true });
       
       updateButtons();
@@ -119,7 +188,7 @@
     }
     
     // Also listen for content being loaded dynamically
-    const observer = new MutationObserver(function(mutations) {
+    var observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
         if (mutation.addedNodes.length) {
           setTimeout(initScrollNav, 100);
@@ -127,7 +196,7 @@
       });
     });
     
-    const targetNode = document.querySelector('.product-recommendations');
+    var targetNode = document.querySelector('.product-recommendations');
     if (targetNode) {
       observer.observe(targetNode, { childList: true, subtree: true });
     }
