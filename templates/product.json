@@ -194,6 +194,9 @@
         "collapsible_tab_VD9Y6t",
         "47f50ec7-2a76-44a7-bce6-b7895e0e8ca7"
       ],
+      "custom_css": [
+        "summary {font-weight: bold; font-size: 17px;}"
+      ],
       "settings": {
         "enable_sticky_add_to_cart": true,
         "show_taxes_included": false,
