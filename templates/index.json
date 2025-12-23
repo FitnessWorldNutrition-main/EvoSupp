@@ -199,7 +199,9 @@
       "block_order": [
         "1661419552da8d37a7-0"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".collection-tabs__list {display: none;}"
+      ],
       "settings": {
         "heading": "NOS  |MEILLEURES| VENTES",
         "marker_style": "style1",
