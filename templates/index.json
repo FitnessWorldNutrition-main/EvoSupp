@@ -86,7 +86,7 @@
             "content_position": "middle-left",
             "mobile_content_position": "top-left",
             "desktop_content_position": "middle-left",
-            "text_alignment": "left",
+            "text_alignment": "center",
             "mobile_text_alignment": "center",
             "desktop_text_alignment": "left",
             "content_size": "medium",
