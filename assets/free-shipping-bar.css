@@ -1,0 +1,164 @@
+/**
+ * Multi-tier Free Shipping Progress Bar Styles
+ */
+
+.free-shipping-bar {
+  display: block;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: var(--font-body-medium-weight, 500);
+  position: relative;
+}
+
+.free-shipping-bar__message {
+  margin-bottom: 12px;
+}
+
+.free-shipping-bar__text {
+  display: block;
+  color: var(--color-text);
+}
+
+/* Progress bar track */
+.free-shipping-bar__track {
+  position: relative;
+  height: 6px;
+  background: var(--color-border, #d9d9d9);
+  border-radius: 9999px;
+  overflow: visible;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+/* Progress bar fill */
+.free-shipping-bar__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--color-accent, #e4f965);
+  border-radius: 9999px;
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+/* Icon container */
+.free-shipping-bar__icon {
+  position: absolute;
+  bottom: -9px;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--color-background, #fff);
+  border-radius: 50%;
+  border: 2px solid var(--color-border, #d9d9d9);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.free-shipping-bar__icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.free-shipping-bar__icon--reached {
+  border-color: var(--color-accent, #e4f965);
+  box-shadow: 0 0 0 2px rgba(228, 249, 101, 0.3);
+}
+
+.free-shipping-bar__icon--reached img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Marker (when no icon is provided) */
+.free-shipping-bar__marker {
+  position: absolute;
+  bottom: 12px;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.free-shipping-bar__marker::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: var(--color-border, #d9d9d9);
+  border-radius: 50%;
+  margin-top: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.free-shipping-bar__marker--reached::after {
+  background: var(--color-accent, #e4f965);
+}
+
+.free-shipping-bar__marker-amount {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary, #666);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.free-shipping-bar__marker--reached .free-shipping-bar__marker-amount {
+  color: var(--color-accent-text, var(--color-text));
+}
+
+/* Responsive adjustments */
+@media (max-width: 749px) {
+  .free-shipping-bar {
+    font-size: 0.75rem;
+    margin-bottom: 20px;
+  }
+
+  .free-shipping-bar__track {
+    margin-top: 18px;
+  }
+
+  .free-shipping-bar__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .free-shipping-bar__icon img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .free-shipping-bar__marker-amount {
+    font-size: 0.625rem;
+  }
+}
+
+/* Animation for when tiers are reached */
+@keyframes tier-reached-pulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.free-shipping-bar__icon.just-reached {
+  animation: tier-reached-pulse 0.4s ease-out;
+}

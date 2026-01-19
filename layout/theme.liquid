@@ -172,8 +172,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<script type="module" src="{{ 'scroll-shadow.js' | asset_url }}" defer="defer"></script>
 	<script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
 	{%- if settings.free_shipping -%}
-		{{ 'free-shipping.js' | asset_url | script_tag }}
-		{{ 'free-shipping.css' | asset_url | stylesheet_tag }}
+		{%- if settings.use_default_free_shipping_bar -%}
+			{{ 'free-shipping.js' | asset_url | script_tag }}
+			{{ 'free-shipping.css' | asset_url | stylesheet_tag }}
+		{%- else -%}
+			{{ 'free-shipping-bar.js' | asset_url | script_tag }}
+			{{ 'free-shipping-bar.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
 	{%- endif -%}
 	{%- if settings.cart_drawer_add_discounts -%}
 		{{ 'cart-discounts.css' | asset_url | stylesheet_tag }}
