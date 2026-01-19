@@ -18,13 +18,12 @@
 	assign available = target.available | default: false
 
 	# HARDCODED 20% DISCOUNT (EVO20)
-	# Calculate original price (reverse calculate from discounted price)
-	# If current price is already discounted by 20%, original = price / 0.8
-	assign original_price = price | times: 100 | divided_by: 80
+	# Original price is the current product price
+	assign original_price = price
 	assign strikethrough_price = original_price
 	
-	# Current price stays as is (it's already the discounted price)
-	assign discounted_price = price
+	# Calculate 20% discount (80% of original price)
+	assign discounted_price = strikethrough_price | times: 80 | divided_by: 100
 
 	# Format prices
 	assign money_price = discounted_price | money
