@@ -81,6 +81,7 @@
     "free_shipping": true,
     "free_shipping_minimum": "90",
     "use_default_free_shipping_bar": false,
+    "tier1_icon": "shopify://shop_images/favicon.svg",
     "search_product_heading": "Meilleures ventes",
     "search_product_collection": "essential-supp",
     "search_product_collection_limit": 3,
