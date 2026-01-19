@@ -37,11 +37,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   height: 100%;
+  width: 100%;
   background: var(--color-accent, #e4f965);
   border-radius: 9999px;
   transform-origin: left center;
-  transform: scaleX(var(--progress, 0));
+  transform: scale(var(--progress, 0), 1);
   transition: transform 0.3s ease;
   z-index: 1;
 }

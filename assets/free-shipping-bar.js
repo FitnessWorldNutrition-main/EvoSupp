@@ -45,6 +45,13 @@ if (!customElements.get('free-shipping-bar')) {
       // Initial calculation
       this.cartTotal = parseInt(this.dataset.cartTotal, 10) || 0;
       this.previousTierReached = this.calculateTierReached(this.cartTotal);
+      
+      // Set initial transform on progress element
+      if (this.progressElement) {
+        const initialProgress = Math.min(1, this.cartTotal / this.config.maxThreshold);
+        this.progressElement.style.transform = `scale(${initialProgress}, 1)`;
+      }
+      
       this.updateDisplay(this.cartTotal);
 
       // Listen for cart updates
@@ -133,6 +140,9 @@ if (!customElements.get('free-shipping-bar')) {
 
       if (this.progressElement) {
         this.progressElement.setAttribute('aria-valuenow', total);
+        this.progressElement.setAttribute('data-progress', progress);
+        // Also set transform directly as fallback
+        this.progressElement.style.transform = `scale(${progress}, 1)`;
       }
 
       // Update message

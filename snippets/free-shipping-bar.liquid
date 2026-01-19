@@ -102,9 +102,13 @@
   endif
 
   # Calculate progress percentage
-  assign progress_percentage = calculated_total | times: 1.0 | divided_by: max_threshold
-  if progress_percentage > 1
-    assign progress_percentage = 1
+  if max_threshold > 0
+    assign progress_percentage = calculated_total | times: 100.0 | divided_by: max_threshold | divided_by: 100.0
+    if progress_percentage > 1
+      assign progress_percentage = 1
+    endif
+  else
+    assign progress_percentage = 0
   endif
 
   # Calculate icon positions (relative to max threshold)
@@ -191,7 +195,7 @@
   </div>
 
   <div class="free-shipping-bar__track">
-    <div class="free-shipping-bar__progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ max_threshold }}" aria-valuenow="{{ calculated_total }}"></div>
+    <div class="free-shipping-bar__progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ max_threshold }}" aria-valuenow="{{ calculated_total }}" data-progress="{{ progress_percentage }}"></div>
     
     {%- comment -%} Tier 1 Icon {%- endcomment -%}
     {%- if tier1_enabled and tier1_icon != blank -%}
