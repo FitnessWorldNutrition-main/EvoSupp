@@ -14,89 +14,41 @@
   else
     assign target = product
   endif
-  assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
 	assign available = target.available | default: false
 
-	# Check if product has a compare_at_price (sale price)
-	assign has_compare_price = false
-	if compare_at_price and compare_at_price > price
-		assign has_compare_price = true
-	endif
-
-	# Check if ANY discount is applied in cart and get the discount percentage
-	assign discount_applied = false
-	assign discount_percent = 0
-	assign discount_title = ''
+	# HARDCODED 20% DISCOUNT (EVO20)
+	# Calculate original price (reverse calculate from discounted price)
+	# If current price is already discounted by 20%, original = price / 0.8
+	assign original_price = price | times: 100 | divided_by: 80
+	assign strikethrough_price = original_price
 	
-	for discount in cart.discount_applications
-		if discount.value_type == 'percentage'
-			assign discount_applied = true
-			assign discount_percent = discount.value
-			assign discount_title = discount.title
-			break
-		endif
-	endfor
-
-	# Determine which price to show as strikethrough
-	assign show_strikethrough = false
-	assign strikethrough_price = 0
-	
-	if has_compare_price
-		assign show_strikethrough = true
-		assign strikethrough_price = compare_at_price
-		assign original_price = compare_at_price
-	elsif discount_applied
-		assign show_strikethrough = true
-		assign strikethrough_price = price
-		assign original_price = price
-	endif
-
-	# Calculate discounted price based on the applied discount
-	if discount_applied and discount_percent > 0
-		assign discount_multiplier = 100 | minus: discount_percent
-		assign discounted_price = price | times: discount_multiplier | divided_by: 100
-	else
-		assign discounted_price = price
-	endif
+	# Current price stays as is (it's already the discounted price)
+	assign discounted_price = price
 
 	# Format prices
-	if show_strikethrough
-		assign money_price = discounted_price | money
-		if settings.currency_code_enabled
-			assign money_price = discounted_price | money_with_currency
-		endif
-		assign discounted_class = 'discounted'
-	else
-		assign money_price = price | money
-		if settings.currency_code_enabled
-			assign money_price = price | money_with_currency
-		endif
-		assign discounted_class = ''
+	assign money_price = discounted_price | money
+	if settings.currency_code_enabled
+		assign money_price = discounted_price | money_with_currency
 	endif
 
 	if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
 -%}
-<span class="price{% if show_strikethrough %} evo-discount-price{% endif %}">
-	{%- if show_strikethrough -%}
-		{%- comment -%} Original price as strikethrough (prix barré) {%- endcomment -%}
-		<del>
-			<span>
-				{% if settings.currency_code_enabled %}
-					{{ strikethrough_price | money_with_currency }}
-				{% else %}
-					{{ strikethrough_price | money }}
-				{% endif %}
-			</span>
-		</del>
-		{%- comment -%} Discounted/Sale price {%- endcomment -%}
-		<ins><span class="amount {{ discounted_class }}">{{ money_price }}</span></ins>
-	{%- else -%}
-		{%- comment -%} Normal price display when no discount or sale {%- endcomment -%}
-		<ins><span class="amount">{{ money_price }}</span></ins>
-	{%- endif -%}
+<span class="price evo-discount-price">
+	{%- comment -%} Original price as strikethrough (prix barré) - HARDCODED 20% {%- endcomment -%}
+	<del>
+		<span>
+			{% if settings.currency_code_enabled %}
+				{{ strikethrough_price | money_with_currency }}
+			{% else %}
+				{{ strikethrough_price | money }}
+			{% endif %}
+		</span>
+	</del>
+	{%- comment -%} Discounted price (current price with 20% off shown) {%- endcomment -%}
+	<ins><span class="amount discounted">{{ money_price }}</span></ins>
 	<small class="unit-price {% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
 		<span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
     <span class="unit-price-separator">/</span>
@@ -109,26 +61,18 @@
 	</small>
 	{%- if show_badges -%}
 		<span class="badges">
-			{%- comment -%} Discount badge - show when product is on sale or discount is applied {%- endcomment -%}
-			{%- if show_strikethrough -%}
-				{%- assign saved_amount = strikethrough_price | minus: discounted_price | money -%}
-				{%- if has_compare_price -%}
-					{%- assign savings = strikethrough_price | minus: price -%}
-					{%- assign percent_saved = savings | times: 100.0 | divided_by: strikethrough_price | round -%}
-					{%- capture saved_percent -%}{{ percent_saved }}%{%- endcapture -%}
-				{%- elsif discount_applied -%}
-					{%- capture saved_percent -%}{{ discount_percent | round }}%{%- endcapture -%}
+			{%- comment -%} Discount badge - HARDCODED 20% discount {%- endcomment -%}
+			{%- assign saved_amount = strikethrough_price | minus: discounted_price | money -%}
+			{%- capture saved_percent -%}20%{%- endcapture -%}
+			<span class="badge onsale">
+				{%- if settings.sale_badge_type == 'sale' -%}
+				{{ 'products.product.on_sale' | t }}
+				{%- elsif settings.sale_badge_type == 'save_amount' -%}
+				{{ 'products.product.save_html' | t: saved_amount: saved_amount }}
+				{%- else -%}
+				{{ 'products.product.save_html' | t: saved_amount: saved_percent }}
 				{%- endif -%}
-				<span class="badge onsale">
-					{%- if settings.sale_badge_type == 'sale' -%}
-					{{ 'products.product.on_sale' | t }}
-					{%- elsif settings.sale_badge_type == 'save_amount' -%}
-					{{ 'products.product.save_html' | t: saved_amount: saved_amount }}
-					{%- else -%}
-					{{ 'products.product.save_html' | t: saved_amount: saved_percent }}
-					{%- endif -%}
-				</span>
-			{%- endif -%}
+			</span>
 			{%- if available == false -%}
 		  <span class="badge out-of-stock">
 		    {{ 'products.product.sold_out' | t }}
