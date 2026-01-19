@@ -115,18 +115,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // Run on page load
   setTimeout(applyDiscountIfCartHasItems, 250);
 
-  // Intercept fetch to detect cart changes
-  const originalFetch = window.fetch;
-  window.fetch = async function(...args) {
-    const response = await originalFetch.apply(this, args);
-    
-    const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
-    if (url.includes('/cart/add') || url.includes('/cart/change')) {
-      setTimeout(applyDiscountIfCartHasItems, 100);
-    }
-    
-    return response;
-  };
+  // Intercept fetch to detect cart changes - COMMENTED OUT
+  // const originalFetch = window.fetch;
+  // window.fetch = async function(...args) {
+  //   const response = await originalFetch.apply(this, args);
+  //   
+  //   const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
+  //   if (url.includes('/cart/add') || url.includes('/cart/change')) {
+  //     setTimeout(applyDiscountIfCartHasItems, 100);
+  //   }
+  //   
+  //   return response;
+  // };
 })();
 </script>
 
