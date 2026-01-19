@@ -5,6 +5,7 @@
 	assign free_shipping = settings.free_shipping
 	assign free_shipping_minimum = settings.free_shipping_minimum | times: 100
 	assign total = cart.total_price
+	assign use_default_free_shipping_bar = settings.use_default_free_shipping_bar
 
 	assign shipping_estimator = section.blocks | where: "type", "shipping_estimator"
 	assign items_requiring_shipping = cart.items | where: 'requires_shipping'
@@ -189,11 +190,29 @@
 					</div>
 				</div>
 				<div class="thb-cart-collaterals">
-					{%- liquid
-						if free_shipping and settings.free_shipping_minimum != blank
-							render 'free-shipping', free_shipping_minimum: free_shipping_minimum, total: total
-						endif
-					-%}
+				{%- if free_shipping -%}
+					{%- if use_default_free_shipping_bar and settings.free_shipping_minimum != blank -%}
+						{%- render 'free-shipping', free_shipping_minimum: free_shipping_minimum, total: total -%}
+					{%- else -%}
+						{%- render 'free-shipping-bar',
+							tier1_amount: settings.tier1_amount,
+							tier1_message: settings.tier1_message,
+							tier1_reached_message: settings.tier1_reached_message,
+							tier1_icon: settings.tier1_icon,
+							tier1_enabled: settings.enable_tier1,
+							tier2_amount: settings.tier2_amount,
+							tier2_message: settings.tier2_message,
+							tier2_reached_message: settings.tier2_reached_message,
+							tier2_icon: settings.tier2_icon,
+							tier2_enabled: settings.enable_tier2,
+							tier3_amount: settings.tier3_amount,
+							tier3_message: settings.tier3_message,
+							tier3_reached_message: settings.tier3_reached_message,
+							tier3_icon: settings.tier3_icon,
+							tier3_enabled: settings.enable_tier3
+						-%}
+					{%- endif -%}
+				{%- endif -%}
 					{% if cart_notes_enable %}
 					<div class="field cart-notes">
 						<textarea name="note" id="CartSpecialInstructions" class="full" placeholder="{{ 'sections.cart.note' | t | escape }}" form="cart-form">{{ cart.note }}</textarea>

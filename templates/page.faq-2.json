@@ -233,5 +233,10 @@
   "order": [
     "main",
     "collapsible_content_qWTKKx"
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
   ]
 }

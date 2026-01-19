@@ -44,6 +44,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 	{{ 'app.css' | asset_url | stylesheet_tag }}
 	{{ 'product-grid.css' | asset_url | stylesheet_tag }}
+	{%- if settings.free_shipping and settings.use_default_free_shipping_bar == false -%}
+		{{ 'free-shipping-bar.css' | asset_url | stylesheet_tag }}
+	{%- elsif settings.free_shipping -%}
+		{{ 'free-shipping.css' | asset_url | stylesheet_tag }}
+	{%- endif -%}
 
 	{% render 'head-variables' %}
 
@@ -115,18 +120,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // Run on page load
   setTimeout(applyDiscountIfCartHasItems, 250);
 
-  // Intercept fetch to detect cart changes
-  const originalFetch = window.fetch;
-  window.fetch = async function(...args) {
-    const response = await originalFetch.apply(this, args);
-    
-    const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
-    if (url.includes('/cart/add') || url.includes('/cart/change')) {
-      setTimeout(applyDiscountIfCartHasItems, 100);
-    }
-    
-    return response;
-  };
+  // Intercept fetch to detect cart changes - COMMENTED OUT
+  // const originalFetch = window.fetch;
+  // window.fetch = async function(...args) {
+  //   const response = await originalFetch.apply(this, args);
+  //   
+  //   const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
+  //   if (url.includes('/cart/add') || url.includes('/cart/change')) {
+  //     setTimeout(applyDiscountIfCartHasItems, 100);
+  //   }
+  //   
+  //   return response;
+  // };
 })();
 </script>
 
@@ -172,8 +177,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<script type="module" src="{{ 'scroll-shadow.js' | asset_url }}" defer="defer"></script>
 	<script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
 	{%- if settings.free_shipping -%}
-		{{ 'free-shipping.js' | asset_url | script_tag }}
-		{{ 'free-shipping.css' | asset_url | stylesheet_tag }}
+		{%- if settings.use_default_free_shipping_bar -%}
+			{{ 'free-shipping.js' | asset_url | script_tag }}
+		{%- else -%}
+			{{ 'free-shipping-bar.js' | asset_url | script_tag }}
+		{%- endif -%}
 	{%- endif -%}
 	{%- if settings.cart_drawer_add_discounts -%}
 		{{ 'cart-discounts.css' | asset_url | stylesheet_tag }}

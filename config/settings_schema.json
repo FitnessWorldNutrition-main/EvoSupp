@@ -1245,6 +1245,109 @@
         "label": "Free shipping minimum amount",
         "default": "250",
         "info": "Enter the value without a currency symbol and use a decimal to separate dollars and cents. Example: '100.00'"
+      },
+      {
+        "type": "header",
+        "content": "Multi-tier free shipping bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_default_free_shipping_bar",
+        "label": "Use default free shipping bar",
+        "default": true,
+        "info": "When enabled, uses the simple single-tier free shipping bar. Disable to use multi-tier bar with icons."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_tier1",
+        "label": "Enable first tier",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "tier1_amount",
+        "label": "First tier amount (€)",
+        "default": 90
+      },
+      {
+        "type": "text",
+        "id": "tier1_message",
+        "label": "First tier message",
+        "default": "Plus que {remaining_amount} pour la livraison gratuite",
+        "info": "Use {remaining_amount} as placeholder"
+      },
+      {
+        "type": "text",
+        "id": "tier1_reached_message",
+        "label": "First tier reached message",
+        "default": "Bravo ! La livraison vous est offerte ! Plus que {remaining_amount} pour le 3x sans frais",
+        "info": "Use {remaining_amount} as placeholder for next tier"
+      },
+      {
+        "type": "image_picker",
+        "id": "tier1_icon",
+        "label": "First tier icon"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_tier2",
+        "label": "Enable second tier",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "tier2_amount",
+        "label": "Second tier amount (€)",
+        "default": 200
+      },
+      {
+        "type": "text",
+        "id": "tier2_message",
+        "label": "Second tier message",
+        "default": "Plus que {remaining_amount} pour le 3x sans frais",
+        "info": "Use {remaining_amount} as placeholder"
+      },
+      {
+        "type": "text",
+        "id": "tier2_reached_message",
+        "label": "Second tier reached message",
+        "default": "Bravo ! Vous pouvez profiter du 3x sans frais ! Plus que {remaining_amount} pour le prochain palier",
+        "info": "Use {remaining_amount} as placeholder for next tier"
+      },
+      {
+        "type": "image_picker",
+        "id": "tier2_icon",
+        "label": "Second tier icon"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_tier3",
+        "label": "Enable third tier",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "tier3_amount",
+        "label": "Third tier amount (€)",
+        "default": 300
+      },
+      {
+        "type": "text",
+        "id": "tier3_message",
+        "label": "Third tier message",
+        "default": "Plus que {remaining_amount} pour le prochain palier",
+        "info": "Use {remaining_amount} as placeholder"
+      },
+      {
+        "type": "text",
+        "id": "tier3_reached_message",
+        "label": "Third tier reached message",
+        "default": "Félicitations ! Vous avez débloqué tous les avantages !"
+      },
+      {
+        "type": "image_picker",
+        "id": "tier3_icon",
+        "label": "Third tier icon"
       }
     ]
   },

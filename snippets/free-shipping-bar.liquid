@@ -1,0 +1,251 @@
+{%- comment -%}
+  Multi-tier Free Shipping Progress Bar
+  
+  Parameters:
+  - tier1_amount, tier2_amount, tier3_amount (numbers in euros)
+  - tier1_message, tier2_message, tier3_message (strings with {remaining_amount} placeholder)
+  - tier1_icon, tier2_icon, tier3_icon (images)
+  - tier1_reached_message, tier2_reached_message, tier3_reached_message (strings)
+  - tier1_enabled, tier2_enabled, tier3_enabled (booleans)
+{%- endcomment -%}
+
+{%- liquid
+  # Handle boolean parameters - DON'T use default filter for booleans
+  # as it converts false to true
+  if tier1_enabled == nil
+    assign tier1_enabled = true
+  endif
+  if tier2_enabled == nil
+    assign tier2_enabled = true
+  endif
+  if tier3_enabled == nil
+    assign tier3_enabled = true
+  endif
+
+  # Apply cascading logic: tier 3 requires tier 2, tier 2 requires tier 1
+  if tier3_enabled
+    assign tier2_enabled = true
+    assign tier1_enabled = true
+  elsif tier2_enabled
+    assign tier1_enabled = true
+  endif
+
+  # If all tiers disabled, force tier 1 to be enabled (minimum requirement)
+  unless tier1_enabled or tier2_enabled or tier3_enabled
+    assign tier1_enabled = true
+  endunless
+
+  # Set default amounts if not provided
+  if tier1_amount == blank or tier1_amount == 0
+    assign tier1_amount = 90
+  endif
+  if tier2_amount == blank or tier2_amount == 0
+    assign tier2_amount = 200
+  endif
+  if tier3_amount == blank or tier3_amount == 0
+    assign tier3_amount = 300
+  endif
+
+  # Set default messages if not provided
+  if tier1_message == blank
+    assign tier1_message = 'Plus que {remaining_amount} pour la livraison gratuite'
+  endif
+  if tier2_message == blank
+    assign tier2_message = 'Plus que {remaining_amount} pour le 3x sans frais'
+  endif
+  if tier3_message == blank
+    assign tier3_message = 'Plus que {remaining_amount} pour le prochain palier'
+  endif
+  if tier1_reached_message == blank
+    assign tier1_reached_message = 'Bravo ! La livraison vous est offerte ! Plus que {remaining_amount} pour le 3x sans frais'
+  endif
+  if tier2_reached_message == blank
+    assign tier2_reached_message = 'Bravo ! Vous pouvez profiter du 3x sans frais ! Plus que {remaining_amount} pour le prochain palier'
+  endif
+  if tier3_reached_message == blank
+    assign tier3_reached_message = 'Félicitations ! Vous avez débloqué tous les avantages !'
+  endif
+
+  # Calculate cart total (only items requiring shipping, minus discounts)
+  assign calculated_total = 0
+  for item in cart.items
+    if item.requires_shipping
+      assign calculated_total = calculated_total | plus: item.final_line_price
+    endif
+  endfor
+
+  # Subtract cart-level discounts
+  for discount in cart.cart_level_discount_applications
+    assign calculated_total = calculated_total | minus: discount.total_allocated_amount
+  endfor
+
+  # Ensure total is not negative
+  if calculated_total < 0
+    assign calculated_total = 0
+  endif
+
+  # Convert amounts to cents for comparison
+  assign tier1_cents = tier1_amount | times: 100
+  assign tier2_cents = tier2_amount | times: 100
+  assign tier3_cents = tier3_amount | times: 100
+
+  # Determine the maximum threshold based on active tiers
+  if tier3_enabled
+    assign max_threshold = tier3_cents
+    assign max_amount = tier3_amount
+  elsif tier2_enabled
+    assign max_threshold = tier2_cents
+    assign max_amount = tier2_amount
+  else
+    assign max_threshold = tier1_cents
+    assign max_amount = tier1_amount
+  endif
+
+  # Calculate progress percentage
+  if max_threshold > 0
+    assign progress_percentage = calculated_total | times: 100.0 | divided_by: max_threshold | divided_by: 100.0
+    if progress_percentage > 1
+      assign progress_percentage = 1
+    endif
+  else
+    assign progress_percentage = 0
+  endif
+
+  # Calculate icon positions (relative to max threshold)
+  if tier3_enabled
+    assign tier1_position = tier1_cents | times: 100.0 | divided_by: tier3_cents
+    assign tier2_position = tier2_cents | times: 100.0 | divided_by: tier3_cents
+    assign tier3_position = 100
+  elsif tier2_enabled
+    assign tier1_position = tier1_cents | times: 100.0 | divided_by: tier2_cents
+    assign tier2_position = 100
+    assign tier3_position = 0
+  else
+    assign tier1_position = 100
+    assign tier2_position = 0
+    assign tier3_position = 0
+  endif
+
+  # Determine current state and message
+  assign current_tier_reached = 0
+  if calculated_total >= tier3_cents and tier3_enabled
+    assign current_tier_reached = 3
+  elsif calculated_total >= tier2_cents and tier2_enabled
+    assign current_tier_reached = 2
+  elsif calculated_total >= tier1_cents and tier1_enabled
+    assign current_tier_reached = 1
+  endif
+
+  # Calculate remaining amount and set message
+  if current_tier_reached == 3
+    # All tiers reached
+    assign current_message = tier3_reached_message
+    assign remaining_cents = 0
+  elsif current_tier_reached == 2
+    # Tier 2 reached, show progress to tier 3
+    if tier3_enabled
+      assign remaining_cents = tier3_cents | minus: calculated_total
+      assign current_message = tier2_reached_message
+    else
+      assign current_message = tier2_reached_message
+      assign remaining_cents = 0
+    endif
+  elsif current_tier_reached == 1
+    # Tier 1 reached, show progress to tier 2
+    if tier2_enabled
+      assign remaining_cents = tier2_cents | minus: calculated_total
+      assign current_message = tier1_reached_message
+    else
+      assign current_message = tier1_reached_message
+      assign remaining_cents = 0
+    endif
+  else
+    # No tier reached yet, show progress to tier 1
+    assign remaining_cents = tier1_cents | minus: calculated_total
+    assign current_message = tier1_message
+  endif
+
+  # Format remaining amount
+  assign remaining_amount_formatted = remaining_cents | money_without_trailing_zeros
+
+  # Replace placeholder in message
+  assign current_message = current_message | replace: '{remaining_amount}', remaining_amount_formatted
+-%}
+
+<free-shipping-bar 
+  class="free-shipping-bar" 
+  data-cart-total="{{ calculated_total }}"
+  data-tier1-cents="{{ tier1_cents }}"
+  data-tier2-cents="{{ tier2_cents }}"
+  data-tier3-cents="{{ tier3_cents }}"
+  data-tier1-enabled="{{ tier1_enabled }}"
+  data-tier2-enabled="{{ tier2_enabled }}"
+  data-tier3-enabled="{{ tier3_enabled }}"
+  data-tier1-message="{{ tier1_message | escape }}"
+  data-tier2-message="{{ tier2_message | escape }}"
+  data-tier3-message="{{ tier3_message | escape }}"
+  data-tier1-reached-message="{{ tier1_reached_message | escape }}"
+  data-tier2-reached-message="{{ tier2_reached_message | escape }}"
+  data-tier3-reached-message="{{ tier3_reached_message | escape }}"
+  data-max-threshold="{{ max_threshold }}"
+  style="--progress: {{ progress_percentage }};"
+>
+  <div class="free-shipping-bar__message">
+    <span class="free-shipping-bar__text">{{ current_message }}</span>
+  </div>
+
+  <div class="free-shipping-bar__track">
+    <div class="free-shipping-bar__progress" role="progressbar" aria-valuemin="0" aria-valuemax="{{ max_threshold }}" aria-valuenow="{{ calculated_total }}" data-progress="{{ progress_percentage }}"></div>
+    
+    {%- comment -%} Tier 1 Icon {%- endcomment -%}
+    {%- if tier1_enabled and tier1_icon != blank -%}
+      <div class="free-shipping-bar__icon free-shipping-bar__icon--tier1 {% if current_tier_reached >= 1 %}free-shipping-bar__icon--reached{% endif %}" style="left: {{ tier1_position }}%;">
+        <img 
+          src="{{ tier1_icon | image_url: width: 32 }}" 
+          alt="Tier 1 icon" 
+          width="24" 
+          height="24"
+          loading="lazy"
+        >
+      </div>
+    {%- elsif tier1_enabled -%}
+      <div class="free-shipping-bar__marker free-shipping-bar__marker--tier1 {% if current_tier_reached >= 1 %}free-shipping-bar__marker--reached{% endif %}" style="left: {{ tier1_position }}%;">
+        <span class="free-shipping-bar__marker-amount">{{ tier1_amount }}€</span>
+      </div>
+    {%- endif -%}
+    
+    {%- comment -%} Tier 2 Icon {%- endcomment -%}
+    {%- if tier2_enabled and tier2_icon != blank -%}
+      <div class="free-shipping-bar__icon free-shipping-bar__icon--tier2 {% if current_tier_reached >= 2 %}free-shipping-bar__icon--reached{% endif %}" style="left: {{ tier2_position }}%;">
+        <img 
+          src="{{ tier2_icon | image_url: width: 32 }}" 
+          alt="Tier 2 icon" 
+          width="24" 
+          height="24"
+          loading="lazy"
+        >
+      </div>
+    {%- elsif tier2_enabled -%}
+      <div class="free-shipping-bar__marker free-shipping-bar__marker--tier2 {% if current_tier_reached >= 2 %}free-shipping-bar__marker--reached{% endif %}" style="left: {{ tier2_position }}%;">
+        <span class="free-shipping-bar__marker-amount">{{ tier2_amount }}€</span>
+      </div>
+    {%- endif -%}
+    
+    {%- comment -%} Tier 3 Icon {%- endcomment -%}
+    {%- if tier3_enabled and tier3_icon != blank -%}
+      <div class="free-shipping-bar__icon free-shipping-bar__icon--tier3 {% if current_tier_reached >= 3 %}free-shipping-bar__icon--reached{% endif %}" style="left: {{ tier3_position }}%;">
+        <img 
+          src="{{ tier3_icon | image_url: width: 32 }}" 
+          alt="Tier 3 icon" 
+          width="24" 
+          height="24"
+          loading="lazy"
+        >
+      </div>
+    {%- elsif tier3_enabled -%}
+      <div class="free-shipping-bar__marker free-shipping-bar__marker--tier3 {% if current_tier_reached >= 3 %}free-shipping-bar__marker--reached{% endif %}" style="left: {{ tier3_position }}%;">
+        <span class="free-shipping-bar__marker-amount">{{ tier3_amount }}€</span>
+      </div>
+    {%- endif -%}
+  </div>
+</free-shipping-bar>

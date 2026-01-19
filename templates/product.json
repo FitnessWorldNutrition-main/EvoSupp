@@ -77,6 +77,8 @@
             "coupon_box_bg_color": "#fff5f0",
             "coupon_box_text_color": "#ea6b24",
             "coupon_box_icon_color": "#ea6b24"
+            "coupon_box_color": "#ea6b24",
+            "coupon_box_color_link": "#ff6b00"
           }
         },
         "quantity": {
