@@ -47,4 +47,6 @@
     font-size: 1rem;
   }
 }
-
+.collection-short-description a {
+  color: #f67201;
+}
