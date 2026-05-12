@@ -156,7 +156,7 @@
 									</div>
 								</div>
 								<div class="description-content" id="description-content-{{ block.id }}">
-						{{ block.settings.text | newline_to_br }}
+						{{ block.settings.text }}
 						{{ block.settings.page.content }}
 						{{ block.settings.custom_liquid }}
 								</div>
@@ -259,7 +259,7 @@
 								})();
 							</script>
 						{%- else -%}
-							{{ block.settings.text | newline_to_br }}
+							{{ block.settings.text }}
 							{{ block.settings.page.content }}
 							{{ block.settings.custom_liquid }}
 						{%- endif -%}
